@@ -68,6 +68,14 @@ router.get('/contact', function (req, res) {
 });
 
 router.post('/contact', function (req, res) {
+  res.redirect('declaration');
+});
+
+router.get('/declaration', function (req, res) {
+  res.render('sprint1/declaration.html');
+});
+
+router.post('/declaration', function (req, res) {
   res.redirect('end');
 });
 
