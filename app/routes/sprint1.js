@@ -105,7 +105,7 @@ router.get('/exit', function (req, res) {
 
 module.exports = router;
 
-// Get todays date and format it in nth format
+// Get todays date and format it
 function getTodaysDate() {
   var date = new Date();
   var monthNames = [
