@@ -7,12 +7,28 @@
 {% block content %}
   <main id="content" role="main">
     {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
 
     <div class="grid-row">
       <div class="column-two-thirds">
-        <h1 class="heading-xlarge">Dependant children?</h1>
+        <h1 class="heading-xlarge">Do you have any children under the age of 16?</h1>
 
         <form action='dependant-children' method="post">
+          <div class="form-group">
+            <fieldset class="inline">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="radio-inline-1">
+                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="radio-inline-2">
+                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
           <input type="submit" class="button" value="Continue">
         </form>
       </div>

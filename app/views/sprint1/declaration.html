@@ -7,12 +7,19 @@
 {% block content %}
   <main id="content" role="main">
     {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
 
     <div class="grid-row">
       <div class="column-two-thirds">
         <h1 class="heading-xlarge">Declaration</h1>
 
         <form action='declaration' method="post">
+          <p class="text">
+            By sending this application you agree the information in this application
+            is complete and correct as far as you know.
+          </p>
+
+          <p>If you knowingly give false information you could be prosecuted.</p>
           <input type="submit" class="button" value="I agree, continue">
         </form>
       </div>
