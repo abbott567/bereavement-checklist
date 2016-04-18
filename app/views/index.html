@@ -5,59 +5,37 @@
 {% endblock %}
 
 {% block content %}
+  <main id="content" role="main">
+    {% include 'includes/phase_banner_alpha.html' %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
+		<h1 class="heading-large">Prototypes</h1>
 
-      <h1 class="heading-xlarge">The GOV.UK prototype kit</h1>
+		<div class="grid-row">
+			<div class="column-two-thirds">
 
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
+				<h3 class="heading-medium">Sprint 1 - Apr 2016</h3>
+				<p>
+					This is the first iteration of the prototype. We have encorporated three
+          knockout questions to try and determine if the user is eligible for BSP.
+          The journey ends where an agent will have to pick up the claim to gather
+          evidence.
+				</p>
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
+				<p><a href="/sprint1/start" class="button">Start now</a></p>
 
-      <h2 class="heading-medium">About this page</h2>
+				<!--<details>
+			    <summary><span class="summary">Previous Iterations</span></summary>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
+			    <div class="panel panel-border-narrow">
+						<h3 class="heading-medium">Iteration Title</h3>
+						<p>
+							Iteration description
+						</p>
 
-			<h2 class="heading-medium">Examples and documentation</h2>
-
-			<ul class="list list-bullet">
-				<li><a href="/examples">Example pages and patterns</a></li>
-				<li><a href="https://github.com/alphagov/govuk_prototype_kit/tree/master/docs">
-						Read the full documentation</a></li>
-			</ul>
-
-      <h2 class="heading-medium">Other resources</h2>
-
-			<ul class="list list-bullet">
-				<li>
-					<a href="http://govuk-elements.herokuapp.com/snippets/">
-						Guide to GOV.UK Elements
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-			</ul>
-
-    </div>
-  </div>
-</main>
-
+						<p><a href="/sprint1/start" class="button">Start now</a></p>
+			    </div>
+			  </details>-->
+			</div>
+		</div>
+	</main>
 {% endblock %}
-
-
