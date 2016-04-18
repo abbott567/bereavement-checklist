@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apple for Bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Your preferred contact details</h1>
+
+        <h2 class="heading-small">Please choose at least one option</h2>
+
+        <form action='contact' method="post">
+          <div class="form-group">
+            <label class="block-label" for="telephone-yes" data-target="telephone-details">
+              <input id="telephone-yes" type="checkbox" name="telephone" value="Yes"> Telephone
+            </label>
+
+            <div class="panel panel-border-narrow js-hidden" id="telephone-details">
+              <label class="form-label label-no-hint" for="sort-code">
+                Enter your telephone number
+              </label>
+              <input type="text" class="form-control" id="telephone">
+            </div>
+
+            <label class="block-label" for="email-yes" data-target="email-details">
+              <input id="email-yes" type="checkbox" name="email" value="Yes"> Email
+            </label>
+
+            <div class="panel panel-border-narrow js-hidden" id="email-details">
+              <label class="form-label label-no-hint" for="email">
+                Enter your email address
+              </label>
+
+              <input type="text" class="form-control" id="email">
+            </div>
+
+            <label class="block-label" for="address-yes" data-target="address-details">
+              <input id="address-yes" type="checkbox" name="address" value="Yes"> Post
+            </label>
+
+            <div class="panel panel-border-narrow js-hidden" id="address-details">
+              <label class="form-label label-no-hint" for="email">
+                Enter your address
+              </label>
+              <fieldset>
+                <div class="form-group">
+                  <div class="form-group-compound">
+                    <input type="text" class="form-control" id="address-1">
+                  </div>
+
+                  <div class="form-group-compound">
+                    <input type="text" class="form-control" id="address-2">
+                  </div>
+
+                  <div class="form-group-compound">
+                    <input type="text" class="form-control" id="address-3">
+                  </div>
+                </div>
+
+                <label class="form-label label-no-hint" for="postcode">
+                  Postcode
+                </label>
+
+                <div class="form-group-compound">
+                  <input type="text" class="form-control" id="postcode">
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

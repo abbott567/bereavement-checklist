@@ -79,6 +79,7 @@ if (typeof (routes) === 'function') {
 var router = require(path.join(__dirname, '/app/routes.js'));
 app.use('/', router);
 app.use('/sprint1', require(path.join(__dirname, '/app/routes/sprint1.js')));
+app.use('/sprint1v2', require(path.join(__dirname, '/app/routes/sprint1v2.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, function (req, res) {
