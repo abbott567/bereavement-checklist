@@ -2,6 +2,10 @@ var express = require('express');
 var router = new express.Router();
 var moment = require('moment');
 
+router.get('/', function (req, res) {
+  res.redirect('sprint1/start');
+});
+
 router.get('/start', function (req, res) {
   res.render('sprint1/start-page.html');
 });
@@ -54,7 +58,7 @@ router.post('/details', function (req, res) {
   var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
   var dobDiff = dob.diff(moment(), 'years');
 
-  if (dobDiff > -65) {
+  if (dobDiff < -65) {
     res.redirect('exit');
   } else {
     res.redirect('details-partner');
