@@ -58,7 +58,7 @@ router.post('/details', function (req, res) {
   var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], "DDMMYYYY");
   var dobDiff = dob.diff(moment(), 'years');
 
-  if (dobDiff > -65) {
+  if (dobDiff < -65) {
     res.redirect('exit');
   } else {
     res.redirect('details-partner');
