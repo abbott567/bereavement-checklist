@@ -38,6 +38,9 @@
     "xo": "^0.14.0"
   },
   "xo": {
-    "space": true
+    "space": true,
+    "ignores": [
+      "app/assets/**"
+    ]
   }
 }

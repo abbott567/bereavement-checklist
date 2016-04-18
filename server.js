@@ -51,32 +51,34 @@ app.use(bodyParser.urlencoded({
 }));
 
 // send assetPath to all views
+/* eslint-disable camelcase */
 app.use(function (req, res, next) {
-  res.locals.asset_path = "/public/";
+  res.locals.asset_path = '/public/';
   next();
 });
+/* eslint-enable camelcase */
 
 // Add variables that are available in all views
 app.use(function (req, res, next) {
   res.locals.serviceName = config.serviceName;
   res.locals.cookieText = config.cookieText;
-  res.locals.releaseVersion = "v" + releaseVersion;
+  res.locals.releaseVersion = 'v' + releaseVersion;
   next();
 });
 
 // routes (found in app/routes.js)
-if (!typeof (routes) === "function") {
-  console.log(routes.bind);
-  console.log("Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.");
-  routes.bind(app);
+if (typeof (routes) === 'function') {
+  app.use('/', routes);
 } else {
-  app.use("/", routes);
+  console.log(routes.bind);
+  console.log('Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.');
+  routes.bind(app);
 }
 
 // Custom routes
 var router = require(path.join(__dirname, '/app/routes.js'));
-app.use("/", router);
-app.use("/sprint1", require(path.join(__dirname, '/app/routes/sprint1.js')));
+app.use('/', router);
+app.use('/sprint1', require(path.join(__dirname, '/app/routes/sprint1.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, function (req, res) {
@@ -84,10 +86,10 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
   res.render(path, function (err, html) {
     if (err) {
-      res.render(path + "/index", function (err2, html) {
+      res.render(path + '/index', function (err2, html) {
         if (err2) {
           console.log(err);
-          res.status(404).send(err + "<br>" + err2);
+          res.status(404).send(err + '<br>' + err2);
         } else {
           res.end(html);
         }
@@ -98,9 +100,9 @@ app.get(/^\/([^.]+)$/, function (req, res) {
   });
 });
 
-console.log("\nGOV.UK Prototype kit v" + releaseVersion);
+console.log('\nGOV.UK Prototype kit v' + releaseVersion);
 // Display warning not to use kit for production services.
-console.log("\nNOTICE: the kit is for building prototypes, do not use it for production services.");
+console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.');
 
 // start the app
 utils.findAvailablePort(app);
