@@ -94,7 +94,12 @@ router.get('/end', function (req, res) {
 });
 
 router.get('/exit', function (req, res) {
-  var referrer = req.get('referrer').split('/').pop();
+  var referrer = req.get('referrer');
+  if (referrer) {
+    referrer.split('/').pop();
+  } else {
+    referrer = 'start';
+  }
   res.render('sprint1/exit-page.html', {
     backLink: referrer,
     date: referrer === 'date',
