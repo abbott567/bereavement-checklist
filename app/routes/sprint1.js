@@ -51,7 +51,7 @@ router.get('/details', function (req, res) {
 });
 
 router.post('/details', function (req, res) {
-  var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], "DDMMYYYY");
+  var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
   var dobDiff = dob.diff(moment(), 'years');
 
   if (dobDiff > -65) {
@@ -67,7 +67,7 @@ router.get('/details-partner', function (req, res) {
 });
 
 router.post('/details-partner', function (req, res) {
-  var dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], "DDMMYYYY");
+  var dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
   var dodDiff = dod.diff(moment(), 'days');
 
   if (dodDiff < -395) {
@@ -150,10 +150,10 @@ module.exports = router;
 function getTodaysDate() {
   var date = new Date();
   var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
+    'January', 'February', 'March',
+    'April', 'May', 'June', 'July',
+    'August', 'September', 'October',
+    'November', 'December'
   ];
   var day = date.getDate();
   var month = date.getMonth();

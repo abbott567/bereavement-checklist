@@ -1,11 +1,11 @@
-module.exports = function(grunt){
+module.exports = function (grunt) {
   grunt.initConfig({
 
     // Builds Sass
     sass: {
       dev: {
         options: {
-          style: "expanded",
+          style: 'expanded',
           sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
@@ -15,10 +15,10 @@ module.exports = function(grunt){
         },
         files: [{
           expand: true,
-          cwd: "app/assets/sass",
-          src: ["*.scss"],
-          dest: "public/stylesheets/",
-          ext: ".css"
+          cwd: 'app/assets/sass',
+          src: ['*.scss'],
+          dest: 'public/stylesheets/',
+          ext: '.css'
         }]
       }
     },
@@ -32,7 +32,7 @@ module.exports = function(grunt){
           src: ['**/*', '!sass/**'],
           dest: 'public/'
         }],
-        ignoreInDest: "**/stylesheets/**",
+        ignoreInDest: '**/stylesheets/**',
         updateAndDelete: true
       },
       govuk: {
@@ -57,6 +57,7 @@ module.exports = function(grunt){
           dest: 'govuk_modules/govuk-elements-sass/'
         }]
       },
+      /* eslint-disable camelcase */
       govuk_template_jinja: {
         files: [{
           cwd: 'govuk_modules/govuk_template_jinja/views/layouts/',
@@ -70,7 +71,8 @@ module.exports = function(grunt){
           src: ['**'],
           dest: 'app/assets/sass/'
         }]
-      },
+      }
+      /* eslint-enable camelcase */
     },
 
     // Watches assets and sass for changes
@@ -79,14 +81,14 @@ module.exports = function(grunt){
         files: ['app/assets/sass/**/*.scss'],
         tasks: ['sass'],
         options: {
-          spawn: false,
+          spawn: false
         }
       },
-      assets:{
+      assets: {
         files: ['app/assets/**/*', '!app/assets/sass/**'],
         tasks: ['sync:assets'],
         options: {
-          spawn: false,
+          spawn: false
         }
       }
     },
