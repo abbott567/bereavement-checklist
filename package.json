@@ -40,7 +40,9 @@
   "xo": {
     "space": true,
     "ignores": [
-      "app/assets/**"
+      "app/assets/**",
+      "govuk_modules/**",
+      "public/**"
     ]
   }
 }
