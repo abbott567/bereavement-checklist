@@ -25,6 +25,14 @@
           <p class="text">You must have still been married to your late spouse at the time of their death to be eligible.</p>
         {% endif %}
 
+        {% if dateOfBirth %}
+          <p class="text">You must be below State Pension age to be eligible.</p>
+        {% endif %}
+
+        {% if dateOfDeath %}
+          <p class="text">Your partner must have died within the last 12 months to be eligible.</p>
+        {% endif %}
+
         <p>
           To get help with your application you can call the Bereavement Service on
         </p>

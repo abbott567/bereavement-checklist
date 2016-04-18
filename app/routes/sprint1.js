@@ -1,5 +1,6 @@
 var express = require('express');
 var router = new express.Router();
+var moment = require('moment');
 
 router.get('/start', function (req, res) {
   res.render('sprint1/start-page.html');
@@ -11,7 +12,11 @@ router.get('/relationship-status', function (req, res) {
 });
 
 router.post('/relationship-status', function (req, res) {
-  res.redirect('date');
+  if (req.body['still-married-select'] === 'No') {
+    res.redirect('exit');
+  } else {
+    res.redirect('date');
+  }
 });
 
 router.get('/date', function (req, res) {
@@ -20,7 +25,11 @@ router.get('/date', function (req, res) {
 });
 
 router.post('/date', function (req, res) {
-  res.redirect('did-you-live-in-the-uk');
+  if (req.body['last-twelve-months-select'] === 'No') {
+    res.redirect('exit');
+  } else {
+    res.redirect('did-you-live-in-the-uk');
+  }
 });
 
 router.get('/did-you-live-in-the-uk', function (req, res) {
@@ -29,7 +38,11 @@ router.get('/did-you-live-in-the-uk', function (req, res) {
 });
 
 router.post('/did-you-live-in-the-uk', function (req, res) {
-  res.redirect('details');
+  if (req.body['lived-in-uk-select'] === 'No') {
+    res.redirect('exit');
+  } else {
+    res.redirect('details');
+  }
 });
 
 router.get('/details', function (req, res) {
@@ -38,7 +51,14 @@ router.get('/details', function (req, res) {
 });
 
 router.post('/details', function (req, res) {
-  res.redirect('details-partner');
+  var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], "DDMMYYYY");
+  var dobDiff = dob.diff(moment(), 'years');
+
+  if (dobDiff > -65) {
+    res.redirect('exit');
+  } else {
+    res.redirect('details-partner');
+  }
 });
 
 router.get('/details-partner', function (req, res) {
@@ -47,7 +67,14 @@ router.get('/details-partner', function (req, res) {
 });
 
 router.post('/details-partner', function (req, res) {
-  res.redirect('dependant-children');
+  var dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], "DDMMYYYY");
+  var dodDiff = dod.diff(moment(), 'days');
+
+  if (dodDiff < -395) {
+    res.redirect('exit');
+  } else {
+    res.redirect('dependant-children');
+  }
 });
 
 router.get('/dependant-children', function (req, res) {
@@ -56,13 +83,24 @@ router.get('/dependant-children', function (req, res) {
 });
 
 router.post('/dependant-children', function (req, res) {
+  if (req.body['do-you-have-children-select'] === 'Yes') {
+    res.redirect('child-benefit');
+  } else {
+    res.redirect('bank-details');
+  }
+});
+
+router.get('/child-benefit', function (req, res) {
+  var backLink = 'dependant-children';
+  res.render('sprint1/child-benefit.html', {backLink: backLink});
+});
+
+router.post('/child-benefit', function (req, res) {
   res.redirect('bank-details');
 });
 
-// child benefit?
-
 router.get('/bank-details', function (req, res) {
-  var backLink = 'dependant-children';
+  var backLink = 'child-benefit';
   res.render('sprint1/bank-details.html', {backLink: backLink});
 });
 
@@ -94,13 +132,15 @@ router.get('/end', function (req, res) {
 });
 
 router.get('/exit', function (req, res) {
-  var referrer = req.get('referrer') || 'start';
+  var referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'start';
 
   res.render('sprint1/exit-page.html', {
     backLink: referrer,
     date: referrer === 'date',
     location: referrer === 'did-you-live-in-the-uk',
-    married: referrer === 'relationship-status'
+    married: referrer === 'relationship-status',
+    dateOfBirth: referrer === 'details',
+    dateOfDeath: referrer === 'details-partner'
   });
 });
 

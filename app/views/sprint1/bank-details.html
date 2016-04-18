@@ -16,13 +16,14 @@
         <form action='bank-details' method="post">
           <fieldset>
             <div class="form-group">
-              <label class="block-label" for="building_1" data-target="bank-details">
-                <input id="building_1" type="radio" name="building" value="bank">
+              <!-- No data-targets, see jQuery at bottom of this page -->
+              <label class="block-label" for="bank-account-yes">
+                <input id="bank-account-yes" type="radio" name="account-select" value="bank">
                 Bank account
               </label>
 
-              <label class="block-label" for="building_2" data-target="building-soc-details">
-                <input id="building_2" type="radio" name="building" value="building">
+              <label class="block-label" for="building-society-yes">
+                <input id="building-society-yes" type="radio" name="account-select" value="building">
                 Building society account
               </label>
             </div>
@@ -31,17 +32,10 @@
           <div class="js-hidden" id="bank-details">
             <div class="form-group">
               <fieldset>
-                <label class="form-label-bold label-no-hint" for="ba-account-holder">Name of account holder</label>
-                <input type="text" class="form-control" id="ba-account-holder" name="ba-account-holder">
-              </fieldset>
-            </div>
-
-            <div class="form-group">
-              <fieldset>
-                <label class="form-label-bold" for="ba-account-number">
+                <label class="form-label-bold" for="account-number">
                   Account number
                 </label>
-                <input type="text" class="form-control" id="ba-account-number" name="ba-account-number">
+                <input type="text" class="form-control" id="account-number" name="account-number">
               </fieldset>
             </div>
 
@@ -50,65 +44,31 @@
             <div class="form-date form-group">
               <fieldset>
                 <div class="form-group form-group-day">
-                  <label for="ba-sort1"></label>
-                  <input class="form-control" id="ba-sort1" maxlength="2" name="ba-sort1" type="text" />
+                  <label for="sort-code-1"></label>
+                  <input class="form-control" id="sort-code-1" maxlength="2" name="sort-code-1" type="text" />
                 </div>
 
                 <div class="form-group form-group-month">
-                  <label for="ba-sort2"></label>
-                  <input class="form-control" id="ba-sort2" maxlength="2"  name="ba-sort2" type="text" />
+                  <label for="sort-code-2"></label>
+                  <input class="form-control" id="sort-code-2" maxlength="2"  name="sort-code-2" type="text" />
                 </div>
 
                 <div class="form-group form-group-month">
-                  <label for="ba-sort3"></label>
-                  <input class="form-control" id="ba-sort3" maxlength="2"  name="ba-sort3" type="text" />
+                  <label for="sort-code-3"></label>
+                  <input class="form-control" id="sort-code-3" maxlength="2"  name="sort-code-3" type="text" />
                 </div>
               </fieldset>
             </div>
           </div>
 
-          <div class="js-hidden" id="building-soc-details">
-            <div class="form-group">
-              <fieldset>
-                <label class="form-label-bold label-no-hint" for="bs-account-holder">Name of account holder</label>
-                <input type="text" class="form-control" id="bs-account-holder" name="bs-account-holder">
-              </fieldset>
-            </div>
-
-            <div class="form-group">
-              <fieldset>
-                <label class="form-label-bold" for="bs-account-number">Account number</label>
-                <input type="text" class="form-control" id="bs-account-number" name="bs-account-number" maxlength="8">
-              </fieldset>
-            </div>
-
-            <fieldset>
-              <legend class="form-label-bold">Sort code</legend>
-
-              <div class="form-date form-group">
-                <div class="form-group form-group-day">
-                  <label for="bs-sort1"></label>
-                  <input class="form-control" id="bs-sort1" maxlength="2" name="bs-sort1" type="text" />
-                </div>
-
-                <div class="form-group form-group-month">
-                  <label for="bs-sort2"></label>
-                  <input class="form-control" id="bs-sort2" maxlength="2"  name="bs-sort2" type="text" />
-                </div>
-
-                <div class="form-group form-group-month">
-                  <label for="bs-sort3"></label>
-                  <input class="form-control" id="bs-sort3" maxlength="2"  name="bs-sort3" type="text" />
-                </div>
-              </div>
-            </fieldset>
-
+          <div class="js-hidden" id="building-society-details">
             <div class="form-group">
               <fieldset>
                 <label class="form-label-bold" for="bs-society-roll">
                   Building society roll or reference number
                   <span class="form-hint">If your building society uses a roll or reference number, you will find it on your passbook</span>
                 </label>
+
                 <input type="text" class="form-control" id="bs-society-roll" name="bs-society-roll">
               </fieldset>
             </div>
@@ -119,4 +79,17 @@
       </div>
     </div>
   </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', 'input[type="radio"]', function () {
+      $('#bank-details').show();
+      if ($(this).attr('id') === 'building-society-yes') {
+        $('#building-society-details').show();
+      } else {
+        $('#building-society-details').hide();
+      }
+    });
+  </script>
 {% endblock %}
