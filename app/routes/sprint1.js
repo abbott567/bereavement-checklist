@@ -3,7 +3,7 @@ var router = new express.Router();
 var moment = require('moment');
 
 router.get('/', function (req, res) {
-  res.redirect('sprint1/start');
+  res.redirect('start');
 });
 
 router.get('/start', function (req, res) {
