@@ -121,7 +121,7 @@ router.post('/exit', function (req, res) {
   if (req.body['exit-continue-select'] === 'Yes') {
     res.redirect('details');
   } else {
-    res.redirect('http://www.gov.uk');
+    res.redirect('/');
   }
 });
 
