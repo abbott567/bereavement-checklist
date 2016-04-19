@@ -96,7 +96,7 @@ router.post('/declaration', function (req, res) {
 });
 
 router.get('/end', function (req, res) {
-  var completeDate = getTodaysDate();
+  var completeDate = moment().format('DD MMMM YYYY');
   res.render('sprint1v2/end-page.html', {completeDate: completeDate});
 });
 
@@ -115,20 +115,3 @@ router.get('/exit/:why', function (req, res) {
 });
 
 module.exports = router;
-
-// Get todays date and format it
-function getTodaysDate() {
-  var date = new Date();
-  var monthNames = [
-    'January', 'February', 'March',
-    'April', 'May', 'June', 'July',
-    'August', 'September', 'October',
-    'November', 'December'
-  ];
-  var day = date.getDate();
-  var month = date.getMonth();
-  var year = date.getFullYear();
-  date = day + ' ' + monthNames[month] + ' ' + year;
-
-  return date;
-}
