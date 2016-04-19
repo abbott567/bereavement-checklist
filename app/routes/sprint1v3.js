@@ -117,6 +117,14 @@ router.get('/exit', function (req, res) {
   });
 });
 
+router.post('/exit', function (req, res) {
+  if (req.body['exit-continue-select'] === 'Yes') {
+    res.redirect('details');
+  } else {
+    res.redirect('http://www.gov.uk');
+  }
+});
+
 module.exports = router;
 
 // Get todays date and format it

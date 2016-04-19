@@ -11,7 +11,7 @@
 
     <div class="grid-row">
       <div class="column-two-thirds">
-        <h1 class="heading-xlarge">You can&rsquo;t claim Bereavement Support based on your answers</h1>
+        <h1 class="heading-xlarge">Based on your answers, you can&rsquo;t get Bereavement Support Payment</h1>
 
         <p>
           You can only get it if:
@@ -38,7 +38,35 @@
             <li>your partner died within the last 3 months</li>
           {% endif %}
         </ul>
-        
+
+        <h2 class="heading-medium">Do you still want to apply?</h2>
+
+        <p class="text form-hint">
+          You're still legally allowed to apply even though you don't qualify
+          and won't get Bereavement Support Payment.
+        </p>
+
+        <form action="exit" method="post">
+          <div class="form-group">
+            <fieldset class="inline">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="exit-continue-yes">
+                <input id="exit-continue-yes" type="radio" name="exit-continue-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="exit-continue-no">
+                <input id="exit-continue-no" type="radio" name="exit-continue-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        </form>
+
         <div class="panel panel-border-narrow">
           <p>
             Telephone: 0345 606 0265<br />
