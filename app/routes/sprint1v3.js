@@ -19,7 +19,7 @@ router.get('/eligibility', function (req, res) {
 
 router.post('/eligibility', function (req, res) {
   let qString = '?';
-  for (let field in req.body) {
+  for (const field in req.body) {
     if (req.body[field] === 'No') {
       qString += field + '=No&';
     }
@@ -98,20 +98,11 @@ router.get('/bank-details', function (req, res) {
 });
 
 router.post('/bank-details', function (req, res) {
-  res.redirect('contact');
-});
-
-router.get('/contact', function (req, res) {
-  const backLink = 'bank-details';
-  res.render('sprint1v3/contact.html', {backLink: backLink});
-});
-
-router.post('/contact', function (req, res) {
   res.redirect('declaration');
 });
 
 router.get('/declaration', function (req, res) {
-  const backLink = 'contact';
+  const backLink = 'bank-details';
   res.render('sprint1v3/declaration.html', {backLink: backLink});
 });
 
