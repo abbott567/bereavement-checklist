@@ -1,6 +1,8 @@
-var express = require('express');
-var router = new express.Router();
-var moment = require('moment');
+'use strict';
+
+const express = require('express');
+const router = new express.Router();
+const moment = require('moment');
 
 router.get('/', function (req, res) {
   res.redirect('start');
@@ -11,7 +13,7 @@ router.get('/start', function (req, res) {
 });
 
 router.get('/eligibility', function (req, res) {
-  var backLink = 'start';
+  const backLink = 'start';
   res.render('sprint1v2/eligibility.html', {backLink: backLink});
 });
 
@@ -28,13 +30,13 @@ router.post('/eligibility', function (req, res) {
 });
 
 router.get('/details', function (req, res) {
-  var backLink = 'eligibility';
+  const backLink = 'eligibility';
   res.render('sprint1v2/details.html', {backLink: backLink});
 });
 
 router.post('/details', function (req, res) {
-  var dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
-  var dobDiff = dob.diff(moment(), 'years');
+  const dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
+  const dobDiff = dob.diff(moment(), 'years');
 
   if (dobDiff < -65) {
     res.redirect('exit/details');
@@ -44,13 +46,13 @@ router.post('/details', function (req, res) {
 });
 
 router.get('/details-partner', function (req, res) {
-  var backLink = 'details';
+  const backLink = 'details';
   res.render('sprint1v2/details-partner.html', {backLink: backLink});
 });
 
 router.post('/details-partner', function (req, res) {
-  var dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
-  var dodDiff = dod.diff(moment(), 'days');
+  const dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
+  const dodDiff = dod.diff(moment(), 'days');
 
   if (dodDiff < -395) {
     res.redirect('exit/details-partner');
@@ -60,7 +62,7 @@ router.post('/details-partner', function (req, res) {
 });
 
 router.get('/child-benefit', function (req, res) {
-  var backLink = 'details-partner';
+  const backLink = 'details-partner';
   res.render('sprint1v2/child-benefit.html', {backLink: backLink});
 });
 
@@ -69,7 +71,7 @@ router.post('/child-benefit', function (req, res) {
 });
 
 router.get('/bank-details', function (req, res) {
-  var backLink = 'child-benefit';
+  const backLink = 'child-benefit';
   res.render('sprint1v2/bank-details.html', {backLink: backLink});
 });
 
@@ -78,7 +80,7 @@ router.post('/bank-details', function (req, res) {
 });
 
 router.get('/contact', function (req, res) {
-  var backLink = 'bank-details';
+  const backLink = 'bank-details';
   res.render('sprint1v2/contact.html', {backLink: backLink});
 });
 
@@ -87,7 +89,7 @@ router.post('/contact', function (req, res) {
 });
 
 router.get('/declaration', function (req, res) {
-  var backLink = 'contact';
+  const backLink = 'contact';
   res.render('sprint1v2/declaration.html', {backLink: backLink});
 });
 
@@ -96,13 +98,13 @@ router.post('/declaration', function (req, res) {
 });
 
 router.get('/end', function (req, res) {
-  var completeDate = moment().format('DD MMMM YYYY');
+  const completeDate = moment().format('DD MMMM YYYY');
   res.render('sprint1v2/end-page.html', {completeDate: completeDate});
 });
 
 router.get('/exit/:why', function (req, res) {
-  var referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'start';
-  var why = req.params.why;
+  const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'start';
+  const why = req.params.why;
 
   res.render('sprint1v2/exit-page.html', {
     backLink: '/sprint1v2/' + referrer,
