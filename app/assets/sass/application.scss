@@ -39,3 +39,15 @@
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.declaration {
+  background-image: url('/public/images/icon-important.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  max-width: 30em;
+  box-sizing: border-box;
+}
