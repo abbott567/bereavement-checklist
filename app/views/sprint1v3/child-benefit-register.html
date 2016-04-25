@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Based on your answers, you can&rsquo;t get Bereavement Support Payment</h1>
+
+        <p>
+          Content about child benefit
+        </p>
+        
+        <h2 class="heading-medium">Do you still want to apply for Bereavement Support payment?</h2>
+
+        <p class="text form-hint">
+          You're still legally allowed to apply even though you don't qualify
+          and won't get Bereavement Support Payment.
+        </p>
+
+        <form>
+          <div class="form-group">
+            <fieldset class="inline">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="exit-continue-yes" data-target="continue-button">
+                <input id="exit-continue-yes" type="radio" name="exit-continue-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="exit-continue-no">
+                <input id="exit-continue-no" type="radio" name="exit-continue-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="js-hidden" id="continue-button">
+            <div class="form-group">
+              <a href="{{buttonLink}}" class="button">I still want to apply</a>
+            </div>
+          </div>
+        </form>
+
+        <div class="panel panel-border-narrow">
+          <h2 class="heading-small">Bereavement Service helpline</h2>
+
+          <p>
+            Telephone: 0345 606 0265<br />
+            Welsh language: 0345 606 0275<br />
+          </p>
+
+          <p>
+            Textphone: 0345 606 0285<br />
+            Welsh language: 0345 606 0295
+          </p>
+
+          <p>
+            Monday to Friday, 8am to 6pm
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

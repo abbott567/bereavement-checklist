@@ -89,7 +89,17 @@ router.get('/child-benefit', function (req, res) {
 });
 
 router.post('/child-benefit', function (req, res) {
-  res.redirect('bank-details');
+  if (req.body['child-benefit-select'] === 'No') {
+    res.redirect('child-benefit-register');
+  } else {
+    res.redirect('bank-details');
+  }
+});
+
+router.get('/child-benefit-register', function (req, res) {
+  const buttonLink = 'bank-details';
+  const backLink = 'child-benefit';
+  res.render('sprint1v3/child-benefit-register.html', {backLink: backLink, buttonLink});
 });
 
 router.get('/bank-details', function (req, res) {
