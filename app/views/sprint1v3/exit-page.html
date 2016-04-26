@@ -13,43 +13,37 @@
       <div class="column-two-thirds">
         <h1 class="heading-xlarge">Based on your answers, you can&rsquo;t get Bereavement Support Payment</h1>
 
-        <p>
-          You can only get it if
-        </p>
-
-        <ul class="list list-bullet">
           {% if date %}
-            <li>your spouse died after April 7 2016</li>
+            <p>You can only get it if your spouse or civil partner died after 7 April 2016.</p>
           {% endif %}
 
           {% if location %}
-            <li>your spouse lived in the UK when they died</li>
+            <p>You can only get it if you lived in the UK when your spouse or civil partner died.</p>
           {% endif %}
 
           {% if married %}
-            <li>you were still married to your spouse when they died</li>
+            <p>You can only get it if you were married to, or in a civil partnership with, your partner when they died.</p>
           {% endif %}
 
           {% if dateOfBirth %}
-            <li>you were below state pension age when your spouse died</li>
+            <li>you were below State Pension age when your spouse or civil partner died</li>
           {% endif %}
         </ul>
 
         {% if date %}
         <div class="panel panel-border-narrow">
           <p>
-            If your spouse died within the last 12 months, you may still be eligible
+            If your spouse or civil partner died within the last year, you may still be eligible
             for Bereavement Benefit. <a href="https://www.gov.uk/bereavement-payment" target="_blank">
             More on Bereavement Benefit (opens in a new tab)</a>
           </p>
         </div>
         {% endif %}
 
-        <h2 class="heading-medium">Do you still want to apply for Bereavement Support payment?</h2>
+        <h2 class="heading-medium">Do you want to continue with your application?</h2>
 
         <p class="text form-hint">
-          You're still legally allowed to apply even though you don't qualify
-          and won't get Bereavement Support Payment.
+          You can still apply even though you're not eligible for Bereavement Support Payment.
         </p>
 
         <form>
