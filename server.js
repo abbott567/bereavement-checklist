@@ -13,6 +13,8 @@ var packageJson = require(path.join(__dirname, '/package.json'));
 var releaseVersion = packageJson.version;
 var username = process.env.USERNAME;
 var password = process.env.PASSWORD;
+var username2 = process.env.USERNAME2;
+var password2 = process.env.PASSWORD2;
 var env = process.env.NODE_ENV || 'development';
 var useAuth = process.env.USE_AUTH || config.useAuth;
 
@@ -22,7 +24,7 @@ useAuth = useAuth.toLowerCase();
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true') {
-  app.use(utils.basicAuth(username, password));
+  app.use(utils.basicAuth(username, password, username2, password2));
 }
 
 // Application settings
