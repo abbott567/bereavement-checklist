@@ -44,5 +44,8 @@
       "govuk_modules/**",
       "public/**"
     ]
+  },
+  "devDependencies": {
+    "grunt-autoshot": "^0.2.1"
   }
 }

@@ -1,6 +1,7 @@
+'use strict';
+
 module.exports = function (grunt) {
   grunt.initConfig({
-
     // Builds Sass
     sass: {
       dev: {
@@ -142,4 +143,44 @@ module.exports = function (grunt) {
       grunt.log.writeln('Test that the app runs');
     }
   );
+
+  grunt.loadNpmTasks('grunt-autoshot');
+  grunt.registerTask('screenshots', function (input) {
+    grunt.initConfig({
+      autoshot: {
+        default_options: {
+          options: {
+            path: './screenshots',
+            remote: {
+              files: screenshotUrls(input)
+            },
+            local: {
+              path: './test/src',
+              port: 8080,
+              files: [
+              ]
+            },
+            viewport: [
+              '1920x1080',
+              '320x580'
+            ]
+          }
+        }
+      }
+    });
+    grunt.task.run('autoshot');
+  });
+
+  function screenshotUrls(input) {
+    const dir = input ? `${input}/` : '';
+    const cwd = `app/views/${dir}`;
+    const templates = grunt.file.expand({filter: "isFile", cwd}, ["**/*", "!includes/**"]);
+    const urls = [];
+
+    for (let i = 0; i < templates.length; i++) {
+      let filename = templates[i].split('.').shift();
+      urls.push({src: `http://localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
+    }
+    return urls;
+  }
 };
