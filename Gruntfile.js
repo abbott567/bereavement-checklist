@@ -161,7 +161,7 @@ module.exports = function (grunt) {
               ]
             },
             viewport: [
-              '1920x1080',
+              '1024x768',
               '320x580'
             ]
           }
