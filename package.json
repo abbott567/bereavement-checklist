@@ -43,6 +43,10 @@
       "app/assets/**",
       "govuk_modules/**",
       "public/**"
+    ],
+    "env": [
+      "jquery",
+      "browser"
     ]
   },
   "devDependencies": {
