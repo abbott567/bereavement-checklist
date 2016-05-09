@@ -47,7 +47,8 @@
     "env": [
       "jquery",
       "browser"
-    ]
+    ],
+    "esnext": true
   },
   "devDependencies": {
     "grunt-autoshot": "^0.2.1"
