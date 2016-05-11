@@ -1,3 +1,5 @@
+'use strict';
+
 // Check for `node_modules` folder and warn if missing
 const fs = require('fs');
 const path = require('path');
