@@ -80,6 +80,7 @@ app.use('/', router);
 app.use('/sprint1v1', require(path.join(__dirname, '/app/routes/sprint1v1.js')));
 app.use('/sprint1v2', require(path.join(__dirname, '/app/routes/sprint1v2.js')));
 app.use('/sprint1v3', require(path.join(__dirname, '/app/routes/sprint1v3.js')));
+app.use('/sprint2', require(path.join(__dirname, '/app/routes/sprint2.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, (req, res) => {
