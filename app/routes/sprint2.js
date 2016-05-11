@@ -33,7 +33,7 @@ router.post('/eligibility', (req, res) => {
   if (qString.length > 0) {
     res.redirect(`exit${qString}`);
   } else {
-    res.redirect('details');
+    res.redirect('details-partner');
   }
 });
 
