@@ -61,7 +61,7 @@ router.get('/details-partner', (req, res) => {
 router.post('/details-partner', (req, res) => {
   const dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
   const dodDiff = dod.diff(moment(), 'days');
-  const beforeAprSvth = dod.isBefore(moment('07042016', "DDMMYYYY"));
+  const beforeAprSvth = dod.isBefore(moment('07042016', 'DDMMYYYY'));
 
   if (dodDiff < -395 || beforeAprSvth) {
     res.redirect('exit?details-partner=no');
@@ -76,24 +76,11 @@ router.get('/dependent-children', (req, res) => {
 });
 
 router.post('/dependent-children', (req, res) => {
-  if (req.body['do-you-have-children-select'] === "Yes") {
-    res.redirect('child-benefit');
-  } else {
-    res.redirect('bank-details');
-  }
-});
-
-router.get('/child-benefit', (req, res) => {
-  const backLink = 'dependent-children';
-  res.render('sprint2/child-benefit.html', {backLink});
-});
-
-router.post('/child-benefit', (req, res) => {
   res.redirect('bank-details');
 });
 
 router.get('/bank-details', (req, res) => {
-  const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'child-benefit';
+  const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'dependent-children';
   res.render('sprint2/bank-details.html', {backLink: referrer});
 });
 
