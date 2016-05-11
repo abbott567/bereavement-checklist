@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable camelcase */
 
 module.exports = function (grunt) {
   grunt.initConfig({
@@ -58,7 +59,6 @@ module.exports = function (grunt) {
           dest: 'govuk_modules/govuk-elements-sass/'
         }]
       },
-      /* eslint-disable camelcase */
       govuk_template_jinja: {
         files: [{
           cwd: 'govuk_modules/govuk_template_jinja/views/layouts/',
@@ -73,7 +73,6 @@ module.exports = function (grunt) {
           dest: 'app/assets/sass/'
         }]
       }
-      /* eslint-enable camelcase */
     },
 
     // Watches assets and sass for changes
@@ -122,7 +121,7 @@ module.exports = function (grunt) {
     'grunt-sass',
     'grunt-nodemon',
     'grunt-concurrent'
-  ].forEach(function (task) {
+  ].forEach(task => {
     grunt.loadNpmTasks(task);
   });
 
@@ -139,13 +138,13 @@ module.exports = function (grunt) {
   grunt.registerTask(
     'test',
     'default',
-    function () {
+    () => {
       grunt.log.writeln('Test that the app runs');
     }
   );
 
   grunt.loadNpmTasks('grunt-autoshot');
-  grunt.registerTask('screenshots', function (input) {
+  grunt.registerTask('screenshots', input => {
     grunt.initConfig({
       autoshot: {
         default_options: {
@@ -174,11 +173,11 @@ module.exports = function (grunt) {
   function screenshotUrls(input) {
     const dir = input ? `${input}/` : '';
     const cwd = `app/views/${dir}`;
-    const templates = grunt.file.expand({filter: "isFile", cwd}, ["**/*", "!includes/**"]);
+    const templates = grunt.file.expand({filter: 'isFile', cwd}, ['**/*', '!includes/**']);
     const urls = [];
 
     for (let i = 0; i < templates.length; i++) {
-      let filename = templates[i].split('.').shift();
+      const filename = templates[i].split('.').shift();
       urls.push({src: `http://localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
     }
     return urls;

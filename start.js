@@ -1,6 +1,6 @@
 // Check for `node_modules` folder and warn if missing
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 if (!fs.existsSync(path.join(__dirname, '/node_modules'))) {
   console.error('ERROR: Node module folder missing. Try running `npm install`');
@@ -12,13 +12,13 @@ try {
   fs.unlinkSync(path.join(__dirname, '/.port.tmp'));
 } catch (e) {}
 
-var gruntfile = path.join(__dirname, '/Gruntfile.js');
+const gruntfile = path.join(__dirname, '/Gruntfile.js');
 
 require(path.join(__dirname, '/node_modules/grunt/lib/grunt.js')).cli({
-  gruntfile: gruntfile
+  gruntfile
 });
 
-process.on('SIGINT', function () {
+process.on('SIGINT', () => {
   // remove .port.tmp if it exists
   try {
     fs.unlinkSync(path.join(__dirname, '/.port.tmp'));

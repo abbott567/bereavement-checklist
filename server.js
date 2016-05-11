@@ -1,25 +1,22 @@
-var path = require('path');
-var express = require('express');
-var nunjucks = require('express-nunjucks');
-var routes = require(path.join(__dirname, '/app/routes.js'));
-var favicon = require('serve-favicon');
-var app = express();
-var bodyParser = require('body-parser');
-var config = require(path.join(__dirname, '/app/config.js'));
-var utils = require(path.join(__dirname, '/lib/utils.js'));
-var packageJson = require(path.join(__dirname, '/package.json'));
+const path = require('path');
+const express = require('express');
+const nunjucks = require('express-nunjucks');
+const routes = require(path.join(__dirname, '/app/routes.js'));
+const favicon = require('serve-favicon');
+const app = express();
+const bodyParser = require('body-parser');
+const config = require(path.join(__dirname, '/app/config.js'));
+const utils = require(path.join(__dirname, '/lib/utils.js'));
+const packageJson = require(path.join(__dirname, '/package.json'));
 
 // Grab environment variables specified in Procfile or as Heroku config vars
-var releaseVersion = packageJson.version;
-var username = process.env.USERNAME;
-var password = process.env.PASSWORD;
-var username2 = process.env.USERNAME2;
-var password2 = process.env.PASSWORD2;
-var env = process.env.NODE_ENV || 'development';
-var useAuth = process.env.USE_AUTH || config.useAuth;
-
-env = env.toLowerCase();
-useAuth = useAuth.toLowerCase();
+const releaseVersion = packageJson.version;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+const username2 = process.env.USERNAME2;
+const password2 = process.env.PASSWORD2;
+const env = (process.env.NODE_ENV || 'development').toLowerCase();
+const useAuth = (process.env.USE_AUTH || config.useAuth).toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -54,17 +51,17 @@ app.use(bodyParser.urlencoded({
 
 // send assetPath to all views
 /* eslint-disable camelcase */
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.asset_path = '/public/';
   next();
 });
 /* eslint-enable camelcase */
 
 // Add variables that are available in all views
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.serviceName = config.serviceName;
   res.locals.cookieText = config.cookieText;
-  res.locals.releaseVersion = 'v' + releaseVersion;
+  res.locals.releaseVersion = `v${releaseVersion}`;
   next();
 });
 
@@ -78,22 +75,22 @@ if (typeof (routes) === 'function') {
 }
 
 // Custom routes
-var router = require(path.join(__dirname, '/app/routes.js'));
+const router = require(path.join(__dirname, '/app/routes.js'));
 app.use('/', router);
 app.use('/sprint1v1', require(path.join(__dirname, '/app/routes/sprint1v1.js')));
 app.use('/sprint1v2', require(path.join(__dirname, '/app/routes/sprint1v2.js')));
 app.use('/sprint1v3', require(path.join(__dirname, '/app/routes/sprint1v3.js')));
 
 // auto render any view that exists
-app.get(/^\/([^.]+)$/, function (req, res) {
-  var path = (req.params[0]);
+app.get(/^\/([^.]+)$/, (req, res) => {
+  const path = (req.params[0]);
 
-  res.render(path, function (err, html) {
+  res.render(path, (err, html) => {
     if (err) {
-      res.render(path + '/index', function (err2, html) {
+      res.render(`${path}/index`, (err2, html) => {
         if (err2) {
           console.log(err);
-          res.status(404).send(err + '<br>' + err2);
+          res.status(404).send(`${err}<br>${err2}`);
         } else {
           res.end(html);
         }
@@ -104,7 +101,7 @@ app.get(/^\/([^.]+)$/, function (req, res) {
   });
 });
 
-console.log('\nGOV.UK Prototype kit v' + releaseVersion);
+console.log(`\nGOV.UK Prototype kit v${releaseVersion}`);
 // Display warning not to use kit for production services.
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.');
 
