@@ -37,24 +37,8 @@ router.post('/eligibility', (req, res) => {
   }
 });
 
-router.get('/details', (req, res) => {
-  const backLink = 'eligibility';
-  res.render('sprint2/details.html', {backLink});
-});
-
-router.post('/details', (req, res) => {
-  const dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
-  const dobDiff = dob.diff(moment(), 'years');
-
-  if (dobDiff < -65) {
-    res.redirect('exit?details=no');
-  } else {
-    res.redirect('details-partner');
-  }
-});
-
 router.get('/details-partner', (req, res) => {
-  const backLink = 'details';
+  const backLink = 'eligibility';
   res.render('sprint2/details-partner.html', {backLink});
 });
 
@@ -66,8 +50,33 @@ router.post('/details-partner', (req, res) => {
   if (dodDiff < -395 || beforeAprSvth) {
     res.redirect('exit?details-partner=no');
   } else {
-    res.redirect('dependent-children');
+    res.redirect('details');
   }
+});
+
+router.get('/details', (req, res) => {
+  const backLink = 'details-partner';
+  res.render('sprint2/details.html', {backLink});
+});
+
+router.post('/details', (req, res) => {
+  const dob = moment(req.body['dob-day'] + req.body['dob-month'] + req.body['dob-year'], 'DDMMYYYY');
+  const dobDiff = dob.diff(moment(), 'years');
+
+  if (dobDiff < -65) {
+    res.redirect('exit?details=no');
+  } else {
+    res.redirect('contact-details');
+  }
+});
+
+router.get('/contact-details', (req, res) => {
+  const backLink = 'details';
+  res.render('sprint2/contact-details.html', {backLink});
+});
+
+router.post('/contact-details', (req, res) => {
+  res.redirect('dependent-children');
 });
 
 router.get('/dependent-children', (req, res) => {
@@ -107,11 +116,11 @@ router.get('/exit', (req, res) => {
   let buttonLink;
 
   if (referrer === 'eligibility') {
-    buttonLink = 'details';
-  } else if (referrer === 'details') {
     buttonLink = 'details-partner';
+  } else if (referrer === 'details') {
+    buttonLink = 'contact-details';
   } else if (referrer === 'details-partner') {
-    buttonLink = 'dependent-children';
+    buttonLink = 'details';
   } else {
     buttonLink = '/';
   }
