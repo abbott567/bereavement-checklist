@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apply for Bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+    {% include '../includes/errors.html' %}
+
+    <a href="details-partner" class="hidden-skip-link"></a>
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Can you get Bereavement Support Payment?</h1>
+
+        <form action='eligibility' method="post">
+          <h2 class="heading-medium">Were you married to, or in a civil partnership with, your partner when they died?</h2>
+
+          <div class="form-group">
+            <fieldset class="inline" data-required data-error="Choose yes or no">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="still-married-yes">
+                <input id="still-married-yes" type="radio" name="still-married-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="still-married-no">
+                <input id="still-married-no" type="radio" name="still-married-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <h2 class="heading-medium">Did your spouse or civil partner die after 6 April 2017?</h2>
+
+          <div class="form-group">
+            <fieldset class="inline" data-required data-error="Choose yes or no">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="last-twelve-months-yes">
+                <input id="last-twelve-months-yes" type="radio" name="last-twelve-months-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="last-twelve-months-no">
+                <input id="last-twelve-months-no" type="radio" name="last-twelve-months-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <h2 class="heading-medium">Did you live in the UK when your spouse or civil partner died?</h2>
+
+          <div class="form-group">
+            <fieldset class="inline" data-required data-error="Choose yes or no">
+              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
+
+              <label class="block-label" for="lived-in-uk-yes">
+                <input id="lived-in-uk-yes" type="radio" name="lived-in-uk-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="lived-in-uk-no">
+                <input id="lived-in-uk-no" type="radio" name="lived-in-uk-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', 'input[type="radio"]', function () {
+      $('#bank-details').show();
+      if ($(this).attr('id') === 'building-society-yes') {
+        $('#building-society-details').show();
+      } else {
+        $('#building-society-details').hide();
+      }
+    });
+  </script>
+{% endblock %}
