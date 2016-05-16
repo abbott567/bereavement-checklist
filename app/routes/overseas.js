@@ -3,6 +3,7 @@
 const express = require('express');
 const router = new express.Router();
 const moment = require('moment');
+const getCountries = require('../views/overseas/scripts/countries.js');
 
 router.get('/', (req, res) => {
   res.redirect('start');
@@ -49,6 +50,87 @@ router.post('/details-partner', (req, res) => {
 
   if (dodDiff < -395 || beforeAprSvth) {
     res.redirect('exit?details-partner=no');
+  } else if (req.body['outside-uk-select'] === 'Yes') {
+    res.redirect('what-countries-have-they-worked-in');
+  } else {
+    res.redirect('details');
+  }
+});
+
+router.get('/what-countries-have-they-worked-in', (req, res) => {
+  res.render('overseas/what-countries-have-they-worked-in');
+});
+
+router.post('/what-countries-have-they-worked-in', (req, res) => {
+  const countries = [];
+
+  for (const country in req.body) {
+    if (req.body.hasOwnProperty(country)) {
+      countries.push(req.body[country].toLowerCase());
+    }
+  }
+
+  const cookie = {
+    'c-worked-count': countries.length,
+    'c-worked-list': countries,
+    'c-worked-all': countries,
+    'c-worked-step': 1
+  };
+
+  res.cookie('countries', JSON.stringify(cookie));
+  res.redirect('tell-us-about-worked');
+});
+
+router.get('/tell-us-about-worked', (req, res) => {
+  const countries = JSON.parse(req.cookies.countries);
+  const allCountries = countries['c-worked-all'];
+  const resident = getCountries.resident();
+  const insurance = getCountries.insurance();
+
+  if (countries['c-worked-list'].length === 0) {
+    res.redirect('what-countries-have-they-worked-in');
+  } else {
+    for (const c in allCountries) {
+      if (resident.indexOf(allCountries[c]) < 0 && insurance.indexOf(allCountries[c]) < 0) {
+        delete allCountries[c];
+      }
+    }
+
+    const step = {on: countries['c-worked-step'], of: Object.keys(allCountries).length};
+
+    let country = '';
+    if (countries !== undefined) {
+      country = countries['c-worked-list'].shift();
+    }
+
+    countries['c-worked-count'] = countries['c-worked-list'].length;
+    res.cookie('countries', JSON.stringify(countries));
+    const countryType = getCountries.type(country);
+
+    if (countryType.insurance) {
+      res.render('overseas/tell-us-about-worked', {country, step});
+    } else if (countries['c-worked-list'].length > 0) {
+      res.redirect('tell-us-about-worked');
+    } else {
+      res.redirect('details');
+    }
+  }
+});
+
+router.post('/tell-us-about-worked', (req, res) => {
+  const cookie = JSON.parse(req.cookies.countries);
+  const countries = cookie['c-worked-list'];
+  let step = cookie['c-worked-step'];
+  step++;
+
+  cookie['c-worked-count'] = countries.length;
+  cookie['c-worked-list'] = countries;
+  cookie['c-worked-step'] = step;
+
+  res.cookie('countries', JSON.stringify(cookie));
+
+  if (countries.length > 0) {
+    res.redirect('tell-us-about-worked');
   } else {
     res.redirect('details');
   }

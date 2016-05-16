@@ -7,6 +7,7 @@ const routes = require(path.join(__dirname, '/app/routes.js'));
 const favicon = require('serve-favicon');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const config = require(path.join(__dirname, '/app/config.js'));
 const utils = require(path.join(__dirname, '/lib/utils.js'));
 const packageJson = require(path.join(__dirname, '/package.json'));
@@ -50,6 +51,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cookieParser());
 
 // send assetPath to all views
 /* eslint-disable camelcase */

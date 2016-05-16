@@ -40,6 +40,17 @@
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+// Hidden link for skipping validation
+.hidden-skip-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+
+// Declaration page
 .declaration {
   background-image: url('/public/images/icon-important.png');
   background-repeat: no-repeat;
@@ -52,17 +63,27 @@
   box-sizing: border-box;
 }
 
-.hidden-skip-link {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 50px;
-  display: block;
-}
-
+// End page
 .print-save-icons {
   float: left;
   margin-top: -5px;
   margin-right: 0.6em
+}
+
+// Overseas
+.country-link {
+  display: block;
+  padding: 8px;
+  font-weight: bold;
+
+  &:hover {
+    background: #0097cf;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.country-list {
+  border: 3px solid $focus-colour;
+  margin-top: -3px;
 }
