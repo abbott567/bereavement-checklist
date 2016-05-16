@@ -58,10 +58,19 @@
 
 				<p class="print-hidden">
           <img class="print-save-icons" src="/public/images/icon-print.png" width="30">
-          <a href="#" onclick="window.print();" class="heading-medium">Print this page</a>
+          <a id="print-button" href="end" class="heading-medium">Print this page</a>
         </p>
 
       </div>
     </div>
   </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', '#print-button', function (e) {
+      e.preventDefault;
+      window.print();
+    });
+  </script>
 {% endblock %}
