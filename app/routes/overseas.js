@@ -9,51 +9,54 @@ router.get('/', (req, res) => {
 });
 
 router.get('/start', (req, res) => {
-  res.render('overseas/start-page.html');
+  res.render('sprint2/start-page.html');
 });
 
-router.get('/relationship-status', (req, res) => {
+router.get('/eligibility', (req, res) => {
   const backLink = 'start';
-  res.render('overseas/relationship-status.html', {backLink});
+  res.render('sprint2/eligibility.html', {backLink});
 });
 
-router.post('/relationship-status', (req, res) => {
-  if (req.body['still-married-select'] === 'No') {
-    res.redirect('exit');
+router.post('/eligibility', (req, res) => {
+  let qString = '?';
+  for (const field in req.body) {
+    if (req.body[field] === 'No') {
+      qString += `${field}=No&`;
+    }
+
+    if (field === 'last-twelve-months-select' && req.body[field] === 'No') {
+      qString += 'bb1&';
+    }
+  }
+  qString = qString.slice(0, -1);
+
+  if (qString.length > 0) {
+    res.redirect(`exit${qString}`);
   } else {
-    res.redirect('date');
+    res.redirect('details-partner');
   }
 });
 
-router.get('/date', (req, res) => {
-  const backLink = 'relationship-status';
-  res.render('overseas/what-date-did-they-die.html', {backLink});
+router.get('/details-partner', (req, res) => {
+  const backLink = 'eligibility';
+  res.render('sprint2/details-partner.html', {backLink});
 });
 
-router.post('/date', (req, res) => {
-  if (req.body['last-twelve-months-select'] === 'No') {
-    res.redirect('exit');
-  } else {
-    res.redirect('did-you-live-in-the-uk');
-  }
-});
+router.post('/details-partner', (req, res) => {
+  const dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
+  const dodDiff = dod.diff(moment(), 'days');
+  const beforeAprSvth = dod.isBefore(moment('07042016', 'DDMMYYYY'));
 
-router.get('/did-you-live-in-the-uk', (req, res) => {
-  const backLink = 'date';
-  res.render('overseas/did-you-live-in-the-uk.html', {backLink});
-});
-
-router.post('/did-you-live-in-the-uk', (req, res) => {
-  if (req.body['lived-in-uk-select'] === 'No') {
-    res.redirect('exit');
+  if (dodDiff < -395 || beforeAprSvth) {
+    res.redirect('exit?details-partner=no');
   } else {
     res.redirect('details');
   }
 });
 
 router.get('/details', (req, res) => {
-  const backLink = 'did-you-live-in-the-uk';
-  res.render('overseas/details.html', {backLink});
+  const backLink = 'details-partner';
+  res.render('sprint2/details.html', {backLink});
 });
 
 router.post('/details', (req, res) => {
@@ -61,71 +64,42 @@ router.post('/details', (req, res) => {
   const dobDiff = dob.diff(moment(), 'years');
 
   if (dobDiff < -65) {
-    res.redirect('exit');
+    res.redirect('exit?details=no');
   } else {
-    res.redirect('details-partner');
+    res.redirect('contact-details');
   }
 });
 
-router.get('/details-partner', (req, res) => {
+router.get('/contact-details', (req, res) => {
   const backLink = 'details';
-  res.render('overseas/details-partner.html', {backLink});
+  res.render('sprint2/contact-details.html', {backLink});
 });
 
-router.post('/details-partner', (req, res) => {
-  const dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
-  const dodDiff = dod.diff(moment(), 'days');
-
-  if (dodDiff < -395) {
-    res.redirect('exit');
-  } else {
-    res.redirect('dependent-children');
-  }
+router.post('/contact-details', (req, res) => {
+  res.redirect('dependent-children');
 });
 
 router.get('/dependent-children', (req, res) => {
   const backLink = 'details-partner';
-  res.render('overseas/dependent-children.html', {backLink});
+  res.render('sprint2/dependent-children.html', {backLink});
 });
 
 router.post('/dependent-children', (req, res) => {
-  if (req.body['do-you-have-children-select'] === 'Yes') {
-    res.redirect('child-benefit');
-  } else {
-    res.redirect('bank-details');
-  }
-});
-
-router.get('/child-benefit', (req, res) => {
-  const backLink = 'dependent-children';
-  res.render('overseas/child-benefit.html', {backLink});
-});
-
-router.post('/child-benefit', (req, res) => {
   res.redirect('bank-details');
 });
 
 router.get('/bank-details', (req, res) => {
-  const backLink = 'child-benefit';
-  res.render('overseas/bank-details.html', {backLink});
+  const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'dependent-children';
+  res.render('sprint2/bank-details.html', {backLink: referrer});
 });
 
 router.post('/bank-details', (req, res) => {
-  res.redirect('contact');
-});
-
-router.get('/contact', (req, res) => {
-  const backLink = 'bank-details';
-  res.render('overseas/contact.html', {backLink});
-});
-
-router.post('/contact', (req, res) => {
   res.redirect('declaration');
 });
 
 router.get('/declaration', (req, res) => {
-  const backLink = 'contact';
-  res.render('overseas/declaration.html', {backLink});
+  const backLink = 'bank-details';
+  res.render('sprint2/declaration.html', {backLink});
 });
 
 router.post('/declaration', (req, res) => {
@@ -134,20 +108,35 @@ router.post('/declaration', (req, res) => {
 
 router.get('/end', (req, res) => {
   const completeDate = moment().format('DD MMMM YYYY');
-  res.render('overseas/end-page.html', {completeDate});
+  res.render('sprint2/end-page.html', {completeDate});
 });
 
 router.get('/exit', (req, res) => {
   const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'start';
+  let buttonLink;
 
-  res.render('overseas/exit-page.html', {
-    backLink: referrer,
-    date: referrer === 'date',
-    location: referrer === 'did-you-live-in-the-uk',
-    married: referrer === 'relationship-status',
-    dateOfBirth: referrer === 'details',
-    dateOfDeath: referrer === 'details-partner'
+  if (referrer === 'eligibility') {
+    buttonLink = 'details-partner';
+  } else if (referrer === 'details') {
+    buttonLink = 'contact-details';
+  } else if (referrer === 'details-partner') {
+    buttonLink = 'details';
+  } else {
+    buttonLink = '/';
+  }
+
+  res.render('sprint2/exit-page.html', {
+    buttonLink,
+    backLink: `/sprint2/${referrer}`,
+    date: req.query['last-twelve-months-select'] || req.query['details-partner'],
+    location: req.query['lived-in-uk-select'],
+    married: req.query['still-married-select'],
+    dateOfBirth: req.query.details
   });
+});
+
+router.get('/download', (req, res) => {
+  res.download('./public/downloads/download.pdf', 'download.pdf');
 });
 
 module.exports = router;
