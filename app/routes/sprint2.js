@@ -135,4 +135,8 @@ router.get('/exit', (req, res) => {
   });
 });
 
+router.get('/download', (req, res) => {
+  res.download('./public/downloads/download.pdf', 'download.pdf');
+});
+
 module.exports = router;
