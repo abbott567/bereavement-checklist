@@ -45,9 +45,11 @@ router.get('/details-partner', (req, res) => {
 router.post('/details-partner', (req, res) => {
   const dod = moment(req.body['dod-day'] + req.body['dod-month'] + req.body['dod-year'], 'DDMMYYYY');
   const dodDiff = dod.diff(moment(), 'days');
-  const beforeAprSvth = dod.isBefore(moment('07042016', 'DDMMYYYY'));
+  // amended for testing || const beforeAprSvth = dod.isBefore(moment('07042017', 'DDMMYYYY'));
+  const beforeAprSvth = dod.isBefore(moment('07042014', 'DDMMYYYY'));
 
-  if (dodDiff < -395 || beforeAprSvth) {
+  // if (dodDiff < -395 || beforeAprSvth) {
+  if (dodDiff < -790 || beforeAprSvth) {
     res.redirect('exit?details-partner=no');
   } else {
     res.redirect('details');
