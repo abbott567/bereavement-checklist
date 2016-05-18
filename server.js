@@ -54,6 +54,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
+// Redirect to https on production
 if (env === 'production' && useHttps === 'true') {
   app.use((req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https') {
