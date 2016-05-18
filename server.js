@@ -20,6 +20,7 @@ const username2 = process.env.USERNAME2;
 const password2 = process.env.PASSWORD2;
 const env = (process.env.NODE_ENV || 'development').toLowerCase();
 const useAuth = (process.env.USE_AUTH || config.useAuth).toLowerCase();
+const useHttps = process.env.USE_HTTPS || config.useHttps;
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -52,6 +53,17 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
+
+if (env === 'production' && useHttps === 'true') {
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      console.log('Redirecting request to https');
+      // 302 temporary - this is a feature that can be disabled
+      return res.redirect(302, `https://${req.get('Host')}${req.url}`);
+    }
+    next();
+  });
+}
 
 // send assetPath to all views
 /* eslint-disable camelcase */
