@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+    {% include '../includes/errors.html' %}
+
+    <a href="declaration" class="hidden-skip-link"></a>
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Your payment details</h1>
+
+        <p>How would you like to get paid?</p>
+
+        <form action='bank-details' method="post">
+          <!-- Required and hidden for validation -->
+          <h2 class="heading-medium" style="display:none;">How would you like to get paid?</h2>
+
+          <div class="form-group">
+            <fieldset data-required data-error="Choose an option">
+              <div class="form-group">
+                <!-- No data-targets, see jQuery at bottom of this page -->
+                <label class="block-label" for="bank-account-yes">
+                  <input id="bank-account-yes" type="radio" name="account-select" value="bank">
+                  Bank account
+                </label>
+
+                <label class="block-label" for="building-society-yes">
+                  <input id="building-society-yes" type="radio" name="account-select" value="building">
+                  Building society account
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="js-hidden" id="bank-details">
+            <fieldset data-required data-error="Cannot be blank">
+              <div class="form-group">
+                <label class="form-label-bold" for="account-name">
+                  Name on account
+                </label>
+                <input type="text" class="form-control" id="account-name" name="account-name">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-group">
+                <label class="form-label-bold" for="account-number">
+                  Account number
+                </label>
+                <input type="text" class="form-control" id="account-number" name="account-number">
+              </div>
+            </fieldset>
+
+
+            <div class="form-date form-group">
+              <legend class="form-label-bold">Sort code</legend>
+
+              <fieldset>
+                <div class="form-group form-group-day">
+                  <label for="sort-code-1"></label>
+                  <input class="form-control" id="sort-code-1" maxlength="2" name="sort-code-1" type="text" />
+                </div>
+
+                <div class="form-group form-group-month">
+                  <label for="sort-code-2"></label>
+                  <input class="form-control" id="sort-code-2" maxlength="2"  name="sort-code-2" type="text" />
+                </div>
+
+                <div class="form-group form-group-month">
+                  <label for="sort-code-3"></label>
+                  <input class="form-control" id="sort-code-3" maxlength="2"  name="sort-code-3" type="text" />
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="js-hidden" id="building-society-details">
+            <p>or</p>
+            <div class="form-group">
+              <fieldset>
+                <label class="form-label-bold" for="bs-society-roll">
+                  Building society roll or reference number
+                  <span class="form-hint">If your building society uses a roll or reference number, you will find it on your passbook</span>
+                </label>
+
+                <input type="text" class="form-control" id="bs-society-roll" name="bs-society-roll">
+              </fieldset>
+            </div>
+          </div>
+
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', 'input[type="radio"]', function () {
+      $('#bank-details').show();
+      if ($(this).attr('id') === 'building-society-yes') {
+        $('#building-society-details').show();
+      } else {
+        $('#building-society-details').hide();
+      }
+    });
+  </script>
+{% endblock %}
