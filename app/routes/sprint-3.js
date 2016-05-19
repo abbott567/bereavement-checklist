@@ -9,12 +9,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/start', (req, res) => {
-  res.render('sprint2/start-page.html');
+  res.render('sprint3/start-page.html');
 });
 
 router.get('/eligibility', (req, res) => {
   const backLink = 'start';
-  res.render('sprint2/eligibility.html', {backLink});
+  res.render('sprint3/eligibility.html', {backLink});
 });
 
 router.post('/eligibility', (req, res) => {
@@ -39,7 +39,7 @@ router.post('/eligibility', (req, res) => {
 
 router.get('/details-partner', (req, res) => {
   const backLink = 'eligibility';
-  res.render('sprint2/details-partner.html', {backLink});
+  res.render('sprint3/details-partner.html', {backLink});
 });
 
 router.post('/details-partner', (req, res) => {
@@ -58,7 +58,7 @@ router.post('/details-partner', (req, res) => {
 
 router.get('/details', (req, res) => {
   const backLink = 'details-partner';
-  res.render('sprint2/details.html', {backLink});
+  res.render('sprint3/details.html', {backLink});
 });
 
 router.post('/details', (req, res) => {
@@ -74,7 +74,7 @@ router.post('/details', (req, res) => {
 
 router.get('/contact-details', (req, res) => {
   const backLink = 'details';
-  res.render('sprint2/contact-details.html', {backLink});
+  res.render('sprint3/contact-details.html', {backLink});
 });
 
 router.post('/contact-details', (req, res) => {
@@ -83,7 +83,7 @@ router.post('/contact-details', (req, res) => {
 
 router.get('/dependent-children', (req, res) => {
   const backLink = 'details-partner';
-  res.render('sprint2/dependent-children.html', {backLink});
+  res.render('sprint3/dependent-children.html', {backLink});
 });
 
 router.post('/dependent-children', (req, res) => {
@@ -92,7 +92,7 @@ router.post('/dependent-children', (req, res) => {
 
 router.get('/bank-details', (req, res) => {
   const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'dependent-children';
-  res.render('sprint2/bank-details.html', {backLink: referrer});
+  res.render('sprint3/bank-details.html', {backLink: referrer});
 });
 
 router.post('/bank-details', (req, res) => {
@@ -101,7 +101,7 @@ router.post('/bank-details', (req, res) => {
 
 router.get('/declaration', (req, res) => {
   const backLink = 'bank-details';
-  res.render('sprint2/declaration.html', {backLink});
+  res.render('sprint3/declaration.html', {backLink});
 });
 
 router.post('/declaration', (req, res) => {
@@ -110,7 +110,7 @@ router.post('/declaration', (req, res) => {
 
 router.get('/end', (req, res) => {
   const completeDate = moment().format('DD MMMM YYYY');
-  res.render('sprint2/end-page.html', {completeDate});
+  res.render('sprint3/end-page.html', {completeDate});
 });
 
 router.get('/exit', (req, res) => {
@@ -127,9 +127,9 @@ router.get('/exit', (req, res) => {
     buttonLink = '/';
   }
 
-  res.render('sprint2/exit-page.html', {
+  res.render('sprint3/exit-page.html', {
     buttonLink,
-    backLink: `/sprint2/${referrer}`,
+    backLink: `/sprint3/${referrer}`,
     date: req.query['last-twelve-months-select'] || req.query['details-partner'],
     location: req.query['lived-in-uk-select'],
     married: req.query['still-married-select'],
