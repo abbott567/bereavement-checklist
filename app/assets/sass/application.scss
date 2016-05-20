@@ -67,7 +67,7 @@
 .print-save-icons {
   float: left;
   margin-top: -5px;
-  margin-right: 0.6em
+  padding-right: 0.6em
 }
 
 // Overseas
@@ -86,4 +86,20 @@
 .country-list {
   border: 3px solid $focus-colour;
   margin-top: -3px;
+}
+
+.indent-info-blue {
+  border-color: #0268AE;
+  background-color: #EDF4F7;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-image: url(../images/icon-information.png);
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    background-image: url(../images/icon-information-2x.png);
+    background-size: 27px 27px;
+  }
 }
