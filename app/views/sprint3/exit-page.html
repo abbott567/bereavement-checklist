@@ -19,6 +19,12 @@
         {% if noCount > 1 %}
           <p>You can only get it if</p>
           <ul class="list-bullet">
+            {% if married %}
+              <li>
+                you were married to, or in a civil partnership with, your
+                partner when they died
+              </li>
+            {% endif %}
             {% if date %}
               <li>
                 your spouse or civil partner died after 6 April 2014
@@ -27,12 +33,6 @@
             {% if location %}
               <li>
                 you lived in the UK when your spouse or civil partner died
-              </li>
-            {% endif %}
-            {% if married %}
-              <li>
-                you were married to, or in a civil partnership with, your
-                partner when they died
               </li>
             {% endif %}
           </ul><br/>
