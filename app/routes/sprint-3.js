@@ -115,26 +115,26 @@ router.get('/end', (req, res) => {
 
 router.get('/exit', (req, res) => {
   const referrer = req.get('referrer') ? req.get('referrer').split('/').pop() : 'start';
-  let buttonLink;
+  const data = {backLink: `/sprint3/${referrer}`, noCount: 0};
 
-  if (referrer === 'eligibility') {
-    buttonLink = 'details-partner';
-  } else if (referrer === 'details') {
-    buttonLink = 'contact-details';
-  } else if (referrer === 'details-partner') {
-    buttonLink = 'details';
-  } else {
-    buttonLink = '/';
+  if (req.query['last-twelve-months-select'] || req.query['details-partner']) {
+    data.date = true;
+    data.noCount++;
+  }
+  if (req.query['lived-in-uk-select']) {
+    data.location = true;
+    data.noCount++;
+  }
+  if (req.query['still-married-select']) {
+    data.married = true;
+    data.noCount++;
+  }
+  if (req.query.details) {
+    data.dateOfBirth = true;
+    data.noCount++;
   }
 
-  res.render('sprint3/exit-page.html', {
-    buttonLink,
-    backLink: `/sprint3/${referrer}`,
-    date: req.query['last-twelve-months-select'] || req.query['details-partner'],
-    location: req.query['lived-in-uk-select'],
-    married: req.query['still-married-select'],
-    dateOfBirth: req.query.details
-  });
+  res.render('sprint3/exit-page.html', data);
 });
 
 router.get('/download', (req, res) => {

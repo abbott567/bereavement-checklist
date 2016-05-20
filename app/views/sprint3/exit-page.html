@@ -11,81 +11,77 @@
 
     <div class="grid-row">
       <div class="column-two-thirds">
-        <h1 class="heading-xlarge">Based on your answers, you can&rsquo;t get Bereavement Support Payment</h1>
 
+        <h1 class="heading-xlarge">
+          Based on your answers, you can&rsquo;t get Bereavement Support Payment
+        </h1>
+
+        {% if noCount > 1 %}
+          <p>You can only get it if</p>
+          <ul class="list-bullet">
+            {% if date %}
+              <li>
+                your spouse or civil partner died after 6 April 2014
+              </li>
+            {% endif %}
+            {% if location %}
+              <li>
+                you lived in the UK when your spouse or civil partner died
+              </li>
+            {% endif %}
+            {% if married %}
+              <li>
+                you were married to, or in a civil partnership with, your
+                partner when they died
+              </li>
+            {% endif %}
+          </ul><br/>
+        {% else %}
+          <p class="lede">
           {% if date %}
-            <p>You can only get it if your spouse or civil partner died after 6 April 2014.</p>
+            You can only get it if your spouse or civil partner died after 6
+            April 2014.
+          {% elif location %}
+            You can only get it if you lived in the UK when your spouse or
+            civil partner died.
+          {% elif married %}
+            You can only get it if you were married to, or in a civil
+            partnership with, your partner when they died.
+          {% elif dateOfBirth %}
+            You can only get it if you were below State Pension age when your
+            spouse or civil partner died.
           {% endif %}
-
-          {% if location %}
-            <p>You can only get it if you lived in the UK when your spouse or civil partner died.</p>
-          {% endif %}
-
-          {% if married %}
-            <p>You can only get it if you were married to, or in a civil partnership with, your partner when they died.</p>
-          {% endif %}
-
-          {% if dateOfBirth %}
-            <p>You can only get it if you were below State Pension age when your spouse or civil partner died.</p>
-          {% endif %}
-
-        {% if date %}
-        <div class="panel panel-border-narrow">
-          <p>
-            If your spouse or civil partner died within the last year, you may still be eligible
-            for Bereavement Benefit. <a href="https://www.gov.uk/bereavement-payment" target="_blank">
-            More on Bereavement Benefit (opens in a new tab)</a>
           </p>
-        </div>
         {% endif %}
 
-        <h2 class="heading-medium">Do you want to continue with your application?</h2>
+        {% if date %}
+          <div class="panel panel-border-narrow">
+            <p>
+              If your spouse or civil partner died within the last year, you may
+              still be eligible for Bereavement Benefit.
+              <a href="https://www.gov.uk/bereavement-payment" target="_blank">
+                More on Bereavement Benefit (opens in a new tab)
+              </a>
+            </p>
+          </div>
+        {% endif %}
 
-        <p class="text form-hint">
-          You can still apply even though you're not eligible for Bereavement Support Payment.
+        <h2 class="heading-medium">
+          If you think we've made a mistake
+        </h2>
+        <p>
+          You can call the Bereavement Service Helpline on
+        </p>
+        <p>
+          Telephone: 0345 606 0265<br/>
+          Textphone: 0345 606 0285
+        </p>
+        <p>
+          Monday to Friday, 8am to 6pm
         </p>
 
-        <form>
-          <div class="form-group">
-            <fieldset class="inline">
-              <!-- <legend class="visuallyhidden">Do you already have a personal user account?</legend>-->
-
-              <label class="block-label" for="exit-continue-yes" data-target="continue-button">
-                <input id="exit-continue-yes" type="radio" name="exit-continue-select" value="Yes">
-                Yes
-              </label>
-              <label class="block-label" for="exit-continue-no">
-                <input id="exit-continue-no" type="radio" name="exit-continue-select" value="No">
-                No
-              </label>
-            </fieldset>
-          </div>
-
-          <div class="js-hidden" id="continue-button">
-            <div class="form-group">
-              <a href="{{buttonLink}}" class="button">I still want to apply</a>
-            </div>
-          </div>
-        </form>
-
-        <div class="panel panel-border-narrow">
-          <h2 class="heading-small">Bereavement Service helpline</h2>
-
-          <p>
-            Telephone: 0345 606 0265<br />
-            Welsh language: 0345 606 0275<br />
-          </p>
-
-          <p>
-            Textphone: 0345 606 0285<br />
-            Welsh language: 0345 606 0295
-          </p>
-
-          <p>
-            Monday to Friday, 8am to 6pm
-          </p>
-        </div>
       </div>
     </div>
+
   </main>
 {% endblock %}
