@@ -22,13 +22,6 @@
           Bereavement Support Payment.
         </p>
 
-        <div class="panel panel-border-narrow">
-          <p>
-            You can also choose &ldquo;Yes&rdquo; if you&rsquo;re expecting a
-            baby with your late spouse or civil partner.
-          </p>
-        </div>
-
         <form action='dependent-children' method="post">
           <!-- Required and hidden for validation -->
           <h2 class="heading-medium" style="display:none;">
@@ -48,6 +41,13 @@
                 No
               </label>
             </fieldset>
+
+            <div id="hidden-eligible" class="panel panel-border-narrow js-hidden">
+              <p>
+                You can also choose &ldquo;Yes&rdquo; if you&rsquo;re expecting a
+                baby with your late spouse or civil partner.
+              </p>
+            </div>
           </div>
 
           <input type="submit" class="button" value="Continue">
@@ -72,4 +72,12 @@
     </div>
 
   </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('change', '#do-you-have-children-no', function () {
+      $('#hidden-eligible').show();
+    });
+  </script>
 {% endblock %}
