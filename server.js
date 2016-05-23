@@ -94,6 +94,7 @@ if (typeof (routes) === 'function') {
 // Custom routes
 const router = require(path.join(__dirname, '/app/routes.js'));
 app.use('/', router);
+app.use('/marriage-certs', require(path.join(__dirname, '/app/routes/marriage-certs.js')));
 app.use('/overseas', require(path.join(__dirname, '/app/routes/overseas.js')));
 app.use('/sprint1v1', require(path.join(__dirname, '/app/routes/sprint-1-v-1.js')));
 app.use('/sprint1v2', require(path.join(__dirname, '/app/routes/sprint-1-v-2.js')));
