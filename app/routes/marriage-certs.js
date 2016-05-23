@@ -23,14 +23,21 @@ router.post('/we-need-your-marriage-certificate', (req, res) => {
   const how = req.body['how-select'];
   let url = '';
 
-  if (how === 'uploadIt') {
-    url = 'upload';
-  } else if (how === 'postIt') {
-    url = 'post';
-  } else if (how === 'jobCentre') {
-    url = 'job-centre';
-  } else if (how === 'dontHaveIt') {
-    url = 'dont-have-marriage-cert';
+  switch (how) {
+    case 'uploadIt':
+      url = 'upload';
+      break;
+    case 'postIt':
+      url = 'post';
+      break;
+    case 'jobCentre':
+      url = 'job-centre';
+      break;
+    case 'dontHaveIt':
+      url = 'dont-have-marriage-cert';
+      break;
+    default:
+      url = 'we-need-your-marriage-certificate';
   }
 
   res.redirect(url);
