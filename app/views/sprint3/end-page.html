@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  Apply for bereavement Support Payment
+  Apply for Bereavement Support Payment
 {% endblock %}
 
 {% block content %}
@@ -12,19 +12,19 @@
       <div class="column-two-thirds">
 
         <div id="alert-success" class="panel panel-border-wide alert alert-success js-hidden">
-          <p>Your email has been sent</p>
+          <p>You have been sent a confirmation email</p>
         </div>
 
-        <h1 class="heading-xlarge">You need to send your marriage certificate</h1>
+        <h1 class="heading-xlarge">You need to send your marriage or civil partnership certificate</h1>
 
         <p class="lede">
-          We have received your application, but we can't process it until we see
-          your marriage certificate.
+          Your online application has been submitted, but it can't be processed until you
+          send your original marriage or civil partnership certificate.
         </p>
 
         <p>
-          Make sure you enclose your National Insurance number with the original certificate,
-          then send it to this address:
+          Make sure you include your National Insurance number with the certificate
+          and then send it to this address:
         </p>
 
         <p>
@@ -35,9 +35,9 @@
         </p>
 
         <p>
-          If you prefer, you can take it to your nearest Jobcentre Plus where they
-          can make official copies. You'll need to make an appointment before you go.
-          You can contact them by phone:
+          If you prefer, you can take your certificate to your nearest Jobcentre Plus where 
+          an official copy can be made. You'll need to make an appointment before you go
+          using the following contact details:
         </p>
 
         <p>
@@ -50,7 +50,7 @@
         <div class="panel panel-border-narrow indent-info-blue">
           <p class="text">
             If you don't have a marriage or civil partnership certificate, the
-            Bereavement Service will get in touch using the details you provided
+            Bereavement Service will get in touch using the contact details you provided
             to ask you for more information.
           </p>
         </div>
@@ -112,7 +112,7 @@
       setTimeout(function () {
         $('body').scrollTop(0);
         $('#alert-success').show();
-      }, 1000);      
+      }, 1000);
     });
   </script>
 {% endblock %}
