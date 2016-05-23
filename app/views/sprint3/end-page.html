@@ -10,6 +10,11 @@
 
     <div class="grid-row">
       <div class="column-two-thirds">
+
+        <div id="alert-success" class="panel panel-border-wide alert alert-success js-hidden">
+          <p>Your email has been sent</p>
+        </div>
+
         <h1 class="heading-xlarge">You need to send your marriage certificate</h1>
 
         <p class="lede">
@@ -67,10 +72,23 @@
         </p>
 
         <p class="print-hidden">
-          <a id="print-button" href="end" class="heading-medium">
+          <a id="email-button" href="end" class="heading-medium">
             <img class="print-save-icons" src="/public/images/icon-email.png" width="30">
             Email this page
           </a>
+
+          <div id="email-hidden" class="panel panel-border-narrow js-hidden">
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label class="form-label" for="email-address">Email address</label>
+                  <input class="form-control" id="email-address" type="text">
+                </div>
+
+                <input type="submit" class="button" value="Email this page">
+              </fieldset>
+            </form>
+          </div>
         </p>
       </div>
     </div>
@@ -80,8 +98,21 @@
 {% block page_scripts %}
   <script>
     $(document).on('click', '#print-button', function (e) {
-      e.preventDefault;
+      e.preventDefault();
       window.print();
+    });
+
+    $(document).on('click', '#email-button', function (e) {
+      e.preventDefault();
+      $('#email-hidden').toggle();
+    });
+
+    $(document).on('submit', 'form', function (e) {
+      e.preventDefault();
+      setTimeout(function () {
+        $('body').scrollTop(0);
+        $('#alert-success').show();
+      }, 1000);      
     });
   </script>
 {% endblock %}
