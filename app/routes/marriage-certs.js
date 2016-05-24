@@ -47,6 +47,10 @@ router.get('/upload', (req, res) => {
   res.render('marriage-certs/upload');
 });
 
+router.post('/upload', (req, res) => {
+  res.redirect('end');
+});
+
 router.get('/job-centre', (req, res) => {
   const query = req.query.postcode;
   res.render('marriage-certs/job-centre', {query});
