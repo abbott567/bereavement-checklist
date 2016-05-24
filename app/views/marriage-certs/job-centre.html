@@ -31,9 +31,13 @@
 
     {% if query %}
       <div class="grid-row">
-        <a id="1-mile" href="#">1 mile</a> | <a id="5-miles" href="#">5 miles</a> | <a id="10-miles" href="#">10 miles</a>
-        <div id="map">
+        <div class="map-circle-buttons">
+          <a id="1-mile" href="#">1 mile</a> |
+          <a id="5-miles" href="#">5 miles</a> |
+          <a id="10-miles" href="#">10 miles</a>
         </div>
+
+        <div id="map"></div>
       </div>
     {% endif %}
   </main>

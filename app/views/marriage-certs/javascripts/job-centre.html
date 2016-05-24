@@ -22,10 +22,10 @@
 
     circle1 = new google.maps.Circle({
       strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
+      strokeOpacity: 0.2,
       strokeWeight: 2,
       fillColor: '#FF0000',
-      fillOpacity: 0.35,
+      fillOpacity: 0.2,
       map: map,
       center: {lat: lat, lng: lng},
       radius: 1609.34
@@ -33,10 +33,10 @@
 
     circle5 = new google.maps.Circle({
       strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
+      strokeOpacity: 0.2,
       strokeWeight: 2,
       fillColor: '#FF0000',
-      fillOpacity: 0.35,
+      fillOpacity: 0.2,
       map: map,
       center: {lat: lat, lng: lng},
       radius: 8046.72
@@ -44,16 +44,16 @@
 
     circle10 = new google.maps.Circle({
       strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
+      strokeOpacity: 0.2,
       strokeWeight: 2,
       fillColor: '#FF0000',
-      fillOpacity: 0.35,
+      fillOpacity: 0.2,
       map: map,
       center: {lat: lat, lng: lng},
       radius: 16093.4
     });
 
-    circle1.setMap(null);
+    circle1.setMap(map);
     circle5.setMap(null);
     circle10.setMap(null);
 
