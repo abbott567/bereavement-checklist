@@ -2,13 +2,15 @@
 <script>
   var userPcode = window.location.href.split('?')[1].split('postcode=')[1];
   var radius = 50000;
+  var pcodeCentre;
+
   $.ajax({
     url: "https://api.postcodes.io/postcodes/" + userPcode,
     dataType: "json",
     encode: true,
     success: function(data) {
       pcodeCentre = [parseFloat(data.result.latitude), parseFloat(data.result.longitude)];
-      moveToLocation(parseFloat(data.result.latitude), parseFloat(data.result.longitude));
+      initPostcode(parseFloat(data.result.latitude), parseFloat(data.result.longitude));
     }
   });
 
@@ -16,7 +18,7 @@
   var infowindow;
   var circle1, circle5, circle10;
 
-  function moveToLocation(lat, lng){
+  function initPostcode(lat, lng) {
     var center = new google.maps.LatLng(lat, lng);
     map.panTo(center);
 
@@ -66,11 +68,22 @@
     }, callback);
   }
 
+  function setZoom(num){
+    map.setZoom(num);
+  }
+
+  function setCentre(lat, lng) {
+    var center = new google.maps.LatLng(lat, lng);
+    map.panTo(center);
+  }
+
   $('#1-mile').click(function(e) {
     e.preventDefault();
     circle1.setMap(map);
     circle5.setMap(null);
     circle10.setMap(null);
+    setZoom(13);
+    setCentre(pcodeCentre[0], pcodeCentre[1]);
   });
 
   $('#5-miles').click(function(e) {
@@ -78,6 +91,8 @@
     circle1.setMap(null);
     circle5.setMap(map);
     circle10.setMap(null);
+    setZoom(11);
+    setCentre(pcodeCentre[0], pcodeCentre[1]);
   });
 
   $('#10-miles').click(function(e) {
@@ -85,6 +100,8 @@
     circle1.setMap(null);
     circle5.setMap(null);
     circle10.setMap(map);
+    setZoom(10);
+    setCentre(pcodeCentre[0], pcodeCentre[1]);
   });
 
   function initMap() {
