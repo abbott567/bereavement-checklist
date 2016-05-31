@@ -40,6 +40,17 @@
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+.featured-wrapper {
+  background-color: #f0f0f0;
+  margin: 15px;
+  padding: 40px;
+
+  .heading-xlarge, .heading-large,
+  .heading-medium, .heading-small {
+    margin-top: 0;
+  }
+}
+
 // Hidden link for skipping validation
 .hidden-skip-link {
   position: absolute;
