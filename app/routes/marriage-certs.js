@@ -85,6 +85,11 @@ router.get('/job-centre', (req, res) => {
   res.render('marriage-certs/job-centre', {query});
 });
 
+router.post('/job-centre', (req, res) => {
+  const query = req.body.postcode.toLowerCase().replace(' ', '');
+  res.redirect(`job-centre?postcode=${query}`);
+});
+
 router.get('/end', (req, res) => {
   res.render('marriage-certs/end');
 });
