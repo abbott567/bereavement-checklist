@@ -1,7 +1,10 @@
 'use strict';
 
+const fs = require('fs');
 const express = require('express');
 const router = new express.Router();
+const multer = require('multer');
+const upload = multer({dest: 'public/uploads'});
 
 router.get('/start', (req, res) => {
   res.render('marriage-certs/start');
@@ -47,7 +50,33 @@ router.get('/upload', (req, res) => {
   res.render('marriage-certs/upload');
 });
 
-router.post('/upload', (req, res) => {
+router.post('/upload', upload.single('pic'), (req, res) => {
+  const tmpPath = req.file.path;
+  const targetPath = `public/uploads/${req.file.originalname}`;
+
+  const src = fs.createReadStream(tmpPath);
+  const dest = fs.createWriteStream(targetPath);
+
+  res.cookie('upload', targetPath);
+
+  src.pipe(dest);
+  src.on('end', () => {
+    res.redirect('upload-success');
+  });
+
+  src.on('error', err => {
+    if (err) {
+      res.render('marriage-certs/upload', {error: 'There was a problem'});
+    }
+  });
+});
+
+router.get('/upload-success', (req, res) => {
+  const filename = `/${req.cookies.upload}`;
+  res.render('marriage-certs/upload-success', {filename});
+});
+
+router.post('/upload-success', (req, res) => {
   res.redirect('end');
 });
 
