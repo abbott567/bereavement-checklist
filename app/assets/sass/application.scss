@@ -41,13 +41,31 @@
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 .featured-wrapper {
-  background-color: #f0f0f0;
+  border: 1px solid #bfc1c3;
   margin: 15px;
   padding: 40px;
+  position: relative;
 
   .heading-xlarge, .heading-large,
   .heading-medium, .heading-small {
-    margin-top: 0;
+    margin-top: 0.4em;
+  }
+}
+
+.featured-wrapper:before {
+  content: "LATEST VERSION";
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.2105263158em 0.7894736842em 0.2105263158em 0.7894736842em;
+  font-weight: 400;
+  text-transform: none;
+  background: #bfc1c3;
+  color: white;
+
+  @media (min-width: 641px) {
+    font-size: 14px;
+    line-height: 1.4285714286;
   }
 }
 
