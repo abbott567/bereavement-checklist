@@ -94,13 +94,7 @@ if (typeof (routes) === 'function') {
 // Custom routes
 const router = require(path.join(__dirname, '/app/routes.js'));
 app.use('/', router);
-app.use('/marriage-certs', require(path.join(__dirname, '/app/routes/marriage-certs.js')));
-app.use('/overseas', require(path.join(__dirname, '/app/routes/overseas.js')));
-app.use('/sprint1v1', require(path.join(__dirname, '/app/routes/sprint-1-v-1.js')));
-app.use('/sprint1v2', require(path.join(__dirname, '/app/routes/sprint-1-v-2.js')));
-app.use('/sprint1v3', require(path.join(__dirname, '/app/routes/sprint-1-v-3.js')));
-app.use('/sprint2', require(path.join(__dirname, '/app/routes/sprint-2.js')));
-app.use('/sprint3', require(path.join(__dirname, '/app/routes/sprint-3.js')));
+app.use('/version-1', require(path.join(__dirname, '/app/routes/version-1.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, (req, res) => {
