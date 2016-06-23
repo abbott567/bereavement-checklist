@@ -1,59 +1,114 @@
 {% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
 
 {% block page_title %}
   Apply for bereavement Support Payment
 {% endblock %}
 
 {% block content %}
+  <style>
+    input[type=checkbox] {
+      transform: scale(1.5);
+      -webkit-transform: scale(1.5);
+      float: right;
+    }
+
+    .td-title {
+      width: 50%;
+    }
+
+    .td-title {
+      padding-left: 20px;
+    }
+
+    .check-your-answers .change-answer {
+      padding-right: 20px;
+    }
+
+    .done {
+      background-color: #EAF6F5;
+    }
+
+    .done-by span {
+      visibility: hidden;
+    }
+  </style>
+
   <main id="content" role="main">
     {% include '../includes/phase_banner_alpha.html' %}
 
     <div class="grid-row">
       <div class="column-two-thirds">
+        <h1 class="heading-xlarge" style="margin-bottom: 0">Tasks</h1>
+      </div>
 
-        <h1 class="heading-xlarge">Before you start</h1>
+      <div class="column-two-thirds">
+        <table class="check-your-answers">
+          {{m.tableHead('To be completed this week')}}
 
-        <p>You may be able to get Bereavement Support Payment if your spouse or civil partner has died.</p>
+          <tbody>
+            {{m.tableRow('Register death', 'Carol')}}
+            {{m.tableRow('Arrange funeral')}}
+          </tbody>
+        </table>
 
-        <p>
-          <strong class="bold-small">If you have dependent children:</strong>
-          you could get an initial payment of £5,000 followed by 12 monthly
-          payments of £400.
-        </p>
+        <table class="check-your-answers">
+          {{m.tableHead('To be completed by ' + date.twoWeeks)}}
 
-        <p>
-          <strong class="bold-small">If you don't have any dependent children:</strong>
-          you could get an initial payment of £2,500 followed by 12 monthly
-          payments of £150.
-        </p>
+          <tbody>
+            {{m.tableRow('Apply for Social Fund Funeral Payment')}}
+            {{m.tableRow('Task 4')}}
+          </tbody>
+        </table>
 
-        <p>
-          To get Bereavement Support Payment you must:
-        </p>
+        <table class="check-your-answers">
+          {{m.tableHead('To be completed by ' + date.threeMonths)}}
 
-        <ul class="list list-bullet">
-          <li>be under State Pension age</li>
-          <li>have been married or in a civil partnership when your spouse or civil partner died</li>
-          <li>have been living in the UK when your spouse or civil partner died</li>
-          <li>make a claim within a year of your spouse or civil partner&rsquo;s death</li>
+          <tbody>
+            {{m.tableRow('Apply for Bereavement Support Payment')}}
+          </tbody>
+        </table>
+
+        <table class="check-your-answers">
+          {{m.tableHead('To be completed by ' + date.sixMonths)}}
+
+          <tbody>
+            {{m.tableRow('Task 7')}}
+            {{m.tableRow('Task 8')}}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="column-one-third">
+        <h2 class="heading-medium">Options</h2>
+        <ul>
+          <li><a class="heading-small" href="#">Add a helper</a></li>
+          <li><a class="heading-small" href="#">Get notifications</a></li>
+          <li><a class="heading-small" href="#">Print a list</a></li>
         </ul>
-
-        <h2 class="heading-medium">
-           To make your application you&rsquo;ll need:
-        </h2>
-
-        <ul class="list list-bullet">
-          <li>the date your spouse or civil partner died</li>
-          <li>your spouse or civil partner&rsquo;s National Insurance number</li>
-          <li>your  National Insurance number</li>
-          <li>your bank details</li>
-          <li>to send the Bereavement Support Payment team your marriage or civil partnership certificate, if you have it
-        </ul>
-
-        <br />
-
-        <a class="button button-start" href="eligibility" role="button">Start now</a>
       </div>
     </div>
   </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).ready(function() {
+        $('.done').each(function () {
+          $(this).find('input[type="checkbox"]').attr('checked', true);
+          $(this).find('span').css('visibility', 'visible');
+        });
+    });
+
+    $(document).on('change', 'input[type="checkbox"]', function () {
+      if (this.checked) {
+        $(this).parents('tr').addClass('done');
+        $(this).parents('tr').find('.done-by span').text('Completed by you');
+        $(this).parents('tr').find('.done-by span').css('visibility', 'visible');
+      } else {
+        $(this).parents('tr').removeClass('done');
+        $(this).parents('tr').find('.done-by span').css('visibility', 'hidden');
+      }
+    });
+  </script>
 {% endblock %}

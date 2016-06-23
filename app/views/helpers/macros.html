@@ -1,0 +1,31 @@
+{% macro tableHead(heading) %}
+  <thead>
+    <tr>
+      <th colspan="3">
+        <h2 class="heading-medium">
+          {{heading}}
+        </h2>
+      </th>
+    </tr>
+  </thead>
+{% endmacro %}
+
+{% macro tableRow(title, doneBy) %}
+  <tr {% if doneBy %}class="done"{% endif %}>
+    <td class="td-title">
+      {{title}}
+    </td>
+
+    <td class="done-by">
+      {% if doneBy %}
+        <span>Completed by {{doneBy}}</span>
+      {% else %}
+        <span>Completed by you</span>
+      {% endif %}
+    </td>
+
+    <td>
+      <input type="checkbox">
+    </td>
+  </tr>
+{% endmacro %}
