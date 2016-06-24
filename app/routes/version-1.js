@@ -1,8 +1,8 @@
 'use strict';
-
 const express = require('express');
-const router = new express.Router();
 const moment = require('moment');
+
+const router = new express.Router();
 
 router.get('/', (req, res) => {
   res.redirect('/version-1/start');

@@ -3,14 +3,16 @@
 const path = require('path');
 const express = require('express');
 const nunjucks = require('express-nunjucks');
-const routes = require(path.join(__dirname, '/app/routes.js'));
 const favicon = require('serve-favicon');
-const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+
+const routes = require(path.join(__dirname, '/app/routes.js'));
 const config = require(path.join(__dirname, '/app/config.js'));
 const utils = require(path.join(__dirname, '/lib/utils.js'));
 const packageJson = require(path.join(__dirname, '/package.json'));
+
+const app = express();
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 const releaseVersion = packageJson.version;
@@ -95,6 +97,7 @@ if (typeof (routes) === 'function') {
 const router = require(path.join(__dirname, '/app/routes.js'));
 app.use('/', router);
 app.use('/version-1', require(path.join(__dirname, '/app/routes/version-1.js')));
+app.use('/version-2', require(path.join(__dirname, '/app/routes/version-2.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, (req, res) => {

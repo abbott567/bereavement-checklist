@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Have you arranged the funeral?</h1>
+
+        <form method="post">
+          <div class="form-group">
+            <fieldset class="inline">
+              <label class="block-label" for="arranged-funeral-yes">
+                <input id="arranged-funeral-yes" type="radio" name="arranged-funeral-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="arranged-funeral-no">
+                <input id="arranged-funeral-no" type="radio" name="arranged-funeral-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

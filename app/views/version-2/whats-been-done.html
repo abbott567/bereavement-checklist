@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">What's been done?</h1>
+
+        <p class="lede">
+          You've notified us of a death and we've let these people know:
+        </p>
+
+        <details>
+          <summary><span class="summary">DWP</span></summary>
+
+          <div class="panel panel-border-narrow">
+            <ul class="list-bullet">
+              <li>Incapacity Benefit</li>
+              <li>Income Support</li>
+              <li>Jobseekers Allowance</li>
+              <li>Universal Credit</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="summary">HMRC</span></summary>
+
+          <div class="panel panel-border-narrow">
+            <ul class="list-bullet">
+              <li>Working Tax Credit</li>
+              <li>Child Tax Credit</li>
+              <li>Child Benefit</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="summary">DVLA</span></summary>
+
+          <div class="panel panel-border-narrow">
+            <ul class="list-bullet">
+              <li>Driving Licence</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="summary">Passport Agency</span></summary>
+
+          <div class="panel panel-border-narrow">
+            <ul class="list-bullet">
+              <li>UK Passport</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="summary">Your local authority</span></summary>
+
+          <div class="panel panel-border-narrow">
+          </div>
+        </details>
+
+        <br />
+
+        <p>
+          If any of these organisations need any more information, they will
+          contact you.
+        </p>
+
+        <br />
+
+        <form method="post">
+          <div class="form-group">
+            <input type="submit" class="button" value="Find out what to do next">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

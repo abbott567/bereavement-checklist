@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Tell DWP that someone has died
+        </h1>
+
+        <p class="lede">
+          When someone dies, you will need to contact the DWP to sort out pension
+          and benefit affairs.
+        </p>
+
+        <p>
+          Afrer checking some details of death and identifying yourself, this
+          online tool will help you find out what needs to be done and when,
+          including applying for any benefits you may be entitled to.
+        </p>
+
+        <form method="post">
+          <input type="submit" class="button button-start" value="Start now" />
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
