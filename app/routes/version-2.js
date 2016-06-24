@@ -63,4 +63,20 @@ router.post('/have-you-arranged-funeral', (req, res) => {
   }
 });
 
+router.get('/funeral-date', (req, res) => {
+  res.render('version-2/funeral-date.html');
+});
+
+router.post('/funeral-date', (req, res) => {
+  res.redirect('apply-for-sffp');
+});
+
+router.get('/apply-for-sffp', (req, res) => {
+  res.render('version-2/apply-for-sffp.html');
+});
+
+router.post('/apply-for-sffp', (req, res) => {
+  res.redirect('apply-for-sffp');
+});
+
 module.exports = router;
