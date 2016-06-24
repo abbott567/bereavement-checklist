@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Do you want to apply for Bereavement Support Payment?
+        </h1>
+
+        <p class="lede">
+          Some text to explain about BSP.
+        </p>
+
+        <form method="post">
+          <div class="form-group">
+            <fieldset class="inline">
+              <label class="block-label" for="bsp-yes">
+                <input id="bsp-yes" type="radio" name="bsp-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="bsp-no">
+                <input id="bsp-no" type="radio" name="bsp-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

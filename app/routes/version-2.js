@@ -76,7 +76,23 @@ router.get('/apply-for-sffp', (req, res) => {
 });
 
 router.post('/apply-for-sffp', (req, res) => {
-  res.redirect('apply-for-sffp');
+  if (req.body['sffp-select'] === 'Yes') {
+    res.redirect('https://www.gov.uk/funeral-payments/how-to-claim');
+  } else {
+    res.redirect('apply-for-bsp');
+  }
+});
+
+router.get('/apply-for-bsp', (req, res) => {
+  res.render('version-2/apply-for-bsp.html');
+});
+
+router.post('/apply-for-bsp', (req, res) => {
+  if (req.body['bsp-select'] === 'Yes') {
+    res.redirect('http://bereavement.herokuapp.com');
+  } else {
+    res.redirect('dashboard');
+  }
 });
 
 module.exports = router;
