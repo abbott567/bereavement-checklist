@@ -59,6 +59,14 @@ router.post('/whats-been-done', (req, res) => {
   res.redirect('start-page-next');
 });
 
+router.get('/start-page-next', (req, res) => {
+  res.render('version-2/start-page-next.html');
+});
+
+router.post('/start-page-next', (req, res) => {
+  res.redirect('have-you-registered');
+});
+
 router.get('/have-you-registered', (req, res) => {
   res.render('version-2/have-you-registered.html');
 });
