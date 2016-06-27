@@ -28,6 +28,26 @@ router.get('/details-yours', (req, res) => {
 });
 
 router.post('/details-yours', (req, res) => {
+  if (req.body['next-of-kin-select'] === 'Yes') {
+    res.redirect('details-contact');
+  } else {
+    res.redirect('details-next-of-kin');
+  }
+});
+
+router.get('/details-contact', (req, res) => {
+  res.render('version-2/details-contact.html');
+});
+
+router.post('/details-contact', (req, res) => {
+  res.redirect('whats-been-done');
+});
+
+router.get('/details-next-of-kin', (req, res) => {
+  res.render('version-2/details-next-of-kin.html');
+});
+
+router.post('/details-next-of-kin', (req, res) => {
   res.redirect('whats-been-done');
 });
 
@@ -36,6 +56,14 @@ router.get('/whats-been-done', (req, res) => {
 });
 
 router.post('/whats-been-done', (req, res) => {
+  res.redirect('start-page-next');
+});
+
+router.get('/start-page-next', (req, res) => {
+  res.render('version-2/start-page-next.html');
+});
+
+router.post('/start-page-next', (req, res) => {
   res.redirect('have-you-registered');
 });
 
