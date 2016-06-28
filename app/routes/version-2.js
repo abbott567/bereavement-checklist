@@ -79,6 +79,14 @@ router.post('/have-you-registered', (req, res) => {
   }
 });
 
+router.get('/how-to-register-death', (req, res) => {
+  res.render('version-2/how-to-register-death.html');
+});
+
+router.post('/how-to-register-death', (req, res) => {
+  res.redirect('have-you-arranged-funeral');
+});
+
 router.get('/have-you-arranged-funeral', (req, res) => {
   res.render('version-2/have-you-arranged-funeral.html');
 });
@@ -89,6 +97,14 @@ router.post('/have-you-arranged-funeral', (req, res) => {
   } else {
     res.redirect('funeral-no');
   }
+});
+
+router.get('/funeral-no', (req, res) => {
+  res.render('version-2/funeral-no.html');
+});
+
+router.post('/funeral-no', (req, res) => {
+  res.redirect('apply-for-sffp');
 });
 
 router.get('/funeral-date', (req, res) => {
@@ -105,10 +121,18 @@ router.get('/apply-for-sffp', (req, res) => {
 
 router.post('/apply-for-sffp', (req, res) => {
   if (req.body['sffp-select'] === 'Yes') {
-    res.redirect('https://www.gov.uk/funeral-payments/how-to-claim');
+    res.redirect('help-with-funeral');
   } else {
     res.redirect('apply-for-bsp');
   }
+});
+
+router.get('/help-with-funeral', (req, res) => {
+  res.render('version-2/help-with-funeral.html');
+});
+
+router.post('/help-with-funeral', (req, res) => {
+  res.redirect('apply-for-bsp');
 });
 
 router.get('/apply-for-bsp', (req, res) => {
@@ -117,7 +141,7 @@ router.get('/apply-for-bsp', (req, res) => {
 
 router.post('/apply-for-bsp', (req, res) => {
   if (req.body['bsp-select'] === 'Yes') {
-    res.redirect('http://bereavement.herokuapp.com');
+    res.redirect('https://bereavement.herokuapp.com/sprint3/start');
   } else {
     res.redirect('dashboard');
   }
