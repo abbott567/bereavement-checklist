@@ -1,5 +1,6 @@
 'use strict';
 const express = require('express');
+const moment = require('moment');
 
 const router = new express.Router();
 
@@ -20,14 +21,19 @@ router.get('/details-partner', (req, res) => {
 });
 
 router.post('/details-partner', (req, res) => {
+  res.cookie('name', req.body['full-name']);
   res.redirect('details-yours');
 });
 
 router.get('/details-yours', (req, res) => {
-  res.render('version-2/details-yours.html');
+  const name = req.cookies.name;
+  res.render('version-2/details-yours.html', {name});
 });
 
 router.post('/details-yours', (req, res) => {
+  res.cookie('relationship', req.body['relationship-to-select']);
+  const age = `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`;
+  res.cookie('age', age);
   if (req.body['next-of-kin-select'] === 'Yes') {
     res.redirect('details-contact');
   } else {
@@ -136,7 +142,15 @@ router.post('/help-with-funeral', (req, res) => {
 });
 
 router.get('/apply-for-bsp', (req, res) => {
-  res.render('version-2/apply-for-bsp.html');
+  const now = moment();
+  const dob = moment(req.cookies.age, 'DDMMYYYY');
+  const age = now.diff(dob, 'years');
+
+  if (req.cookies.relationship === 'Spouse' && age < 62) {
+    res.render('version-2/apply-for-bsp.html');
+  } else {
+    res.redirect('dashboard');
+  }
 });
 
 router.post('/apply-for-bsp', (req, res) => {
