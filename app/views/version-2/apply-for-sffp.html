@@ -22,14 +22,14 @@
 
         <p>
           How much you could get depends on your circumstances and whether or
-          not you qualify. <a href="https://www.gov.uk/funeral-payments/overview">
-          Get more information on Funeral Payments.</a>
+          not you qualify. <a href="https://www.gov.uk/funeral-payments/overview" target="_blank" rel="external">
+          Get more information on Funeral Payments (opens in a new window).</a>
         </p>
 
           <form method="post">
           <div class="form-group">
             <fieldset class="inline">
-              <label class="block-label" for="sffp-yes">
+              <label class="block-label" for="sffp-yes" data-target="panel-hidden">
                 <input id="sffp-yes" type="radio" name="sffp-select" value="Yes">
                 Yes
               </label>
@@ -41,11 +41,7 @@
             </fieldset>
           </div>
 
-          <div class="form-group">
-            <input type="submit" class="button" value="Continue">
-          </div>
-
-          <p>
+          <div class="panel panel-border-narrow js-hidden" id="panel-hidden">
             For more advice on help with paying for funerals, visit:
             <ul class="list-bullet">
               <li>the Money Advice Service page on <a href="https://www.moneyadviceservice.org.uk/en/articles/help-paying-for-a-funeral">
@@ -55,7 +51,11 @@
               <li>the Turn2us page on <a href="https://www.turn2us.org.uk/Benefit-guides/Budgeting-Loan-Advance/What-is-a-Budgeting-Loan-Advance">
               applying for a Budgeting Loan</a>
             </ul>
+          </div>
 
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
         </form>
       </div>
     </div>

@@ -126,11 +126,7 @@ router.get('/apply-for-sffp', (req, res) => {
 });
 
 router.post('/apply-for-sffp', (req, res) => {
-  if (req.body['sffp-select'] === 'Yes') {
-    res.redirect('help-with-funeral');
-  } else {
-    res.redirect('apply-for-bsp');
-  }
+  res.redirect('apply-for-bsp');
 });
 
 router.get('/help-with-funeral', (req, res) => {
