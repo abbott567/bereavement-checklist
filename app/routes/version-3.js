@@ -21,20 +21,20 @@ router.get('/details-partner', (req, res) => {
 });
 
 router.post('/details-partner', (req, res) => {
-  res.cookie('name', req.body['full-name']);
+  res.session.set('deceasedName', req.body['full-name']);
   res.redirect('details-yours');
 });
 
 router.get('/details-yours', (req, res) => {
-  const name = req.cookies.name;
-  res.render('version-3/details-yours.html', {name});
+  res.render('version-3/details-yours.html', req.session.get());
 });
 
 router.post('/details-yours', (req, res) => {
-  res.cookie('relationship', req.body['relationship-to-select']);
-  const age = `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`;
-  res.cookie('age', age);
-  if (req.body['next-of-kin-select'] === 'Yes') {
+  console.log(req.body);
+  res.session.set('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
+  res.session.set('relationship', req.body['relationship-to-select']);
+
+  if (!req.body['next-of-kin-select'] || req.body['next-of-kin-select'] === 'Yes') {
     res.redirect('details-contact');
   } else {
     res.redirect('details-next-of-kin');
@@ -42,6 +42,7 @@ router.post('/details-yours', (req, res) => {
 });
 
 router.get('/details-contact', (req, res) => {
+  console.log(req.session.get())
   res.render('version-3/details-contact.html');
 });
 
@@ -58,7 +59,7 @@ router.post('/details-next-of-kin', (req, res) => {
 });
 
 router.get('/whats-been-done', (req, res) => {
-  res.render('version-3/whats-been-done.html');
+  res.render('version-3/whats-been-done.html', req.session.get());
 });
 
 router.post('/whats-been-done', (req, res) => {
@@ -66,7 +67,7 @@ router.post('/whats-been-done', (req, res) => {
 });
 
 router.get('/start-page-next', (req, res) => {
-  res.render('version-3/start-page-next.html');
+  res.render('version-3/start-page-next.html', req.session.get());
 });
 
 router.post('/start-page-next', (req, res) => {
@@ -79,8 +80,10 @@ router.get('/have-you-registered', (req, res) => {
 
 router.post('/have-you-registered', (req, res) => {
   if (req.body['registered-death-select'] === 'Yes') {
+    res.session.set('registered', 'Yes');
     res.redirect('have-you-arranged-funeral');
   } else {
+    res.session.set('registered', 'No');
     res.redirect('how-to-register-death');
   }
 });
@@ -99,8 +102,10 @@ router.get('/have-you-arranged-funeral', (req, res) => {
 
 router.post('/have-you-arranged-funeral', (req, res) => {
   if (req.body['arranged-funeral-select'] === 'Yes') {
+    res.session.set('funeral', 'Yes');
     res.redirect('funeral-date');
   } else {
+    res.session.set('funeral', 'No');
     res.redirect('funeral-no');
   }
 });
@@ -118,6 +123,7 @@ router.get('/funeral-date', (req, res) => {
 });
 
 router.post('/funeral-date', (req, res) => {
+  res.session.set('funeralDate', `${req.body['funeral-day']}${req.body['funeral-month']}${req.body['funeral-year']}`);
   res.redirect('apply-for-sffp');
 });
 
@@ -139,10 +145,10 @@ router.post('/help-with-funeral', (req, res) => {
 
 router.get('/apply-for-bsp', (req, res) => {
   const now = moment();
-  const dob = moment(req.cookies.age, 'DDMMYYYY');
+  const dob = moment(req.session.get('age'), 'DDMMYYYY');
   const age = now.diff(dob, 'years');
 
-  if (req.cookies.relationship === 'Spouse' && age < 62) {
+  if (req.session.get('relationship') === 'Spouse' && age < 62) {
     res.render('version-3/apply-for-bsp.html');
   } else {
     res.redirect('dashboard');

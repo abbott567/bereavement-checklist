@@ -11,6 +11,7 @@ const routes = require(path.join(__dirname, '/app/routes.js'));
 const config = require(path.join(__dirname, '/app/config.js'));
 const utils = require(path.join(__dirname, '/lib/utils.js'));
 const packageJson = require(path.join(__dirname, '/package.json'));
+const session = require(path.join(__dirname, '/app/functions/session.js'));
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
+app.use(session);
 
 // Redirect to https on production
 if (env === 'production' && useHttps === 'true') {

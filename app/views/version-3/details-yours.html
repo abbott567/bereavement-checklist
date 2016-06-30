@@ -45,36 +45,41 @@
           </div>
 
           <fieldset>
-            <h2 class="heading-small">What is your relationship to {{name}}?</h2>
+            <h2 class="heading-small">What is your relationship to {{deceasedName}}?</h2>
 
             <div class="form-group">
               <label class="block-label" for="relationship-to-spouse">
-                <input id="relationship-to-spouse" type="radio" name="relationship-to-select" value="Spouse">
+                <input id="relationship-to-spouse" type="radio" name="relationship-to-select" value="spouse">
                 Spouse
               </label>
 
-              <label class="block-label" for="relationship-to-partner">
-                <input id="relationship-to-partner" type="radio" name="relationship-to-select" value="Partner">
+              <label class="block-label" for="relationship-to-civil-partner">
+                <input id="relationship-to-civil-partner" type="radio" name="relationship-to-select" value="civil partner">
+                Civil partner
+              </label>
+
+              <label class="block-label" for="relationship-to-partner" data-target="kin-hidden">
+                <input id="relationship-to-partner" type="radio" name="relationship-to-select" value="partner">
                 Partner
               </label>
 
-              <label class="block-label" for="relationship-to-child">
-                <input id="relationship-to-child" type="radio" name="relationship-to-select" value="Child">
+              <label class="block-label" for="relationship-to-child" data-target="kin-hidden">
+                <input id="relationship-to-child" type="radio" name="relationship-to-select" value="child">
                 Child
               </label>
 
-              <label class="block-label" for="relationship-to-parent">
-                <input id="relationship-to-parent" type="radio" name="relationship-to-select" value="Parent">
+              <label class="block-label" for="relationship-to-parent" data-target="kin-hidden">
+                <input id="relationship-to-parent" type="radio" name="relationship-to-select" value="parent">
                 Parent
               </label>
 
-              <label class="block-label" for="relationship-to-friend">
-                <input id="relationship-to-friend" type="radio" name="relationship-to-select" value="Friend">
+              <label class="block-label" for="relationship-to-friend" data-target="kin-hidden">
+                <input id="relationship-to-friend" type="radio" name="relationship-to-select" value="friend">
                 Friend
               </label>
           </fieldset>
 
-          <fieldset class="inline">
+          <fieldset class="inline js-hidden" id="kin-hidden">
             <h2 class="heading-small">Are you the next of kin?</h2>
 
             <p class="form-hint">We need to ask this so we know who to contact about updates</p>
