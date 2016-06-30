@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">How to get help to pay for a funeral?</h1>
+
+        <p>Text on how to get help to pay for a funeral</p>
+
+        <form method="post">
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

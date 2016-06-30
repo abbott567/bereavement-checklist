@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Your checklist
+        </h1>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                </h2>
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Registered death
+              </td>
+              <td>
+                Registered on<br />
+                24 June 2016
+              </td>
+              <td class="change-answer">
+                <img src="/public/images/tick-green.png" width="24">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Funeral
+              </td>
+              <td>
+                Arranged for<br />
+                30 June 2016
+              </td>
+              <td class="change-answer">
+                <img src="/public/images/tick-green.png" width="24">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Funeral Payment
+              </td>
+              <td>
+                Applied<br />
+                Awaiting decision
+              </td>
+              <td class="change-answer">
+                <img src="/public/images/tick-amber.png" width="24">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Bereavement Support Payment
+              </td>
+              <td>
+                Not applied
+              </td>
+              <td class="change-answer">
+                <a href="#">Apply now</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+{% endblock %}

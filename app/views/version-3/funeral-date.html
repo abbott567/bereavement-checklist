@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">When is the funeral?</h1>
+
+        <p class="lede">
+          You won't be contacted by any government agencies for two days before
+          and two days after the funeral.
+        </p>
+
+        <form method="post">
+          <div class="form-group">
+            <fieldset>
+              <legend>
+                <span class="form-label-bold">
+                  What is the date of the funeral?
+                </span>
+                <span class="form-hint" id="dob-hint">For example, 31 8 2016</span>
+              </legend>
+
+              <div class="form-date">
+                <div class="form-group form-group-day">
+                  <label class="form-label" for="funeral-day">Day</label>
+                  <input class="form-control" id="funeral-day" name="funeral-day" type="number" pattern="[0-9]*" min="0" max="31" aria-describedby="funeral-hint">
+                </div>
+                <div class="form-group form-group-month">
+                  <label class="form-label" for="funeral-month">Month</label>
+                  <input class="form-control" id="funeral-month" name="funeral-month" type="number" pattern="[0-9]*" min="0" max="12">
+                </div>
+                <div class="form-group form-group-year">
+                  <label class="form-label" for="funeral-year">Year</label>
+                  <input class="form-control" id="funeral-year" name="funeral-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
