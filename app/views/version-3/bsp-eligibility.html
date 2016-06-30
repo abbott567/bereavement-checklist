@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apply for Bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+    {% include '../includes/errors.html' %}
+
+    <a href="details-partner" class="hidden-skip-link"></a>
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Did you live in the UK when your spouse or civil partner died?
+        </h1>
+
+        <form action='bsp-eligibility' method="post">
+          <div class="form-group">
+            <fieldset class="inline" data-required data-error="Choose yes or no">
+              <legend class="visuallyhidden">
+                Did you live in the UK when your spouse or civil partner died?
+              </legend>
+
+              <label class="block-label" for="lived-in-uk-yes">
+                <input id="lived-in-uk-yes" type="radio" name="lived-in-uk-select" value="Yes">
+                Yes
+              </label>
+              <label class="block-label" for="lived-in-uk-no">
+                <input id="lived-in-uk-no" type="radio" name="lived-in-uk-select" value="No">
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <input type="submit" class="button" value="Continue">
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+{% endblock %}
