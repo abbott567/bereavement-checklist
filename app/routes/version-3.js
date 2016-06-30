@@ -151,10 +151,59 @@ router.get('/apply-for-bsp', (req, res) => {
 
 router.post('/apply-for-bsp', (req, res) => {
   if (req.body['bsp-select'] === 'Yes') {
-    res.redirect('https://bereavement.herokuapp.com/sprint3/start');
+    res.redirect('bsp-eligibility');
   } else {
     res.redirect('dashboard');
   }
+});
+
+router.get('/bsp-eligibility', (req, res) => {
+  res.render('version-3/bsp-eligibility.html');
+});
+
+router.post('/bsp-eligibility', (req, res) => {
+  if (req.body['lived-in-uk-select'] === 'Yes') {
+    res.redirect('bsp-dependent-children');
+  } else {
+    res.redirect('bsp-exit');
+  }
+});
+
+router.get('/bsp-exit', (req, res) => {
+  const backLink = 'bsp-eligibility';
+  res.render('version-3/bsp-exit-page.html', {backLink});
+});
+
+router.get('/bsp-dependent-children', (req, res) => {
+  const backLink = 'bsp-eligibility';
+  res.render('version-3/bsp-dependent-children.html', {backLink});
+});
+
+router.post('/bsp-dependent-children', (req, res) => {
+  res.redirect('bsp-bank-details');
+});
+
+router.get('/bsp-bank-details', (req, res) => {
+  const backLink = 'bsp-dependent-children';
+  res.render('version-3/bsp-bank-details.html', {backLink});
+});
+
+router.post('/bsp-bank-details', (req, res) => {
+  res.redirect('bsp-declaration');
+});
+
+router.get('/bsp-declaration', (req, res) => {
+  const backLink = 'bsp-bank-details';
+  res.render('version-3/bsp-declaration.html', {backLink});
+});
+
+router.post('/bsp-declaration', (req, res) => {
+  res.redirect('bsp-end');
+});
+
+router.get('/bsp-end', (req, res) => {
+  const completeDate = moment().format('DD MMMM YYYY');
+  res.render('version-3/bsp-end-page.html', {completeDate});
 });
 
 module.exports = router;
