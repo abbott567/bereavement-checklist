@@ -58,7 +58,9 @@ router.post('/details-next-of-kin', (req, res) => {
 });
 
 router.get('/whats-been-done', (req, res) => {
-  res.render('version-2/whats-been-done.html');
+  const name = req.cookies.name;
+
+  res.render('version-2/whats-been-done.html', {name});
 });
 
 router.post('/whats-been-done', (req, res) => {
@@ -66,7 +68,9 @@ router.post('/whats-been-done', (req, res) => {
 });
 
 router.get('/start-page-next', (req, res) => {
-  res.render('version-2/start-page-next.html');
+  const name = req.cookies.name;
+
+  res.render('version-2/start-page-next.html', {name});
 });
 
 router.post('/start-page-next', (req, res) => {
