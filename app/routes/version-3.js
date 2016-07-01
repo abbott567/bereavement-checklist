@@ -65,7 +65,9 @@ router.post('/whats-been-done', (req, res) => {
 });
 
 router.get('/start-page-next', (req, res) => {
-  res.render('version-3/start-page-next.html', req.session.get());
+  const data = req.session.get();
+  data.backLink = 'whats-been-done';
+  res.render('version-3/start-page-next.html', data);
 });
 
 router.post('/start-page-next', (req, res) => {
@@ -73,7 +75,8 @@ router.post('/start-page-next', (req, res) => {
 });
 
 router.get('/have-you-registered', (req, res) => {
-  res.render('version-3/have-you-registered.html');
+  const backLink = 'start-page-next';
+  res.render('version-3/have-you-registered.html', {backLink});
 });
 
 router.post('/have-you-registered', (req, res) => {
@@ -86,7 +89,8 @@ router.post('/have-you-registered', (req, res) => {
 });
 
 router.get('/how-to-register-death', (req, res) => {
-  res.render('version-3/how-to-register-death.html');
+  const backLink = 'have-you-registered';
+  res.render('version-3/how-to-register-death.html', {backLink});
 });
 
 router.post('/how-to-register-death', (req, res) => {
@@ -94,7 +98,8 @@ router.post('/how-to-register-death', (req, res) => {
 });
 
 router.get('/have-you-arranged-funeral', (req, res) => {
-  res.render('version-3/have-you-arranged-funeral.html');
+  const backLink = req.get('referrer').indexOf('how-to-register-death') > -1 ? 'how-to-register-death' : 'have-you-registered';
+  res.render('version-3/have-you-arranged-funeral.html', {backLink});
 });
 
 router.post('/have-you-arranged-funeral', (req, res) => {
@@ -107,7 +112,8 @@ router.post('/have-you-arranged-funeral', (req, res) => {
 });
 
 router.get('/funeral-no', (req, res) => {
-  res.render('version-3/funeral-no.html');
+  const backLink = 'have-you-arranged-funeral';
+  res.render('version-3/funeral-no.html', {backLink});
 });
 
 router.post('/funeral-no', (req, res) => {
@@ -115,7 +121,8 @@ router.post('/funeral-no', (req, res) => {
 });
 
 router.get('/funeral-date', (req, res) => {
-  res.render('version-3/funeral-date.html');
+  const backLink = 'have-you-arranged-funeral';
+  res.render('version-3/funeral-date.html', {backLink});
 });
 
 router.post('/funeral-date', (req, res) => {
@@ -124,7 +131,8 @@ router.post('/funeral-date', (req, res) => {
 });
 
 router.get('/apply-for-sffp', (req, res) => {
-  res.render('version-3/apply-for-sffp.html');
+  const backLink = req.get('referrer').indexOf('funeral-no') > -1 ? 'funeral-no' : 'funeral-date';
+  res.render('version-3/apply-for-sffp.html', {backLink});
 });
 
 router.post('/apply-for-sffp', (req, res) => {
@@ -168,7 +176,8 @@ router.post('/apply-for-bsp', (req, res) => {
 });
 
 router.get('/bsp-eligibility', (req, res) => {
-  res.render('version-3/bsp-eligibility.html');
+  const backLink = 'apply-for-bsp';
+  res.render('version-3/bsp-eligibility.html', {backLink});
 });
 
 router.post('/bsp-eligibility', (req, res) => {
@@ -218,14 +227,15 @@ router.get('/bsp-end', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
-  const session = req.session.get();
-  session.funeralDateFormatted = moment(req.session.get('funeralDate'), 'DDMMYYYY').format('DD MMMM YYYY');
-
   if (req.session.get('sffp') === 'Yes') {
     res.session.set('notDone', true);
   }
 
-  res.render('version-3/dashboard.html', session);
+  const data = req.session.get();
+  data.backLink = req.get('referrer');
+  data.funeralDateFormatted = moment(req.session.funeralDate, 'DDMMYYYY').format('DD MMMM YYYY');
+
+  res.render('version-3/dashboard.html', data);
 });
 
 module.exports = router;
