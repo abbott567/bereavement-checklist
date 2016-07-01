@@ -1,0 +1,26 @@
+{% if funeral %}
+  <tr>
+    <td>
+      Funeral
+    </td>
+    <td>
+      Arranged for<br />
+      {{funeralDateFormatted}}
+    </td>
+    <td class="change-answer">
+      <img src="/public/images/tick-green.png" width="24">
+    </td>
+  </tr>
+{% else %}
+<tr>
+  <td>
+    Funeral
+  </td>
+  <td>
+    Not arranged
+  </td>
+  <td class="change-answer">
+    <a href="/version-3/funeral-no">More info</a>
+  </td>
+</tr>
+{% endif %}

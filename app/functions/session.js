@@ -22,7 +22,9 @@ const session = function (req, res, next) {
       }
 
       session[key] = value;
-      res.cookie('session', JSON.stringify(session));
+      const sessionString = JSON.stringify(session);
+      req.cookies.session = sessionString;
+      res.cookie('session', sessionString);
     },
 
     reset: () => res.cookie('session', '{}')

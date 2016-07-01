@@ -1,0 +1,25 @@
+{% if bsp %}
+  <tr>
+    <td>
+      Bereavement Support Payment
+    </td>
+    <td>
+      Applied
+    </td>
+    <td class="change-answer">
+      <img src="/public/images/tick-green.png" width="24">
+    </td>
+  </tr>
+{% else %}
+  <tr>
+    <td>
+      Bereavement Support Payment
+    </td>
+    <td>
+      Not applied
+    </td>
+    <td class="change-answer">
+      <a href="#">Apply now</a>
+    </td>
+  </tr>
+{% endif %}

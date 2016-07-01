@@ -20,6 +20,7 @@
             <tr>
               <th colspan="2">
                 <h2 class="heading-medium">
+                  Done
                 </h2>
               </th>
               <th>
@@ -30,56 +31,116 @@
           <tbody>
             <tr>
               <td>
-                Registered death
+                Organisations informed
               </td>
-              <td>
-                Registered on<br />
-                24 June 2016
-              </td>
-              <td class="change-answer">
-                <img src="/public/images/tick-green.png" width="24">
+
+              <td colspan="2">
+                <details>
+                  <summary><span class="summary">Department for Work and Pensions (DWP)</span></summary>
+
+                  <div class="panel panel-border-narrow">
+                    <ul class="list-bullet">
+                      <li>Incapacity Benefit</li>
+                      <li>Income Support</li>
+                      <li>Jobseeker's Allowance</li>
+                      <li>Universal Credit</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary">HM Revenue and Customs (HMRC)</span></summary>
+
+                  <div class="panel panel-border-narrow">
+                    <ul class="list-bullet">
+                      <li>Working Tax Credits</li>
+                      <li>Child Tax Credits</li>
+                      <li>Child Benefit</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary">Driver and Vehicle Licensing Agency (DVLA)</span></summary>
+
+                  <div class="panel panel-border-narrow">
+                    <ul class="list-bullet">
+                      <li>Driving licence</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary">HM Passport Office</span></summary>
+
+                  <div class="panel panel-border-narrow">
+                    <ul class="list-bullet">
+                      <li>UK passport</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details>
+                  <summary><span class="summary">Your local authority</span></summary>
+
+                  <div class="panel panel-border-narrow">
+                    <ul class="list-bullet">
+                      <li>Council tax</li>
+                    </ul>
+                  </div>
+                </details>
               </td>
             </tr>
 
-            <tr>
-              <td>
-                Funeral
-              </td>
-              <td>
-                Arranged for<br />
-                30 June 2016
-              </td>
-              <td class="change-answer">
-                <img src="/public/images/tick-green.png" width="24">
-              </td>
-            </tr>
+            {% if registered %}
+              {% include '../version-3/checklist-rows/done/registered-death.html'%}
+            {% endif %}
 
-            <tr>
-              <td>
-                Funeral Payment
-              </td>
-              <td>
-                Applied<br />
-                Awaiting decision
-              </td>
-              <td class="change-answer">
-                <img src="/public/images/tick-amber.png" width="24">
-              </td>
-            </tr>
+            {% if funeral %}
+              {% include '../version-3/checklist-rows/done/arranged-funeral.html'%}
+            {% endif %}
 
-            <tr>
-              <td>
-                Bereavement Support Payment
-              </td>
-              <td>
-                Not applied
-              </td>
-              <td class="change-answer">
-                <a href="#">Apply now</a>
-              </td>
-            </tr>
+            {% if bsp %}
+              {% include '../version-3/checklist-rows/done/applied-for-bsp.html'%}
+            {% endif %}
           </tbody>
         </table>
+
+        {% if notDone %}
+          <table class="check-your-answers">
+            <thead>
+              <tr>
+                <th colspan="2">
+                  <h2 class="heading-medium">
+                    Not done
+                  </h2>
+                </th>
+                <th>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% if not registered %}
+                {% include '../version-3/checklist-rows/not-done/registered-death.html'%}
+              {% endif %}
+
+              {% if not funeral %}
+                {% include '../version-3/checklist-rows/not-done/arranged-funeral.html'%}
+              {% endif %}
+
+              {% if bspElig %}
+                {% if not bsp %}
+                  {% include '../version-3/checklist-rows/not-done/applied-for-bsp.html'%}
+                {% endif %}
+              {% endif %}
+
+              {% if sffp %}
+                {% include '../version-3/checklist-rows/not-done/applied-for-sffp.html'%}
+              {% endif %}
+            </tbody>
+          </table>
+        {% endif %}
       </div>
     </div>
   </main>

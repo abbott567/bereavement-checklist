@@ -30,9 +30,8 @@ router.get('/details-yours', (req, res) => {
 });
 
 router.post('/details-yours', (req, res) => {
-  console.log(req.body);
-  res.session.set('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
   res.session.set('relationship', req.body['relationship-to-select']);
+  res.session.set('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
 
   if (!req.body['next-of-kin-select'] || req.body['next-of-kin-select'] === 'Yes') {
     res.redirect('details-contact');
@@ -42,7 +41,6 @@ router.post('/details-yours', (req, res) => {
 });
 
 router.get('/details-contact', (req, res) => {
-  console.log(req.session.get())
   res.render('version-3/details-contact.html');
 });
 
@@ -83,7 +81,6 @@ router.post('/have-you-registered', (req, res) => {
     res.session.set('registered', 'Yes');
     res.redirect('have-you-arranged-funeral');
   } else {
-    res.session.set('registered', 'No');
     res.redirect('how-to-register-death');
   }
 });
@@ -105,7 +102,6 @@ router.post('/have-you-arranged-funeral', (req, res) => {
     res.session.set('funeral', 'Yes');
     res.redirect('funeral-date');
   } else {
-    res.session.set('funeral', 'No');
     res.redirect('funeral-no');
   }
 });
@@ -132,6 +128,10 @@ router.get('/apply-for-sffp', (req, res) => {
 });
 
 router.post('/apply-for-sffp', (req, res) => {
+  if (req.body['sffp-select'] === 'Yes') {
+    res.session.set('sffp', 'Yes');
+  }
+
   res.redirect('apply-for-bsp');
 });
 
@@ -145,10 +145,14 @@ router.post('/help-with-funeral', (req, res) => {
 
 router.get('/apply-for-bsp', (req, res) => {
   const now = moment();
-  const dob = moment(req.session.get('age'), 'DDMMYYYY');
+  const dob = moment(req.session.get('yourAge'), 'DDMMYYYY');
   const age = now.diff(dob, 'years');
 
-  if (req.session.get('relationship') === 'Spouse' && age < 62) {
+  if (req.session.get('relationship') === 'spouse' && age < 62) {
+    res.session.set('bspElig', true);
+  }
+
+  if (req.session.get('bspElig')) {
     res.render('version-3/apply-for-bsp.html');
   } else {
     res.redirect('dashboard');
@@ -208,8 +212,20 @@ router.post('/bsp-declaration', (req, res) => {
 });
 
 router.get('/bsp-end', (req, res) => {
+  res.session.set('bsp', 'Yes');
   const completeDate = moment().format('DD MMMM YYYY');
   res.render('version-3/bsp-end-page.html', {completeDate});
+});
+
+router.get('/dashboard', (req, res) => {
+  const session = req.session.get();
+  session.funeralDateFormatted = moment(req.session.get('funeralDate'), 'DDMMYYYY').format('DD MMMM YYYY');
+
+  if (req.session.get('sffp') === 'Yes') {
+    res.session.set('notDone', true);
+  }
+
+  res.render('version-3/dashboard.html', session);
 });
 
 module.exports = router;
