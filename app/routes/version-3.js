@@ -233,7 +233,7 @@ router.get('/dashboard', (req, res) => {
 
   const data = req.session.get();
   data.backLink = req.get('referrer');
-  data.funeralDateFormatted = moment(req.session.funeralDate, 'DDMMYYYY').format('DD MMMM YYYY');
+  data.funeralDateFormatted = moment(data.funeralDate, 'DDMMYYYY').format('DD MMMM YYYY');
 
   res.render('version-3/dashboard.html', data);
 });
