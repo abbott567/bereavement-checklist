@@ -119,7 +119,7 @@ router.get('/find-a-funeral-director', (req, res) => {
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
-  res.redirect('apply-for-sffp');
+  res.redirect('help-with-funeral');
 });
 
 router.get('/funeral-date', (req, res) => {
