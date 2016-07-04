@@ -83,29 +83,42 @@ router.post('/have-you-registered', (req, res) => {
   if (req.body['registered-death-select'] === 'Yes') {
     res.session.set('registered', 'Yes');
   }
-  res.redirect('have-you-arranged-funeral');
+  res.redirect('do-you-need-to-arrange-funeral');
 });
 
-router.get('/have-you-arranged-funeral', (req, res) => {
+router.get('/do-you-need-to-arrange-funeral', (req, res) => {
   const backLink = req.get('referrer').indexOf('how-to-register-death') > -1 ? 'how-to-register-death' : 'have-you-registered';
-  res.render('version-3/have-you-arranged-funeral.html', {backLink});
+  res.render('version-3/do-you-need-to-arrange-funeral.html', {backLink});
 });
 
-router.post('/have-you-arranged-funeral', (req, res) => {
+router.post('/do-you-need-to-arrange-funeral', (req, res) => {
   if (req.body['arranged-funeral-select'] === 'Yes') {
     res.session.set('funeral', 'Yes');
-    res.redirect('funeral-date');
+    res.redirect('find-a-funeral-director');
   } else {
-    res.redirect('funeral-no');
+    res.redirect('help-with-funeral');
   }
 });
 
-router.get('/funeral-no', (req, res) => {
-  const backLink = 'have-you-arranged-funeral';
-  res.render('version-3/funeral-no.html', {backLink});
+router.get('/help-with-funeral', (req, res) => {
+  const backLink = 'do-you-need-to-arrange-funeral';
+  res.render('version-3/help-with-funeral.html', {backLink});
 });
 
-router.post('/funeral-no', (req, res) => {
+router.post('/help-with-funeral', (req, res) => {
+  if (req.body['help-with-funeral-select'] === 'Yes') {
+    res.redirect('apply-for-sffp');
+  } else {
+    res.redirect('apply-for-bsp');
+  }
+});
+
+router.get('/find-a-funeral-director', (req, res) => {
+  const backLink = 'have-you-arranged-funeral';
+  res.render('version-3/find-a-funeral-director.html', {backLink});
+});
+
+router.post('/find-a-funeral-director', (req, res) => {
   res.redirect('apply-for-sffp');
 });
 
