@@ -82,6 +82,8 @@ router.get('/have-you-registered', (req, res) => {
 router.post('/have-you-registered', (req, res) => {
   if (req.body['registered-death-select'] === 'Yes') {
     res.session.set('registered', 'Yes');
+  } else {
+    res.session.set('notDone', true);
   }
   res.redirect('do-you-need-to-arrange-funeral');
 });
@@ -94,6 +96,7 @@ router.get('/do-you-need-to-arrange-funeral', (req, res) => {
 router.post('/do-you-need-to-arrange-funeral', (req, res) => {
   if (req.body['arranged-funeral-select'] === 'Yes') {
     res.session.set('funeral', 'Yes');
+    res.session.set('notDone', true);
     res.redirect('find-a-funeral-director');
   } else {
     res.redirect('help-with-funeral');
@@ -120,16 +123,6 @@ router.get('/find-a-funeral-director', (req, res) => {
 
 router.post('/find-a-funeral-director', (req, res) => {
   res.redirect('help-with-funeral');
-});
-
-router.get('/funeral-date', (req, res) => {
-  const backLink = 'have-you-arranged-funeral';
-  res.render('version-3/funeral-date.html', {backLink});
-});
-
-router.post('/funeral-date', (req, res) => {
-  res.session.set('funeralDate', `${req.body['funeral-day']}${req.body['funeral-month']}${req.body['funeral-year']}`);
-  res.redirect('apply-for-sffp');
 });
 
 router.get('/apply-for-sffp', (req, res) => {
@@ -173,6 +166,7 @@ router.post('/apply-for-bsp', (req, res) => {
   if (req.body['bsp-select'] === 'Yes') {
     res.redirect('bsp-eligibility');
   } else {
+    res.session.set('notDone', true);
     res.redirect('dashboard');
   }
 });
