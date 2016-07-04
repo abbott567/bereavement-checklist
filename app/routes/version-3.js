@@ -82,18 +82,7 @@ router.get('/have-you-registered', (req, res) => {
 router.post('/have-you-registered', (req, res) => {
   if (req.body['registered-death-select'] === 'Yes') {
     res.session.set('registered', 'Yes');
-    res.redirect('have-you-arranged-funeral');
-  } else {
-    res.redirect('how-to-register-death');
   }
-});
-
-router.get('/how-to-register-death', (req, res) => {
-  const backLink = 'have-you-registered';
-  res.render('version-3/how-to-register-death.html', {backLink});
-});
-
-router.post('/how-to-register-death', (req, res) => {
   res.redirect('have-you-arranged-funeral');
 });
 
