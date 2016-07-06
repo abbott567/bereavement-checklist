@@ -110,6 +110,7 @@ router.get('/help-with-funeral', (req, res) => {
 
 router.post('/help-with-funeral', (req, res) => {
   if (req.body['help-with-funeral-select'] === 'Yes') {
+    res.session.set('sffp', 'Yes');
     res.redirect('apply-for-sffp');
   } else {
     res.redirect('apply-for-bsp');
@@ -131,18 +132,6 @@ router.get('/apply-for-sffp', (req, res) => {
 });
 
 router.post('/apply-for-sffp', (req, res) => {
-  if (req.body['sffp-select'] === 'Yes') {
-    res.session.set('sffp', 'Yes');
-  }
-
-  res.redirect('apply-for-bsp');
-});
-
-router.get('/help-with-funeral', (req, res) => {
-  res.render('version-3/help-with-funeral.html');
-});
-
-router.post('/help-with-funeral', (req, res) => {
   res.redirect('apply-for-bsp');
 });
 

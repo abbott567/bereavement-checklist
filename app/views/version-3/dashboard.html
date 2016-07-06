@@ -21,7 +21,7 @@
             <tr>
               <th colspan="2">
                 <h2 class="heading-medium">
-                  Done
+                  Things you have done
                 </h2>
               </th>
               <th>
@@ -54,41 +54,75 @@
           </tbody>
         </table>
 
-        {% if notDone %}
-          <table class="check-your-answers">
-            <thead>
-              <tr>
-                <th colspan="2">
-                  <h2 class="heading-medium">
-                    Not done
-                  </h2>
-                </th>
-                <th>
-                </th>
-              </tr>
-            </thead>
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                  Things you can still do
+                </h2>
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
 
-            <tbody>
-              {% if not registered %}
-                {% include '../version-3/checklist-rows/not-done/registered-death.html'%}
-              {% endif %}
+          <tbody>
+            <tr>
+              <td>
+                Cancel any bank accounts
+              </td>
+              <td>
+                Not done
+              </td>
+              <td class="change-answer">
+                <a href="/version-3/funeral-no">More info</a>
+              </td>
+            </tr>
 
-              {% if not funeral %}
-                {% include '../version-3/checklist-rows/not-done/arranged-funeral.html'%}
-              {% endif %}
+            <tr>
+              <td>
+                Cancel any insurance policies
+              </td>
+              <td>
+                Not done
+              </td>
+              <td class="change-answer">
+                <a href="/version-3/funeral-no">More info</a>
+              </td>
+            </tr>
 
-              {% if bspElig %}
-                {% if not bsp %}
-                  {% include '../version-3/checklist-rows/not-done/applied-for-bsp.html'%}
-                {% endif %}
-              {% endif %}
+            <tr>
+              <td>
+                Tell employers
+              </td>
+              <td>
+                Not done
+              </td>
+              <td class="change-answer">
+                <a href="/version-3/funeral-no">More info</a>
+              </td>
+            </tr>
 
-              {% if sffp %}
-                {% include '../version-3/checklist-rows/not-done/applied-for-sffp.html'%}
+            {% if not registered %}
+              {% include '../version-3/checklist-rows/not-done/registered-death.html'%}
+            {% endif %}
+
+            {% if not funeral %}
+              {% include '../version-3/checklist-rows/not-done/arranged-funeral.html'%}
+            {% endif %}
+
+            {% if bspElig %}
+              {% if not bsp %}
+                {% include '../version-3/checklist-rows/not-done/applied-for-bsp.html'%}
               {% endif %}
-            </tbody>
-          </table>
-        {% endif %}
+            {% endif %}
+
+            {% if sffp %}
+              {% include '../version-3/checklist-rows/not-done/applied-for-sffp.html'%}
+            {% endif %}
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
