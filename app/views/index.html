@@ -7,12 +7,60 @@
 {% block content %}
   <main id="content" role="main">
     {% include 'includes/phase_banner_alpha.html' %}
-    <h3 class="heading-medium">Checklist</h3>
-    <p><a href="/version-1/start" class="button">Start now</a></p>
+		<div class="grid-row">
+      <div class="featured-wrapper">
+        <h1 class="heading-large">Timeline Service</h1>
+        <hr />
 
-    <hr />
+        <h3 class="heading-medium">Version 4 - July 7</h3>
 
-    <h3 class="heading-medium">Timeline</h3>
-    <p><a href="/version-3/start" class="button">Start now</a></p>
+        <p class="text">
+          Desc
+        </p>
+
+        <p><a href="/version-4/start" class="button">Start now</a></p>
+      </div>
+
+      <div class="column-two-thirds">
+        <br />
+
+				<details>
+			    <summary><span class="summary">Previous Iterations</span></summary>
+
+          <div class="panel panel-border-narrow">
+            <h3 class="heading-medium">Version 3 - June 29</h3>
+
+            <p class="text">
+              Desc
+            </p>
+
+            <p><a href="/version-3/start" class="button">Start now</a></p>
+          </div>
+
+          <hr />
+
+          <div class="panel panel-border-narrow">
+            <h3 class="heading-medium">Version 2 - June 21</h3>
+
+    				<p class="text">
+    					Desc
+    				</p>
+
+            <p><a href="/version-2/start" class="button">Start now</a></p>
+          </div>
+        </details>
+
+        <hr />
+
+        <h1 class="heading-large">Alternate journeys</h1>
+
+        <h4 class="heading-small">Standalone checklist</h4>
+        <p class="text">
+          Desc
+        </p>
+
+        <p><a href="/version-1/start" class="button">Start now</a></p>
+	    </div>
+		</div>
 	</main>
 {% endblock %}

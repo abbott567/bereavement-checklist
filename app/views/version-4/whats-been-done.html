@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Inform organisations about the death</h1>
+
+        <p class="lede">
+          You've given details about the death of {{deceasedName}}. Thank you
+          for doing this at what must be a very difficult time.
+        </p>
+
+         <p>
+          When you're ready, you need to confirm that the information you have
+          given can be shared with organisations listed. The following changes
+          will be then be made:
+        </p>
+
+        {% include '../version-3/partials/whats-been-done.html' %}
+
+        <br />
+
+        <form method="post">
+          <div class="form-group">
+            <input type="submit" class="button" value="Let organisations know">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Help with paying for a funeral
+        </h1>
+
+        <p class="lede">
+          You may be able to get a Funeral Payment if you are struggling to pay
+          for a funeral you are arranging.
+        </p>
+
+        <p>
+          How much you could get depends on your circumstances and whether or
+          not you qualify.
+        </p>
+
+        <p>
+          Other support is available, eg a Budgeting Loan.
+        </p>
+
+        <div class="panel panel-border-narrow">
+          There's more information in your checklist at the end of this service.
+        </div>
+
+        <form method="post">
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

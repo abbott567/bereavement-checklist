@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          The right organisations now know about the death
+        </h1>
+
+        <p class="lede">
+            If any more information is needed about {{deceasedName}} by any
+            of these organisations, they will contact you.
+        </p>
+
+        <p>
+          If you haven't already done so, there are now two things you must do:
+            <ul class="list-bullet">
+              <li>Register the death within 5 days (8 days in Scotland).
+                You’ll then get the documents you need for the funeral</li>
+              <li>Arrange the funeral</li>
+            </ul>
+        </p>
+
+        <p>
+          This service can help you do both of these things. You'll also get
+          information on where to find emotional support and help with funeral
+          costs or other benefits.
+        </p>
+
+        <p>
+          <div class="panel panel-border-narrow">
+          A summary of what you've already done and
+          what you can still do will be shown in a checklist at the end of this
+          service.
+          </div>
+        </p>
+
+        <form method="post">
+          <input type="submit" class="button" value="Continue" />
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

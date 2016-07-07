@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Find a funeral director</h1>
+
+        <p>
+          Most people use a funeral director, though you can arrange a
+          funeral yourself.
+        </p>
+
+        <p>
+          Choose a funeral director who’s a member of one of the following:
+        </p>
+
+      <p>
+        <ul class="list-bullet">
+          <li><a href="http://www.nafd.org.uk/funeral-advice/find-a-member/" target="_blank" rel="external">
+          National Association of Funeral Directors</a></li>
+          <li><a href="http://www.nffd.co.uk/" target="_blank" rel="external">
+          National Federation of Funeral Directors</a></li>
+          <li><a href="http://www.saif.org.uk/members-search/" target="_blank" rel="external">
+          Society of Allied and Independent Funeral Directors</a>
+        </ul>
+      </p>
+
+        <p>
+          Get more information on <a href="https://www.gov.uk/after-a-death/arrange-the-funeral">
+          arranging a funeral.</a>
+        </p>
+
+        <form method="post">
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Tell us someone has died
+        </h1>
+
+        <p class="lede">
+          When someone dies, any State Pension, allowances or benefits they
+          received will need to be cancelled.
+        </p>
+
+        <p>
+          It's understandable that telling government organisations about a
+          death is a lower priority than the many other arrangements that need
+          to be made.
+        </p>
+
+        <p>
+          However, as soon as possible, you'll need to give some details about
+          the person who has died. This will help to prevent the overpayment of
+          any benefits and the fraudulent use of their identity.
+        </p>
+
+        <p>
+          Once you've finished, you'll be able to see which organisations have
+          been contacted and what will be changed.
+        </p>
+
+        <h2 class="heading-medium">What you'll need</h2>
+
+        <ul class="list-bullet">
+          <li>The National Insurance number or the date of birth of the person
+          who died</li>
+          <li>The date they died</li>
+        </ul>
+
+        <p>
+          <div class="panel panel-border-narrow">
+          You don't have to be the next of kin to give this information - but
+          you must have their permission before you start. You'll also need their
+          date of birth and contact details.
+          </div>
+        </p>
+
+        <br />
+
+        <form method="post">
+          <input type="submit" class="button button-start" value="Start now" />
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
