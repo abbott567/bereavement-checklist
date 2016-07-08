@@ -15,7 +15,7 @@
 
         <form method="post">
           <div class="form-group">
-            <label class="form-label-bold" for="full-name">Full name</label>
+            <label class="form-label-bold" for="full-name">Your full name</label>
             <input class="form-control" id="full-name" name="full-name" type="text">
           </div>
 
@@ -44,48 +44,13 @@
             </fieldset>
           </div>
 
-          <fieldset>
-            <h2 class="heading-small">What is your relationship to {{deceasedName}}?</h2>
-
-            <div class="form-group">
-              <label class="block-label" for="relationship-to-spouse">
-                <input id="relationship-to-spouse" type="radio" name="relationship-to-select" value="spouse">
-                Spouse
-              </label>
-
-              <label class="block-label" for="relationship-to-civil-partner">
-                <input id="relationship-to-civil-partner" type="radio" name="relationship-to-select" value="civil partner">
-                Civil partner
-              </label>
-
-              <label class="block-label" for="relationship-to-partner" data-target="kin-hidden">
-                <input id="relationship-to-partner" type="radio" name="relationship-to-select" value="partner">
-                Partner
-              </label>
-
-              <label class="block-label" for="relationship-to-child" data-target="kin-hidden">
-                <input id="relationship-to-child" type="radio" name="relationship-to-select" value="child">
-                Child
-              </label>
-
-              <label class="block-label" for="relationship-to-parent" data-target="kin-hidden">
-                <input id="relationship-to-parent" type="radio" name="relationship-to-select" value="parent">
-                Parent
-              </label>
-
-              <label class="block-label" for="relationship-to-friend" data-target="kin-hidden">
-                <input id="relationship-to-friend" type="radio" name="relationship-to-select" value="friend">
-                Friend
-              </label>
-          </fieldset>
-
-          <fieldset class="inline js-hidden" id="kin-hidden">
+          <fieldset class="inline">
             <h2 class="heading-small">Are you the next of kin?</h2>
 
             <p class="form-hint">Organisations can only follow up with the next of kin</p>
 
             <div class="form-group">
-              <label class="block-label" for="next-of-kin-yes">
+              <label class="block-label" for="next-of-kin-yes" data-target="relationship-hidden">
                 <input id="next-of-kin-yes" type="radio" name="next-of-kin-select" value="Yes">
                 Yes
               </label>
@@ -94,6 +59,23 @@
                 <input id="next-of-kin-no" type="radio" name="next-of-kin-select" value="No">
                 No
               </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="inline js-hidden" id="relationship-hidden">
+            <h2 class="heading-small">Were you married to, or in a civil partnership with {{name}}?</h2>
+
+            <div class="form-group">
+              <label class="block-label" for="married-yes">
+                <input id="married-yes" type="radio" name="married-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="married-no">
+                <input id="married-no" type="radio" name="married-select" value="No">
+                No
+              </label>
+            </div>
           </fieldset>
 
           <input type="submit" class="button" value="Continue">

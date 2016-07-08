@@ -17,7 +17,7 @@
 
         <form method="post">
           <div class="form-group">
-            <label class="form-label" for="full-name">Full name</label>
+            <label class="form-label-bold" for="full-name">Their full name</label>
             <input class="form-control" id="full-name" name="full-name" type="text">
           </div>
 
@@ -93,6 +93,11 @@
 
           <fieldset>
             <div class="form-group">
+              <label class="block-label" for="contact-post">
+                <input id="contact-post" name="contact-select" type="checkbox" value="Post">
+                Post
+              </label>
+              
               <label class="block-label" for="contact-phonecall" data-target="contact-phonecall-hidden">
                 <input id="contact-phonecall" name="contact-select" type="checkbox" value="Phone">
                 Phone call
@@ -112,7 +117,7 @@
               </div>
 
               <label class="block-label" for="contact-email" data-target="contact-email-hidden">
-                <input id="contact-email" name="contact-select" type="checkbox" value="Citizen of a different country">
+                <input id="contact-email" name="contact-select" type="checkbox" value="Email">
                 Email
               </label>
               <div class="panel panel-border-narrow js-hidden" id="contact-email-hidden">

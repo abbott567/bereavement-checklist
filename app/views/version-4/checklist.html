@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Your checklist
+        </h1>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                  Things you have done
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Organisations informed
+              </td>
+
+              <td colspan="2">
+                {% include '../version-4/partials/whats-been-done.html' %}
+              </td>
+            </tr>
+
+            {% if checklist.bsp == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/applied-for-bsp.html' %}
+            {% endif %}
+
+            {% if checklist.registered == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/registered-death.html' %}
+            {% endif %}
+
+            {% if checklist.funeral == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/arranged-funeral.html' %}
+            {% endif %}
+
+            {% if checklist.bankAccounts == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/cancelled-bank-accounts.html' %}
+            {% endif %}
+
+            {% if checklist.insurance == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/cancelled-insurance.html' %}
+            {% endif %}
+
+            {% if checklist.employers == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/tell-employers.html' %}
+            {% endif %}
+
+            {% if checklist.funeralSupport == 'Yes' %}
+              {% include '../version-4/checklist-rows/done/help-with-funeral.html' %}
+            {% endif %}
+          </tbody>
+        </table>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                  Things you can still do
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% if bspElig == 'true' %}
+              {% if checklist.bsp == 'No' %}
+                {% include '../version-4/checklist-rows/not-done/applied-for-bsp.html' %}
+              {% endif %}
+            {% endif %}
+
+            {% if checklist.registered == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/registered-death.html' %}
+            {% endif %}
+
+            {% if checklist.funeral == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/arranged-funeral.html' %}
+            {% endif %}
+
+            {% if checklist.bankAccounts == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/cancelled-bank-accounts.html' %}
+            {% endif %}
+
+            {% if checklist.insurance == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/cancelled-insurance.html' %}
+            {% endif %}
+
+            {% if checklist.employers == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/tell-employers.html' %}
+            {% endif %}
+
+            {% if checklist.funeralSupport == 'No' %}
+              {% include '../version-4/checklist-rows/not-done/help-with-funeral.html' %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+{% endblock %}

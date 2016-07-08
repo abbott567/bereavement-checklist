@@ -4,122 +4,113 @@ const moment = require('moment');
 
 const router = new express.Router();
 
+// Redirect to start page
 router.get('/', (req, res) => {
-  res.redirect('/version-3/start');
+  res.redirect('/version-4/start');
 });
 
+// Start page
 router.get('/start', (req, res) => {
-  res.render('version-3/start-page.html');
+  res.render('version-4/start-page.html');
 });
 
 router.post('/start', (req, res) => {
   res.redirect('details-partner');
 });
 
+// About the deceased person
 router.get('/details-partner', (req, res) => {
-  res.render('version-3/details-partner.html');
+  res.render('version-4/details-partner.html');
 });
 
 router.post('/details-partner', (req, res) => {
-  res.session.set('deceasedName', req.body['full-name']);
+  res.cookie('deceasedName', req.body['full-name']);
   res.redirect('details-yours');
 });
 
+// About you
 router.get('/details-yours', (req, res) => {
-  res.render('version-3/details-yours.html', req.session.get());
+  const name = req.cookies.deceasedName;
+  res.render('version-4/details-yours.html', {name});
 });
 
 router.post('/details-yours', (req, res) => {
-  res.session.set('relationship', req.body['relationship-to-select']);
-  res.session.set('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
+  res.cookie('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
 
-  if (!req.body['next-of-kin-select'] || req.body['next-of-kin-select'] === 'Yes') {
-    res.redirect('details-contact');
-  } else {
+  if (req.body['next-of-kin-select'] === 'No') {
+    res.cookie('married', 'no');
     res.redirect('details-next-of-kin');
+  } else {
+    if (req.body['married-select'] === 'Yes') {
+      res.cookie('married', 'yes');
+    }
+
+    res.redirect('details-contact');
   }
 });
 
+// Your contact details
 router.get('/details-contact', (req, res) => {
-  res.render('version-3/details-contact.html');
+  res.render('version-4/details-contact.html');
 });
 
 router.post('/details-contact', (req, res) => {
-  res.redirect('whats-been-done');
+  res.redirect('inform-organisations');
 });
 
+// Next of kin details
 router.get('/details-next-of-kin', (req, res) => {
-  res.render('version-3/details-next-of-kin.html');
+  res.render('version-4/details-next-of-kin.html');
 });
 
 router.post('/details-next-of-kin', (req, res) => {
-  res.redirect('whats-been-done');
+  res.redirect('inform-organisations');
 });
 
-router.get('/whats-been-done', (req, res) => {
-  res.render('version-3/whats-been-done.html', req.session.get());
+// Inform organisations about the death
+router.get('/inform-organisations', (req, res) => {
+  const name = req.cookies.deceasedName;
+  res.render('version-4/inform-organisations.html', {name});
 });
 
-router.post('/whats-been-done', (req, res) => {
-  res.redirect('start-page-next');
+router.post('/inform-organisations', (req, res) => {
+  res.redirect('the-organisations-now-know');
 });
 
-router.get('/start-page-next', (req, res) => {
-  const data = req.session.get();
-  data.backLink = 'whats-been-done';
-  res.render('version-3/start-page-next.html', data);
+// The right organisations now know about the death
+router.get('/the-organisations-now-know', (req, res) => {
+  const name = req.cookies.deceasedName;
+  res.render('version-4/the-organisations-now-know.html', {name});
 });
 
-router.post('/start-page-next', (req, res) => {
-  res.redirect('have-you-registered');
+router.post('/the-organisations-now-know', (req, res) => {
+  res.redirect('checklist');
 });
 
-router.get('/have-you-registered', (req, res) => {
-  const backLink = 'start-page-next';
-  res.render('version-3/have-you-registered.html', {backLink});
-});
+// Checklist
+router.get('/checklist', (req, res) => {
+  let checklist = req.cookies.checklist;
+  const bspElig = req.cookies.bspElig;
 
-router.post('/have-you-registered', (req, res) => {
-  if (req.body['registered-death-select'] === 'Yes') {
-    res.session.set('registered', 'Yes');
-  } else {
-    res.session.set('notDone', true);
+  if (checklist === undefined) {
+    checklist = {
+      bsp: 'No',
+      registered: 'No',
+      funeral: 'No',
+      bankAccounts: 'No',
+      insurance: 'No',
+      employers: 'No',
+      funeralSupport: 'No'
+    };
+    res.cookie('checklist', checklist);
   }
-  res.redirect('do-you-need-to-arrange-funeral');
-});
 
-router.get('/do-you-need-to-arrange-funeral', (req, res) => {
-  const backLink = req.get('referrer').indexOf('how-to-register-death') > -1 ? 'how-to-register-death' : 'have-you-registered';
-  res.render('version-3/do-you-need-to-arrange-funeral.html', {backLink});
-});
-
-router.post('/do-you-need-to-arrange-funeral', (req, res) => {
-  if (req.body['arranged-funeral-select'] === 'Yes') {
-    res.session.set('funeral', 'Yes');
-    res.session.set('notDone', true);
-    res.redirect('find-a-funeral-director');
-  } else {
-    res.redirect('help-with-funeral');
-  }
-});
-
-router.get('/help-with-funeral', (req, res) => {
-  const backLink = 'do-you-need-to-arrange-funeral';
-  res.render('version-3/help-with-funeral.html', {backLink});
-});
-
-router.post('/help-with-funeral', (req, res) => {
-  if (req.body['help-with-funeral-select'] === 'Yes') {
-    res.session.set('sffp', 'Yes');
-    res.redirect('apply-for-sffp');
-  } else {
-    res.redirect('apply-for-bsp');
-  }
+  res.render('version-4/checklist.html', {checklist, bspElig});
 });
 
 router.get('/find-a-funeral-director', (req, res) => {
   const backLink = 'have-you-arranged-funeral';
-  res.render('version-3/find-a-funeral-director.html', {backLink});
+  res.render('version-4/find-a-funeral-director.html', {backLink});
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
@@ -128,7 +119,7 @@ router.post('/find-a-funeral-director', (req, res) => {
 
 router.get('/apply-for-sffp', (req, res) => {
   const backLink = req.get('referrer').indexOf('funeral-no') > -1 ? 'funeral-no' : 'funeral-date';
-  res.render('version-3/apply-for-sffp.html', {backLink});
+  res.render('version-4/apply-for-sffp.html', {backLink});
 });
 
 router.post('/apply-for-sffp', (req, res) => {
@@ -137,17 +128,19 @@ router.post('/apply-for-sffp', (req, res) => {
 
 router.get('/apply-for-bsp', (req, res) => {
   const now = moment();
-  const dob = moment(req.session.get('yourAge'), 'DDMMYYYY');
+  const dob = moment(req.cookies.yourAge, 'DDMMYYYY');
   const age = now.diff(dob, 'years');
+  let eligible;
 
-  if (req.session.get('relationship') === 'spouse' && age < 62) {
-    res.session.set('bspElig', true);
+  if (req.cookies.married === 'yes' && age < 62) {
+    eligible = true;
+    res.cookie('bspElig', true);
   }
 
-  if (req.session.get('bspElig')) {
-    res.render('version-3/apply-for-bsp.html');
+  if (eligible) {
+    res.render('version-4/apply-for-bsp.html');
   } else {
-    res.redirect('dashboard');
+    res.redirect('checklist');
   }
 });
 
@@ -155,14 +148,14 @@ router.post('/apply-for-bsp', (req, res) => {
   if (req.body['bsp-select'] === 'Yes') {
     res.redirect('bsp-eligibility');
   } else {
-    res.session.set('notDone', true);
-    res.redirect('dashboard');
+    res.cookie('checklist', true);
+    res.redirect('checklist');
   }
 });
 
 router.get('/bsp-eligibility', (req, res) => {
   const backLink = 'apply-for-bsp';
-  res.render('version-3/bsp-eligibility.html', {backLink});
+  res.render('version-4/bsp-eligibility.html', {backLink});
 });
 
 router.post('/bsp-eligibility', (req, res) => {
@@ -175,12 +168,12 @@ router.post('/bsp-eligibility', (req, res) => {
 
 router.get('/bsp-exit', (req, res) => {
   const backLink = 'bsp-eligibility';
-  res.render('version-3/bsp-exit-page.html', {backLink});
+  res.render('version-4/bsp-exit-page.html', {backLink});
 });
 
 router.get('/bsp-dependent-children', (req, res) => {
   const backLink = 'bsp-eligibility';
-  res.render('version-3/bsp-dependent-children.html', {backLink});
+  res.render('version-4/bsp-dependent-children.html', {backLink});
 });
 
 router.post('/bsp-dependent-children', (req, res) => {
@@ -189,7 +182,7 @@ router.post('/bsp-dependent-children', (req, res) => {
 
 router.get('/bsp-bank-details', (req, res) => {
   const backLink = 'bsp-dependent-children';
-  res.render('version-3/bsp-bank-details.html', {backLink});
+  res.render('version-4/bsp-bank-details.html', {backLink});
 });
 
 router.post('/bsp-bank-details', (req, res) => {
@@ -198,7 +191,7 @@ router.post('/bsp-bank-details', (req, res) => {
 
 router.get('/bsp-declaration', (req, res) => {
   const backLink = 'bsp-bank-details';
-  res.render('version-3/bsp-declaration.html', {backLink});
+  res.render('version-4/bsp-declaration.html', {backLink});
 });
 
 router.post('/bsp-declaration', (req, res) => {
@@ -206,21 +199,31 @@ router.post('/bsp-declaration', (req, res) => {
 });
 
 router.get('/bsp-end', (req, res) => {
-  res.session.set('bsp', 'Yes');
+  const checklist = req.cookies.checklist;
+  checklist.bsp = 'Yes';
+  res.cookie('checklist', checklist);
   const completeDate = moment().format('DD MMMM YYYY');
-  res.render('version-3/bsp-end-page.html', {completeDate});
+  res.render('version-4/bsp-end-page.html', {completeDate});
 });
 
-router.get('/dashboard', (req, res) => {
-  if (req.session.get('sffp') === 'Yes') {
-    res.session.set('notDone', true);
+router.post('/bsp-end', (req, res) => {
+  res.redirect('checklist');
+});
+
+router.get('/mark-as-complete/:id', (req, res) => {
+  const id = req.params.id;
+  const checklist = req.cookies.checklist;
+
+  for (const key in checklist) {
+    if ({}.hasOwnProperty.call(checklist, key)) {
+      if (id === key) {
+        checklist[id] = 'Yes';
+      }
+    }
   }
 
-  const data = req.session.get();
-  data.backLink = req.get('referrer');
-  data.funeralDateFormatted = moment(data.funeralDate, 'DDMMYYYY').format('DD MMMM YYYY');
-
-  res.render('version-3/dashboard.html', data);
+  res.cookie('checklist', checklist);
+  res.redirect('/version-4/checklist');
 });
 
 module.exports = router;

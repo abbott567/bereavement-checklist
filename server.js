@@ -6,6 +6,7 @@ const nunjucks = require('express-nunjucks');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const browserSync = require('browser-sync');
 
 const routes = require(path.join(__dirname, '/app/routes.js'));
 const config = require(path.join(__dirname, '/app/config.js'));
@@ -128,4 +129,22 @@ console.log(`\nGOV.UK Prototype kit v${releaseVersion}`);
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.');
 
 // start the app
-utils.findAvailablePort(app);
+utils.findAvailablePort(app, port => {
+  console.log(`Listening on port ${port} url: http://localhost: ${port}`);
+  if (env === 'production') {
+    app.listen(port);
+  } else {
+    app.listen(port - 50, () => {
+      browserSync({
+        proxy: `localhost:${(port - 50)}`,
+        port,
+        ui: false,
+        files: ['public/**/*.*', 'app/views/**/*.*'],
+        ghostmode: false,
+        open: false,
+        notify: false,
+        logLevel: 'error'
+      });
+    });
+  }
+});
