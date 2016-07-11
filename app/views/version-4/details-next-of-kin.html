@@ -18,7 +18,7 @@
           about the death of {{name}}.
         </p>
 
-        <form method="post">
+        <form method="post" autocomplete="off">
           <div class="form-group">
             <label class="form-label-bold" for="full-name">Their full name</label>
             <input class="form-control" id="full-name" name="full-name" type="text">
@@ -48,6 +48,25 @@
               </div>
             </fieldset>
           </div>
+
+          <fieldset class="inline" id="relationship-hidden">
+            <h2 class="heading-small">
+              Were they married to or in a civil partnership with {{name}} when
+              they died?
+            </h2>
+
+            <div class="form-group">
+              <label class="block-label" for="married-yes">
+                <input id="married-yes" type="radio" name="married-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="married-no">
+                <input id="married-no" type="radio" name="married-select" value="No">
+                No
+              </label>
+            </div>
+          </fieldset>
 
           <div class="form-group">
             <legend>

@@ -60,7 +60,8 @@ router.post('/details-contact', (req, res) => {
 
 // Next of kin details
 router.get('/details-next-of-kin', (req, res) => {
-  res.render('version-4/details-next-of-kin.html');
+  const name = req.cookies.deceasedName;
+  res.render('version-4/details-next-of-kin.html', {name});
 });
 
 router.post('/details-next-of-kin', (req, res) => {
@@ -74,16 +75,6 @@ router.get('/inform-organisations', (req, res) => {
 });
 
 router.post('/inform-organisations', (req, res) => {
-  res.redirect('the-organisations-now-know');
-});
-
-// The right organisations now know about the death
-router.get('/the-organisations-now-know', (req, res) => {
-  const name = req.cookies.deceasedName;
-  res.render('version-4/the-organisations-now-know.html', {name});
-});
-
-router.post('/the-organisations-now-know', (req, res) => {
   res.redirect('checklist');
 });
 
@@ -91,7 +82,7 @@ router.post('/the-organisations-now-know', (req, res) => {
 router.get('/checklist', (req, res) => {
   let checklist = req.cookies.checklist;
   const bspElig = req.cookies.bspElig;
-
+  const name = req.cookies.deceasedName;
   if (checklist === undefined) {
     checklist = {
       bsp: 'No',
@@ -105,7 +96,7 @@ router.get('/checklist', (req, res) => {
     res.cookie('checklist', checklist);
   }
 
-  res.render('version-4/checklist.html', {checklist, bspElig});
+  res.render('version-4/checklist.html', {checklist, bspElig, name});
 });
 
 router.get('/find-a-funeral-director', (req, res) => {
@@ -114,7 +105,7 @@ router.get('/find-a-funeral-director', (req, res) => {
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
-  res.redirect('help-with-funeral');
+  res.redirect('checklist');
 });
 
 router.get('/apply-for-sffp', (req, res) => {
