@@ -13,7 +13,10 @@
       <div class="column-two-thirds">
         <h1 class="heading-xlarge">Next of kin details</h1>
 
-        {{age}}
+        <p class="lede">
+          The next of kin will be notified that you have told government about
+          the death of {{name}}.
+        </p>
 
         <form method="post">
           <div class="form-group">
@@ -97,7 +100,7 @@
                 <input id="contact-post" name="contact-select" type="checkbox" value="Post">
                 Post
               </label>
-              
+
               <label class="block-label" for="contact-phonecall" data-target="contact-phonecall-hidden">
                 <input id="contact-phonecall" name="contact-select" type="checkbox" value="Phone">
                 Phone call
