@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">These organisations now know</h1>
+
+        <p class="lede">
+          Lede in paragraph
+        </p>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th>
+                What's happening now
+              </th>
+
+              <th>
+                When will it be done
+              </th>
+
+              <th>
+                What you need to do
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                ESA will be stopped
+              </td>
+              <td>
+                By {{date.fourteen}}
+              </td>
+              <td>
+                If we need any more info an agent will contact you
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Passport will be cancelled
+              </td>
+              <td>
+                By {{date.ten}}
+              </td>
+              <td>
+                Cut the corner off, send it back etc
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br />
+
+        <form method="post" autocomplete="off">
+          <div class="form-group">
+            <input type="submit" class="button" value="See your checklist">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

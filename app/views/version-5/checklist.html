@@ -12,69 +12,13 @@
     <div class="grid-row">
       <div class="column-two-thirds">
         <h1 class="heading-xlarge">
-          The right organisations now know about the death of {{name}}
+          Your checklist
         </h1>
 
         <p class="lede">
           You can use this checklist to help you make any other arrangements
           needed.
         </p>
-
-        <table class="check-your-answers">
-          <thead>
-            <tr>
-              <th colspan="2">
-                <h2 class="heading-medium">
-                  Things you have done
-                </h2>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-<<<<<<< HEAD
-                Told government organisations about the death
-=======
-                Told government organisations about the death of {{name}}
->>>>>>> 5e7dbd0d715ab19ba5e2e9d94faa173dcfd0e856
-              </td>
-
-              <td colspan="2">
-                {% include '../version-5/partials/whats-been-done.html' %}
-              </td>
-            </tr>
-
-            {% if checklist.bsp == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/applied-for-bsp.html' %}
-            {% endif %}
-
-            {% if checklist.registered == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/registered-death.html' %}
-            {% endif %}
-
-            {% if checklist.funeral == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/arranged-funeral.html' %}
-            {% endif %}
-
-            {% if checklist.bankAccounts == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/cancelled-bank-accounts.html' %}
-            {% endif %}
-
-            {% if checklist.insurance == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/cancelled-insurance.html' %}
-            {% endif %}
-
-            {% if checklist.employers == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/tell-employers.html' %}
-            {% endif %}
-
-            {% if checklist.funeralSupport == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/help-with-funeral.html' %}
-            {% endif %}
-          </tbody>
-        </table>
 
         <table class="check-your-answers">
           <thead>
@@ -88,33 +32,33 @@
           </thead>
 
           <tbody>
-            {% if bspElig == 'true' %}
-              {% if checklist.bsp == 'No' %}
-                {% include '../version-5/checklist-rows/not-done/applied-for-bsp.html' %}
-              {% endif %}
+            {% if checklist.bsp == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/applied-for-bsp.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/applied-for-bsp.html' %}
             {% endif %}
 
-            {% if checklist.registered == 'No' %}
-              {% include '../version-5/checklist-rows/not-done/registered-death.html' %}
-            {% endif %}
-
-            {% if checklist.funeral == 'No' %}
-              {% include '../version-5/checklist-rows/not-done/arranged-funeral.html' %}
-            {% endif %}
-
-            {% if checklist.bankAccounts == 'No' %}
+            {% if checklist.bankAccounts == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/cancelled-bank-accounts.html' %}
+            {% else %}
               {% include '../version-5/checklist-rows/not-done/cancelled-bank-accounts.html' %}
             {% endif %}
 
-            {% if checklist.insurance == 'No' %}
+            {% if checklist.insurance == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/cancelled-insurance.html' %}
+            {% else %}
               {% include '../version-5/checklist-rows/not-done/cancelled-insurance.html' %}
             {% endif %}
 
-            {% if checklist.employers == 'No' %}
+            {% if checklist.employers == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/tell-employers.html' %}
+            {% else %}
               {% include '../version-5/checklist-rows/not-done/tell-employers.html' %}
             {% endif %}
 
-            {% if checklist.funeralSupport == 'No' %}
+            {% if checklist.funeralSupport == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/help-with-funeral.html' %}
+            {% else %}
               {% include '../version-5/checklist-rows/not-done/help-with-funeral.html' %}
             {% endif %}
           </tbody>
@@ -122,39 +66,45 @@
 
         <br />
 
-        <p class="print-hidden">
-          <a id="save-button" href="download" target="_new" class="heading-medium">
-            <img class="print-save-icons" src="/public/images/icon-file-download.png">
-            Save this page
-          </a>
-        </p>
+        <div class="form-group">
+          <a id="add-task" class="form-label-bold" href="#">+ Add a task</a>
+        </div>
 
-				<p class="print-hidden">
-          <a id="print-button" href="end" class="heading-medium">
-            <img class="print-save-icons" src="/public/images/icon-print.png" width="30">
-            Print this page
-          </a>
-        </p>
+        <div class="checklist-actions">
+          <p class="print-hidden">
+            <a id="save-button" href="download" target="_new" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-file-download.png">
+              Save this page
+            </a>
+          </p>
 
-        <p class="print-hidden">
-          <a id="email-button" href="end" class="heading-medium">
-            <img class="print-save-icons" src="/public/images/icon-email.png" width="30">
-            Email this page
-          </a>
+  				<p class="print-hidden">
+            <a id="print-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-print.png" width="30">
+              Print this page
+            </a>
+          </p>
 
-          <div id="email-hidden" class="panel panel-border-narrow js-hidden">
-            <form>
-              <fieldset>
-                <div class="form-group">
-                  <label class="form-label" for="email-address">Email address</label>
-                  <input class="form-control" id="email-address" type="text">
-                </div>
+          <p class="print-hidden">
+            <a id="email-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-email.png" width="30">
+              Email this page
+            </a>
 
-                <input type="submit" class="button" value="Email this page">
-              </fieldset>
-            </form>
-          </div>
-        </p>
+            <div id="email-hidden" class="panel panel-border-narrow js-hidden">
+              <form>
+                <fieldset>
+                  <div class="form-group">
+                    <label class="form-label" for="email-address">Email address</label>
+                    <input class="form-control" id="email-address" type="text">
+                  </div>
+
+                  <input type="submit" class="button" value="Email this page">
+                </fieldset>
+              </form>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
   </main>
@@ -162,9 +112,9 @@
 
 {% block page_scripts %}
   <script>
-  $(document).on('click', '#save-button', function (e) {
-    e.preventDefault();
-  });
+    $(document).on('click', '#save-button', function (e) {
+      e.preventDefault();
+    });
 
     $(document).on('click', '#print-button', function (e) {
       e.preventDefault();
@@ -182,6 +132,29 @@
         $('body').scrollTop(0);
         $('#alert-success').show();
       }, 1000);
+    });
+
+    $(document).on('click', '#add-task', function (e) {
+      e.preventDefault();
+
+      $(document).find('tbody').append(
+        `<tr>
+          <td>
+            <label class="form-label-bold" for="task">Task</label>
+            <input class="form-control" class="task" type="text">
+          </td>
+          <td class="change-answer">
+            <a class="save-task" href="#">Save task</a>
+          </td>
+        </tr>
+      `);
+    });
+
+    $(document).on('click', '.save-task', function (e) {
+      e.preventDefault();
+      var input = $(this).parents('tr').find('td:first input').val();
+      $(this).parents('tr').find('td:first').html(input);
+      $(this).parents('tr').find('td:last').html(`<a href="#">Mark as done</a>`);
     });
   </script>
 {% endblock %}

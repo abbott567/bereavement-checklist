@@ -75,6 +75,20 @@ router.get('/inform-organisations', (req, res) => {
 });
 
 router.post('/inform-organisations', (req, res) => {
+  res.redirect('whats-been-done');
+});
+
+// Whats been done
+router.get('/whats-been-done', (req, res) => {
+  const name = req.cookies.deceasedName;
+  const date = {};
+  date.ten = moment().add(10, 'days').format('DD MMMM YYYY');
+  date.fourteen = moment().add(14, 'days').format('DD MMMM YYYY');
+
+  res.render('version-5/whats-been-done.html', {name, date});
+});
+
+router.post('/whats-been-done', (req, res) => {
   res.redirect('checklist');
 });
 
