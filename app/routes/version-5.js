@@ -6,12 +6,12 @@ const router = new express.Router();
 
 // Redirect to start page
 router.get('/', (req, res) => {
-  res.redirect('/version-4/start');
+  res.redirect('/version-5/start');
 });
 
 // Start page
 router.get('/start', (req, res) => {
-  res.render('version-4/start-page.html');
+  res.render('version-5/start-page.html');
 });
 
 router.post('/start', (req, res) => {
@@ -20,7 +20,7 @@ router.post('/start', (req, res) => {
 
 // About the deceased person
 router.get('/details-partner', (req, res) => {
-  res.render('version-4/details-partner.html');
+  res.render('version-5/details-partner.html');
 });
 
 router.post('/details-partner', (req, res) => {
@@ -31,7 +31,7 @@ router.post('/details-partner', (req, res) => {
 // About you
 router.get('/details-yours', (req, res) => {
   const name = req.cookies.deceasedName;
-  res.render('version-4/details-yours.html', {name});
+  res.render('version-5/details-yours.html', {name});
 });
 
 router.post('/details-yours', (req, res) => {
@@ -51,7 +51,7 @@ router.post('/details-yours', (req, res) => {
 
 // Your contact details
 router.get('/details-contact', (req, res) => {
-  res.render('version-4/details-contact.html');
+  res.render('version-5/details-contact.html');
 });
 
 router.post('/details-contact', (req, res) => {
@@ -61,7 +61,7 @@ router.post('/details-contact', (req, res) => {
 // Next of kin details
 router.get('/details-next-of-kin', (req, res) => {
   const name = req.cookies.deceasedName;
-  res.render('version-4/details-next-of-kin.html', {name});
+  res.render('version-5/details-next-of-kin.html', {name});
 });
 
 router.post('/details-next-of-kin', (req, res) => {
@@ -71,7 +71,7 @@ router.post('/details-next-of-kin', (req, res) => {
 // Inform organisations about the death
 router.get('/inform-organisations', (req, res) => {
   const name = req.cookies.deceasedName;
-  res.render('version-4/inform-organisations.html', {name});
+  res.render('version-5/inform-organisations.html', {name});
 });
 
 router.post('/inform-organisations', (req, res) => {
@@ -96,12 +96,12 @@ router.get('/checklist', (req, res) => {
     res.cookie('checklist', checklist);
   }
 
-  res.render('version-4/checklist.html', {checklist, bspElig, name});
+  res.render('version-5/checklist.html', {checklist, bspElig, name});
 });
 
 router.get('/find-a-funeral-director', (req, res) => {
   const backLink = 'have-you-arranged-funeral';
-  res.render('version-4/find-a-funeral-director.html', {backLink});
+  res.render('version-5/find-a-funeral-director.html', {backLink});
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
@@ -110,7 +110,7 @@ router.post('/find-a-funeral-director', (req, res) => {
 
 router.get('/apply-for-sffp', (req, res) => {
   const backLink = req.get('referrer').indexOf('funeral-no') > -1 ? 'funeral-no' : 'funeral-date';
-  res.render('version-4/apply-for-sffp.html', {backLink});
+  res.render('version-5/apply-for-sffp.html', {backLink});
 });
 
 router.post('/apply-for-sffp', (req, res) => {
@@ -129,7 +129,7 @@ router.get('/apply-for-bsp', (req, res) => {
   }
 
   if (eligible) {
-    res.render('version-4/apply-for-bsp.html');
+    res.render('version-5/apply-for-bsp.html');
   } else {
     res.redirect('checklist');
   }
@@ -146,7 +146,7 @@ router.post('/apply-for-bsp', (req, res) => {
 
 router.get('/bsp-eligibility', (req, res) => {
   const backLink = 'apply-for-bsp';
-  res.render('version-4/bsp-eligibility.html', {backLink});
+  res.render('version-5/bsp-eligibility.html', {backLink});
 });
 
 router.post('/bsp-eligibility', (req, res) => {
@@ -159,12 +159,12 @@ router.post('/bsp-eligibility', (req, res) => {
 
 router.get('/bsp-exit', (req, res) => {
   const backLink = 'bsp-eligibility';
-  res.render('version-4/bsp-exit-page.html', {backLink});
+  res.render('version-5/bsp-exit-page.html', {backLink});
 });
 
 router.get('/bsp-dependent-children', (req, res) => {
   const backLink = 'bsp-eligibility';
-  res.render('version-4/bsp-dependent-children.html', {backLink});
+  res.render('version-5/bsp-dependent-children.html', {backLink});
 });
 
 router.post('/bsp-dependent-children', (req, res) => {
@@ -173,7 +173,7 @@ router.post('/bsp-dependent-children', (req, res) => {
 
 router.get('/bsp-bank-details', (req, res) => {
   const backLink = 'bsp-dependent-children';
-  res.render('version-4/bsp-bank-details.html', {backLink});
+  res.render('version-5/bsp-bank-details.html', {backLink});
 });
 
 router.post('/bsp-bank-details', (req, res) => {
@@ -182,7 +182,7 @@ router.post('/bsp-bank-details', (req, res) => {
 
 router.get('/bsp-declaration', (req, res) => {
   const backLink = 'bsp-bank-details';
-  res.render('version-4/bsp-declaration.html', {backLink});
+  res.render('version-5/bsp-declaration.html', {backLink});
 });
 
 router.post('/bsp-declaration', (req, res) => {
@@ -194,7 +194,7 @@ router.get('/bsp-end', (req, res) => {
   checklist.bsp = 'Yes';
   res.cookie('checklist', checklist);
   const completeDate = moment().format('DD MMMM YYYY');
-  res.render('version-4/bsp-end-page.html', {completeDate});
+  res.render('version-5/bsp-end-page.html', {completeDate});
 });
 
 router.post('/bsp-end', (req, res) => {
@@ -214,7 +214,7 @@ router.get('/mark-as-complete/:id', (req, res) => {
   }
 
   res.cookie('checklist', checklist);
-  res.redirect('/version-4/checklist');
+  res.redirect('/version-5/checklist');
 });
 
 module.exports = router;
