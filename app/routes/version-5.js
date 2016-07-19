@@ -35,7 +35,16 @@ router.get('/details-yours', (req, res) => {
 });
 
 router.post('/details-yours', (req, res) => {
-  res.cookie('yourAge', `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`);
+  const yourAge = `${req.body['dob-day']}${req.body['dob-month']}${req.body['dob-year']}`;
+  const now = moment();
+  const dob = moment(yourAge, 'DDMMYYYY');
+  const age = now.diff(dob, 'years');
+
+  if (req.body['married-select'] === 'Yes' && age < 62) {
+    res.cookie('bspElig', true);
+  }
+
+  res.cookie('yourAge', yourAge);
 
   if (req.body['next-of-kin-select'] === 'No') {
     res.cookie('married', 'no');

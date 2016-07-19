@@ -32,10 +32,12 @@
           </thead>
 
           <tbody>
-            {% if checklist.bsp == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/applied-for-bsp.html' %}
-            {% else %}
-              {% include '../version-5/checklist-rows/not-done/applied-for-bsp.html' %}
+            {% if bspElig %}
+              {% if checklist.bsp == 'Yes' %}
+                {% include '../version-5/checklist-rows/done/applied-for-bsp.html' %}
+              {% else %}
+                {% include '../version-5/checklist-rows/not-done/applied-for-bsp.html' %}
+              {% endif %}
             {% endif %}
 
             {% if checklist.bankAccounts == 'Yes' %}
