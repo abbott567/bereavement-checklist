@@ -45,35 +45,37 @@
           </div>
 
           <fieldset class="inline">
-            <h2 class="heading-small">Are you the next of kin or the executor?</h2>
-
-            <p class="form-hint">Organisations can only follow up with the next of kin or executor</p>
-
-            <div class="form-group">
-              <label class="block-label" for="next-of-kin-yes" data-target="relationship-hidden">
-                <input id="next-of-kin-yes" type="radio" name="next-of-kin-select" value="Yes">
-                Yes
-              </label>
-
-              <label class="block-label" for="next-of-kin-no">
-                <input id="next-of-kin-no" type="radio" name="next-of-kin-select" value="No">
-                No
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset class="inline js-hidden" id="relationship-hidden">
             <h2 class="heading-small">Were you married to or in a civil
             partnership with {{name}} when they died?</h2>
 
+            <p class="form-hint">You may be able to get Bereavement Support Payment if so</p>
+
             <div class="form-group">
-              <label class="block-label" for="married-yes">
+              <label class="block-label" for="married-yes" data-target="relationship-hidden">
                 <input id="married-yes" type="radio" name="married-select" value="Yes">
                 Yes
               </label>
 
               <label class="block-label" for="married-no">
                 <input id="married-no" type="radio" name="married-select" value="No">
+                No
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="inline js-hidden" id="relationship-hidden">
+            <h2 class="heading-small">Are you the next of kin or the executor?</h2>
+
+            <p class="form-hint">Organisations can only follow up with the next of kin or executor</p>
+
+            <div class="form-group">
+              <label class="block-label" for="next-of-kin-yes">
+                <input id="next-of-kin-yes" type="radio" name="next-of-kin-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="next-of-kin-no">
+                <input id="next-of-kin-no" type="radio" name="next-of-kin-select" value="No">
                 No
               </label>
             </div>
