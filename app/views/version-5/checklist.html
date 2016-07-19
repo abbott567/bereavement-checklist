@@ -25,7 +25,7 @@
             <tr>
               <th colspan="2">
                 <h2 class="heading-medium">
-                  Things you can still do
+                  Things you still might need to do
                 </h2>
               </th>
             </tr>
@@ -62,6 +62,24 @@
               {% include '../version-5/checklist-rows/done/help-with-funeral.html' %}
             {% else %}
               {% include '../version-5/checklist-rows/not-done/help-with-funeral.html' %}
+            {% endif %}
+
+            {% if checklist.passport == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/passport.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/passport.html' %}
+            {% endif %}
+
+            {% if checklist.drivinglicence == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/driving-licence.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/driving-licence.html' %}
+            {% endif %}
+
+            {% if checklist.probate == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/probate.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/probate.html' %}
             {% endif %}
           </tbody>
         </table>

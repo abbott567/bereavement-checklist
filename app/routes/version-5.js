@@ -114,7 +114,10 @@ router.get('/checklist', (req, res) => {
       bankAccounts: 'No',
       insurance: 'No',
       employers: 'No',
-      funeralSupport: 'No'
+      funeralSupport: 'No',
+      passport: 'No',
+      drivinglicence: 'No',
+      probate: 'No'
     };
     res.cookie('checklist', checklist);
   }
