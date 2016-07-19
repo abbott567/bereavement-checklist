@@ -12,12 +12,11 @@
     <div class="grid-row">
       <div class="column-two-thirds">
         <h1 class="heading-xlarge">
-          Your checklist
+          Your to-do list
         </h1>
 
         <p class="lede">
-          You can use this checklist to help you make any other arrangements
-          needed.
+          You can use this to help plan any other arrangements needed.
         </p>
 
         <table class="check-your-answers">
@@ -25,7 +24,7 @@
             <tr>
               <th colspan="2">
                 <h2 class="heading-medium">
-                  Things you still might need to do
+                  Things you can do now
                 </h2>
               </th>
             </tr>
@@ -40,6 +39,44 @@
               {% endif %}
             {% endif %}
 
+            {% if checklist.funeralSupport == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/help-with-funeral.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/help-with-funeral.html' %}
+            {% endif %}
+
+            {% if checklist.probate == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/probate.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/probate.html' %}
+            {% endif %}
+
+            {% if checklist.passport == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/passport.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/passport.html' %}
+            {% endif %}
+
+            {% if checklist.drivinglicence == 'Yes' %}
+              {% include '../version-5/checklist-rows/done/driving-licence.html' %}
+            {% else %}
+              {% include '../version-5/checklist-rows/not-done/driving-licence.html' %}
+            {% endif %}
+          </tbody>
+        </table>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                  Other things to think about
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
             {% if checklist.bankAccounts == 'Yes' %}
               {% include '../version-5/checklist-rows/done/cancelled-bank-accounts.html' %}
             {% else %}
@@ -56,30 +93,6 @@
               {% include '../version-5/checklist-rows/done/tell-employers.html' %}
             {% else %}
               {% include '../version-5/checklist-rows/not-done/tell-employers.html' %}
-            {% endif %}
-
-            {% if checklist.funeralSupport == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/help-with-funeral.html' %}
-            {% else %}
-              {% include '../version-5/checklist-rows/not-done/help-with-funeral.html' %}
-            {% endif %}
-
-            {% if checklist.passport == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/passport.html' %}
-            {% else %}
-              {% include '../version-5/checklist-rows/not-done/passport.html' %}
-            {% endif %}
-
-            {% if checklist.drivinglicence == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/driving-licence.html' %}
-            {% else %}
-              {% include '../version-5/checklist-rows/not-done/driving-licence.html' %}
-            {% endif %}
-
-            {% if checklist.probate == 'Yes' %}
-              {% include '../version-5/checklist-rows/done/probate.html' %}
-            {% else %}
-              {% include '../version-5/checklist-rows/not-done/probate.html' %}
             {% endif %}
           </tbody>
         </table>
