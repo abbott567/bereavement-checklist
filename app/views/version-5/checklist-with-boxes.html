@@ -33,17 +33,6 @@
           <tbody>
             {% if bspElig %}
               {% if checklist.bsp == 'Yes' %}
-              <tr>
-                <td>
-                  Apply for Bereavement Support Payment
-                </td>
-                <td>
-                </td>
-                <td class="change-answer">
-                  <a href="/version-5/apply-for-bsp">Apply now</a>
-                </td>
-              </tr>
-              {% else %}
                 <tr>
                   <td>
                     Apply for Bereavement Support Payment
@@ -52,6 +41,17 @@
                   </td>
                   <td class="change-answer">
                     <input type="checkbox" checked>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td>
+                    Apply for Bereavement Support Payment
+                  </td>
+                  <td>
+                  </td>
+                  <td class="change-answer">
+                    <a href="/version-5/apply-for-bsp">Apply now</a>
                   </td>
                 </tr>
               {% endif %}

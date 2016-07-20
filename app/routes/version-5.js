@@ -98,11 +98,36 @@ router.get('/whats-been-done', (req, res) => {
 });
 
 router.post('/whats-been-done', (req, res) => {
-  res.redirect('checklist');
+  // res.redirect('checklist');\n  // res.redirect('checklist');
+  res.redirect('checklist-with-boxes');
 });
 
 // Checklist
-router.get('/checklist', (req, res) => {
+// router.get('/checklist', (req, res) => {
+//   let checklist = req.cookies.checklist;
+//   const bspElig = req.cookies.bspElig;
+//   const name = req.cookies.deceasedName;
+//   if (checklist === undefined) {
+//     checklist = {
+//       bsp: 'No',
+//       registered: 'No',
+//       funeral: 'No',
+//       bankAccounts: 'No',
+//       insurance: 'No',
+//       employers: 'No',
+//       funeralSupport: 'No',
+//       passport: 'No',
+//       drivinglicence: 'No',
+//       probate: 'No'
+//     };
+//     res.cookie('checklist', checklist);
+//   }
+//
+//   res.render('version-5/checklist.html', {checklist, bspElig, name});
+// });
+
+// Checklist
+router.get('/checklist-with-boxes', (req, res) => {
   let checklist = req.cookies.checklist;
   const bspElig = req.cookies.bspElig;
   const name = req.cookies.deceasedName;
@@ -122,7 +147,7 @@ router.get('/checklist', (req, res) => {
     res.cookie('checklist', checklist);
   }
 
-  res.render('version-5/checklist.html', {checklist, bspElig, name});
+  res.render('version-5/checklist-with-boxes.html', {checklist, bspElig, name});
 });
 
 router.get('/find-a-funeral-director', (req, res) => {
@@ -131,7 +156,8 @@ router.get('/find-a-funeral-director', (req, res) => {
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
-  res.redirect('checklist');
+  // res.redirect('checklist');
+  res.redirect('checklist-with-boxes');
 });
 
 router.get('/apply-for-sffp', (req, res) => {
@@ -157,7 +183,8 @@ router.get('/apply-for-bsp', (req, res) => {
   if (eligible) {
     res.render('version-5/apply-for-bsp.html');
   } else {
-    res.redirect('checklist');
+    // res.redirect('checklist');
+    res.redirect('checklist-with-boxes');
   }
 });
 
@@ -166,7 +193,8 @@ router.post('/apply-for-bsp', (req, res) => {
     res.redirect('bsp-eligibility');
   } else {
     res.cookie('checklist', true);
-    res.redirect('checklist');
+    // res.redirect('checklist');
+    res.redirect('checklist-with-boxes');
   }
 });
 
@@ -224,7 +252,8 @@ router.get('/bsp-end', (req, res) => {
 });
 
 router.post('/bsp-end', (req, res) => {
-  res.redirect('checklist');
+  // res.redirect('checklist');
+  res.redirect('checklist-with-boxes');
 });
 
 router.get('/mark-as-complete/:id', (req, res) => {
