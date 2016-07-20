@@ -234,7 +234,7 @@
     $(document).on('click', '#add-task', function (e) {
       e.preventDefault();
 
-      $(document).find('tbody').append(
+      $(document).find('tbody:last').append(
         `<tr>
           <td>
             <label class="form-label-bold" for="task">Task</label>
@@ -251,7 +251,8 @@
       e.preventDefault();
       var input = $(this).parents('tr').find('td:first input').val();
       $(this).parents('tr').find('td:first').html(input);
-      $(this).parents('tr').find('td:last').html(`<a href="#">Mark as done</a>`);
+      $(this).parents('tr').find('td:first').after('<td></td>');
+      $(this).parents('tr').find('td:last').html(`<input type="checkbox">`);
     });
   </script>
 {% endblock %}
