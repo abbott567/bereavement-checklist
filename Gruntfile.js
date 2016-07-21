@@ -1,7 +1,7 @@
 'use strict';
 /* eslint-disable camelcase */
 
-module.exports = function (grunt) {
+module.exports = grunt => {
   grunt.initConfig({
     // Builds Sass
     sass: {
@@ -154,7 +154,6 @@ module.exports = function (grunt) {
               files: screenshotUrls(input)
             },
             local: {
-              path: './test/src',
               port: 8080,
               files: [
               ]
@@ -175,11 +174,14 @@ module.exports = function (grunt) {
     const cwd = `app/views/${dir}`;
     const templates = grunt.file.expand({filter: 'isFile', cwd}, ['**/*', '!includes/**']);
     const urls = [];
+    const https = config.useHttps ? 'https' : 'http';
 
     for (let i = 0; i < templates.length; i++) {
       const filename = templates[i].split('.').shift();
-      urls.push({src: `http://localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
+      urls.push({src: `${https}://localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
     }
     return urls;
   }
 };
+
+/* eslint-enable camelcase */
