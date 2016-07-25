@@ -1,0 +1,283 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Your checklist
+        </h1>
+
+        <p class="lede">
+          You can use this to help plan any other arrangements needed.
+        </p>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="3">
+                <h2 class="heading-medium">
+                  Things you've done
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Told government about the death
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+                
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="3">
+                <h2 class="heading-medium">
+                  Things you can do now
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% if bspElig %}
+              {% if checklist.bsp == 'Yes' %}
+                <tr>
+                  <td>
+                    Apply for Bereavement Support Payment
+                  </td>
+                  <td>
+                  </td>
+                  <td class="change-answer">
+                    <input type="checkbox" checked>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td>
+                    Apply for Bereavement Support Payment
+                  </td>
+                  <td>
+                  </td>
+                  <td class="change-answer">
+                    <a href="/version-5/apply-for-bsp">Apply now</a>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endif %}
+
+            <tr>
+              <td>
+                Get help paying for funeral
+              </td>
+              <td>
+                <a href="https://www.gov.uk/funeral-payments/overview">More info</a><br />
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Apply for probate
+              </td>
+              <td>
+                <a href="https://www.gov.uk/wills-probate-inheritance/applying-for-a-grant-of-representation">More info</a><br />
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Return passport
+              </td>
+              <td>
+                <a href="https://www.gov.uk/government/publications/what-to-do-with-a-passport-when-the-passport-holder-has-died">More info</a><br />
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Return driving licence
+              </td>
+              <td>
+                <a href="https://www.gov.uk/tell-dvla-about-bereavement/overview">More info</a><br />
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="3">
+                <h2 class="heading-medium">
+                  Other things to think about
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Contact bank
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Contact insurance provider
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Tell employer
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br />
+
+        <div class="form-group">
+          <a id="add-task" class="form-label-bold" href="#">+ Add a task</a>
+        </div>
+
+        <div class="checklist-actions">
+          <p class="print-hidden">
+            <a id="save-button" href="download" target="_new" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-file-download.png">
+              Save this page
+            </a>
+          </p>
+
+  				<p class="print-hidden">
+            <a id="print-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-print.png" width="30">
+              Print this page
+            </a>
+          </p>
+
+          <p class="print-hidden">
+            <a id="email-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-email.png" width="30">
+              Email this page
+            </a>
+
+            <div id="email-hidden" class="panel panel-border-narrow js-hidden">
+              <form>
+                <fieldset>
+                  <div class="form-group">
+                    <label class="form-label" for="email-address">Email address</label>
+                    <input class="form-control" id="email-address" type="text">
+                  </div>
+
+                  <input type="submit" class="button" value="Email this page">
+                </fieldset>
+              </form>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', '#save-button', function (e) {
+      e.preventDefault();
+    });
+
+    $(document).on('click', '#print-button', function (e) {
+      e.preventDefault();
+      window.print();
+    });
+
+    $(document).on('click', '#email-button', function (e) {
+      e.preventDefault();
+      $('#email-hidden').toggle();
+    });
+
+    $(document).on('submit', 'form', function (e) {
+      e.preventDefault();
+      setTimeout(function () {
+        $('body').scrollTop(0);
+        $('#alert-success').show();
+      }, 1000);
+    });
+
+    $(document).on('click', '#add-task', function (e) {
+      e.preventDefault();
+
+      $(document).find('tbody:last').append(
+        `<tr>
+          <td>
+            <label class="form-label-bold" for="task">Task</label>
+            <input class="form-control" class="task" type="text">
+          </td>
+          <td class="change-answer">
+            <a class="save-task" href="#">Save task</a>
+          </td>
+        </tr>
+      `);
+    });
+
+    $(document).on('click', '.save-task', function (e) {
+      e.preventDefault();
+      var input = $(this).parents('tr').find('td:first input').val();
+      $(this).parents('tr').find('td:first').html(input);
+      $(this).parents('tr').find('td:first').after('<td></td>');
+      $(this).parents('tr').find('td:last').html(`<input type="checkbox">`);
+    });
+  </script>
+{% endblock %}
