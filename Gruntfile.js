@@ -174,11 +174,10 @@ module.exports = grunt => {
     const cwd = `app/views/${dir}`;
     const templates = grunt.file.expand({filter: 'isFile', cwd}, ['**/*', '!includes/**']);
     const urls = [];
-    const https = config.useHttps ? 'https' : 'http';
 
     for (let i = 0; i < templates.length; i++) {
       const filename = templates[i].split('.').shift();
-      urls.push({src: `${https}://localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
+      urls.push({src: `localhost:3000/${dir}${filename}`, dest: `${filename}.png`});
     }
     return urls;
   }
