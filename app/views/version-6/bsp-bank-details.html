@@ -19,13 +19,11 @@
         <p>How would you like to get paid?</p>
 
         <form method="post" autocomplete="off">
-          <!-- Required and hidden for validation -->
           <h2 class="heading-medium" style="display:none;">How would you like to get paid?</h2>
 
           <div class="form-group">
-            <fieldset data-required data-error="Choose an option">
+            <fieldset>
               <div class="form-group">
-                <!-- No data-targets, see jQuery at bottom of this page -->
                 <label class="block-label" for="bank-account-yes">
                   <input id="bank-account-yes" type="radio" name="account-select" value="bank">
                   Bank account
@@ -40,7 +38,7 @@
           </div>
 
           <div class="js-hidden" id="bank-details">
-            <fieldset data-required data-error="Cannot be blank">
+            <fieldset>
               <div class="form-group">
                 <label class="form-label-bold" for="account-name">
                   Name on account
