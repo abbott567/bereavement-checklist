@@ -8,6 +8,7 @@
 {% block content %}
   <main id="content" role="main">
     {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
 
     <div class="grid-row">
       <div class="column-two-thirds">
@@ -126,8 +127,43 @@
                 By {{randomDates[9]}}
               </td>
             </tr>
+
+            {% if checklist.bsp == 'Yes' %}
+              <tr>
+                <td>
+                  Applied for Bereavement Support Payment
+                </td>
+                <td>
+                  Done ✓
+                </td>
+              </tr>
+            {% endif %}
+
+            {% if checklist.sffp == 'Yes' %}
+              <tr>
+                <td>
+                  Applied for Social Fund Funeral Payment
+                </td>
+                <td>
+                  Done ✓
+                </td>
+              </tr>
+            {% endif %}
+
+            {% if checklist.ihtax == 'Yes' %}
+              <tr>
+                <td>
+                  Inheritance tax
+                </td>
+                <td>
+                  Done ✓
+                </td>
+              </tr>
+            {% endif %}
           </tbody>
         </table>
+
+
 
         <table class="check-your-answers">
           <thead>
@@ -240,30 +276,6 @@
         $('body').scrollTop(0);
         $('#alert-success').show();
       }, 1000);
-    });
-
-    $(document).on('click', '#add-task', function (e) {
-      e.preventDefault();
-
-      $(document).find('tbody:last').append(
-        `<tr>
-          <td>
-            <label class="form-label-bold" for="task">Task</label>
-            <input class="form-control" class="task" type="text">
-          </td>
-          <td class="change-answer">
-            <a class="save-task" href="#">Save task</a>
-          </td>
-        </tr>
-      `);
-    });
-
-    $(document).on('click', '.save-task', function (e) {
-      e.preventDefault();
-      var input = $(this).parents('tr').find('td:first input').val();
-      $(this).parents('tr').find('td:first').html(input);
-      $(this).parents('tr').find('td:first').after('<td></td>');
-      $(this).parents('tr').find('td:last').html(`<input type="checkbox">`);
     });
   </script>
 {% endblock %}

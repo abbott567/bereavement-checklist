@@ -11,6 +11,11 @@ router.get('/', (req, res) => {
 
 // Start page
 router.get('/start', (req, res) => {
+  res.cookie('checklist', {
+    bsp: 'No',
+    sffp: 'No',
+    ihtax: 'No'
+  });
   res.render('version-6/start-page.html');
 });
 
@@ -89,12 +94,10 @@ router.post('/inform-organisations', (req, res) => {
 
 // Whats been done
 router.get('/whats-been-done', (req, res) => {
-  const name = req.cookies.deceasedName;
-  const date = {};
-  date.ten = moment().add(10, 'days').format('DD MMMM YYYY');
-  date.fourteen = moment().add(14, 'days').format('DD MMMM YYYY');
-
-  res.render('version-6/whats-been-done.html', {name, date});
+  const checklist = req.cookies.checklist;
+  const date = moment().add(3, 'months').format('DD MMMM YYYY');
+  const bspElig = req.cookies.bspElig;
+  res.render('version-6/whats-been-done.html', {date, bspElig, checklist});
 });
 
 router.post('/whats-been-done', (req, res) => {
@@ -105,14 +108,15 @@ router.post('/whats-been-done', (req, res) => {
 router.get('/things-to-think-about', (req, res) => {
   const completeDate = moment().format('DD MMMM YYYY');
   const bspElig = req.cookies.bspElig;
-  const name = req.cookies.deceasedName;
+  const backLink = 'whats-been-done';
   const randomDates = [];
+  const checklist = req.cookies.checklist;
 
   for (let i = 0; i < 10; i++) {
     randomDates.push(moment().add(randomNum(14, 30), 'days').format('DD MMMM YYYY'));
   }
 
-  res.render('version-6/things-to-think-about.html', {bspElig, name, completeDate, randomDates});
+  res.render('version-6/things-to-think-about.html', {bspElig, completeDate, randomDates, backLink, checklist});
 });
 
 router.get('/find-a-funeral-director', (req, res) => {
@@ -121,20 +125,53 @@ router.get('/find-a-funeral-director', (req, res) => {
 });
 
 router.post('/find-a-funeral-director', (req, res) => {
-  // res.redirect('checklist');
   res.redirect('things-to-think-about');
 });
 
 router.get('/apply-for-sffp', (req, res) => {
-  const backLink = req.get('referrer').indexOf('funeral-no') > -1 ? 'funeral-no' : 'funeral-date';
+  const backLink = 'whats-been-done';
   res.render('version-6/apply-for-sffp.html', {backLink});
 });
 
 router.post('/apply-for-sffp', (req, res) => {
-  res.redirect('apply-for-bsp');
+  res.redirect('apply-for-sffp-holding-page');
+});
+
+router.get('/apply-for-sffp-holding-page', (req, res) => {
+  const backLink = 'apply-for-sffp';
+  res.render('version-6/apply-for-sffp-holding-page.html', {backLink});
+});
+
+router.post('/apply-for-sffp-holding-page', (req, res) => {
+  const checklist = req.cookies.checklist;
+  checklist.sffp = 'Yes';
+  res.cookie('checklist', checklist);
+  res.redirect('whats-been-done');
+});
+
+router.get('/inheritance-tax', (req, res) => {
+  const backLink = 'whats-been-done';
+  res.render('version-6/inheritance-tax.html', {backLink});
+});
+
+router.post('/inheritance-tax', (req, res) => {
+  res.redirect('inheritance-tax-holding-page');
+});
+
+router.get('/inheritance-tax-holding-page', (req, res) => {
+  const backLink = 'inheritance-tax';
+  res.render('version-6/inheritance-tax-holding-page.html', {backLink});
+});
+
+router.post('/inheritance-tax-holding-page', (req, res) => {
+  const checklist = req.cookies.checklist;
+  checklist.ihtax = 'Yes';
+  res.cookie('checklist', checklist);
+  res.redirect('whats-been-done');
 });
 
 router.get('/apply-for-bsp', (req, res) => {
+  const backLink = 'whats-been-done';
   const now = moment();
   const dob = moment(req.cookies.yourAge, 'DDMMYYYY');
   const age = now.diff(dob, 'years');
@@ -146,9 +183,8 @@ router.get('/apply-for-bsp', (req, res) => {
   }
 
   if (eligible) {
-    res.render('version-6/apply-for-bsp.html');
+    res.render('version-6/apply-for-bsp.html', {backLink});
   } else {
-    // res.redirect('checklist');
     res.redirect('things-to-think-about');
   }
 });
@@ -158,7 +194,6 @@ router.post('/apply-for-bsp', (req, res) => {
     res.redirect('bsp-eligibility');
   } else {
     res.cookie('checklist', true);
-    // res.redirect('checklist');
     res.redirect('things-to-think-about');
   }
 });
@@ -217,24 +252,7 @@ router.get('/bsp-end', (req, res) => {
 });
 
 router.post('/bsp-end', (req, res) => {
-  // res.redirect('checklist');
-  res.redirect('things-to-think-about');
-});
-
-router.get('/mark-as-complete/:id', (req, res) => {
-  const id = req.params.id;
-  const checklist = req.cookies.checklist;
-
-  for (const key in checklist) {
-    if ({}.hasOwnProperty.call(checklist, key)) {
-      if (id === key) {
-        checklist[id] = 'Yes';
-      }
-    }
-  }
-
-  res.cookie('checklist', checklist);
-  res.redirect('/version-6/checklist');
+  res.redirect('whats-been-done');
 });
 
 module.exports = router;
