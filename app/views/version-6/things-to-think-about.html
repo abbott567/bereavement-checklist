@@ -22,17 +22,25 @@
       </div>
 
         <p class="lede">
-          You can use this list to help plan any other arrangements needed.
+          The information you gave has now been passed on to the government
+          organisations that need to know.
         </p>
 
-        <h2 class="heading-medium">Things that have been done</h2>
+        <p>
+          You or the person dealing with the estate will get confirmation of
+          these changes in the post by the dates listed below.
+        </p>
+
+        <h2 class="heading-medium">What's been done</h2>
 
         <table class="check-your-answers">
           <thead>
             <tr>
               <th>
+                What's changing
               </th>
               <th>
+                This will be confirmed by
               </th>
             </tr>
           </thead>
@@ -43,16 +51,16 @@
                 State Pension payments are being stopped
               </td>
               <td>
-                By {{randomDates[0]}}
+                {{randomDates[0]}}
               </td>
             </tr>
 
             <tr>
               <td>
-                Pension Credit is being stopped
+                Pension Credit payments are being stopped
               </td>
               <td>
-                By {{randomDates[1]}}
+                {{randomDates[1]}}
               </td>
             </tr>
 
@@ -61,34 +69,34 @@
                 Carer's Allowance is being cancelled
               </td>
               <td>
-                By {{randomDates[2]}}
+                {{randomDates[2]}}
               </td>
             </tr>
 
             <tr>
               <td>
-                Housing Benefit payments are being stopped
+                Housing Benefit payments are being adjusted
               </td>
               <td>
-                By {{randomDates[3]}}
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                Council Tax is being suspended
-              </td>
-              <td>
-                By {{randomDates[4]}}
+                {{randomDates[3]}}
               </td>
             </tr>
 
             <tr>
               <td>
-                Attendance Allowance is being stopped
+                Council Tax is being adjusted
               </td>
               <td>
-                By {{randomDates[5]}}
+                {{randomDates[4]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Attendance Allowance payments are being stopped
+              </td>
+              <td>
+                {{randomDates[5]}}
               </td>
             </tr>
 
@@ -97,7 +105,7 @@
                 Passport is being cancelled
               </td>
               <td>
-                By {{randomDates[6]}}
+                {{randomDates[6]}}
               </td>
             </tr>
 
@@ -106,7 +114,7 @@
                 Driving licence is being cancelled
               </td>
               <td>
-                By {{randomDates[7]}}
+                {{randomDates[7]}}
               </td>
             </tr>
 
@@ -115,7 +123,7 @@
                 Blue Badge is being cancelled
               </td>
               <td>
-                By {{randomDates[8]}}
+                {{randomDates[8]}}
               </td>
             </tr>
 
@@ -124,7 +132,7 @@
                 Council house tenancy is being updated
               </td>
               <td>
-                By {{randomDates[9]}}
+                {{randomDates[9]}}
               </td>
             </tr>
 
@@ -134,7 +142,7 @@
                   Applied for Bereavement Support Payment
                 </td>
                 <td>
-                  Done ✓
+                  {{randomDates[0]}}
                 </td>
               </tr>
             {% endif %}
@@ -142,10 +150,10 @@
             {% if checklist.sffp == 'Yes' %}
               <tr>
                 <td>
-                  Applied for Social Fund Funeral Payment
+                  Applied for a Funeral Payment
                 </td>
                 <td>
-                  Done ✓
+                  By {{randomDates[1]}}
                 </td>
               </tr>
             {% endif %}
@@ -153,10 +161,10 @@
             {% if checklist.ihtax == 'Yes' %}
               <tr>
                 <td>
-                  Inheritance tax
+                  Worked out Inheritance Tax bill
                 </td>
                 <td>
-                  Done ✓
+                  By {{randomDates[2]}}
                 </td>
               </tr>
             {% endif %}
