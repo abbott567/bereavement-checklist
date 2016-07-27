@@ -29,33 +29,6 @@
           </thead>
 
           <tbody>
-            {% if bspElig %}
-              {% if checklist.bsp == 'Yes'%}
-                <tr>
-                  <td>
-                    Bereavement Support Payment
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                    <span class="form-label-bold">Done ✓</span>
-                  </td>
-                </tr>
-              {% else %}
-                <tr>
-                  <td>
-                    Bereavement Support Payment
-                  </td>
-                  <td>
-                    Apply by {{date}}
-                  </td>
-                  <td>
-                    <a href="apply-for-bsp" class="form-label-bold" href="#">Apply online</a>
-                  </td>
-                </tr>
-              {% endif %}
-            {% endif %}
-
             {% if checklist.sffp == 'Yes'%}
               <tr>
                 <td>
