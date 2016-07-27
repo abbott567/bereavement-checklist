@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Tell government about a death
+        </h1>
+
+        <p class="lede">
+          When someone dies, any allowances or benefits they received will need
+          to be cancelled.
+        </p>
+
+        <p>
+          As soon as you can, you'll need to give some details about the person
+          who has died. This will help to prevent overpayment of any benefits
+          they received and fraudulent use of their identity.
+        </p>
+
+        <p>
+          You'll be able to see what will change before you confirm you
+          are ready to pass this information on.
+        </p>
+
+        <h2 class="heading-medium">Benefits you could get</h2>
+
+        <p>
+          You'll be asked for some personal details and about your relationship
+          to the person who died. This is to find out if you could get
+          Bereavement Support Payment. You can also get information about help
+          with funeral costs.
+
+          <div class="panel panel-border-narrow">
+            You can give these details on behalf of the person dealing with
+            the estate. You must have their permission to do this.
+          </div>
+
+        <h2 class="heading-medium">What you'll need</h2>
+
+        <ul class="list-bullet">
+          <li>The National Insurance number or the date of birth of the person
+          who died</li>
+          <li>The date they died</li>
+          <li>The contact details of the person dealing with the estate, if you're
+          giving this information on their behalf</li>
+        </ul>
+
+        <br />
+
+        <form method="post" autocomplete="off">
+          <input type="submit" class="button button-start" value="Start now" />
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

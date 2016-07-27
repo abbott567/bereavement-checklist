@@ -1,0 +1,286 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <div class="govuk-box-highlight">
+        <h1 class="bold-large">Complete</h1>
+        <p>
+          {{completeDate}}<br />
+          <span style="font-size:14px">Your reference number is</span><br>
+          <strong class="heading-medium">HDJ2123F</strong>
+        </p>
+      </div>
+
+        <p class="lede">
+          The information you gave has now been passed on to the government
+          organisations that need to know.
+        </p>
+
+        <p>
+          You or the person dealing with the estate will get letters confirming
+          these changes by the dates listed below.
+        </p>
+        <h2 class="heading-medium">What's been done</h2>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th>
+                What's changing
+              </th>
+              <th>
+                This will be confirmed by
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                State Pension payments are being stopped
+              </td>
+              <td>
+                {{randomDates[0]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Pension Credit payments are being stopped
+              </td>
+              <td>
+                {{randomDates[1]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Carer's Allowance is being cancelled
+              </td>
+              <td>
+                {{randomDates[2]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Housing Benefit payments are being adjusted
+              </td>
+              <td>
+                {{randomDates[3]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Council Tax is being adjusted
+              </td>
+              <td>
+                {{randomDates[4]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Attendance Allowance payments are being stopped
+              </td>
+              <td>
+                {{randomDates[5]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Passport is being cancelled
+              </td>
+              <td>
+                {{randomDates[6]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Driving licence is being cancelled
+              </td>
+              <td>
+                {{randomDates[7]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Blue Badge is being cancelled
+              </td>
+              <td>
+                {{randomDates[8]}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Council house tenancy is being updated
+              </td>
+              <td>
+                {{randomDates[9]}}
+              </td>
+            </tr>
+
+            {% if checklist.bsp == 'Yes' %}
+              <tr>
+                <td>
+                  Bereavement Support Payment application being processed
+                </td>
+                <td>
+                  {{randomDates[0]}}
+                </td>
+              </tr>
+            {% endif %}
+
+            {% if checklist.sffp == 'Yes' %}
+              <tr>
+                <td>
+                  Applied for a Funeral Payment
+                </td>
+                <td>
+                  By {{randomDates[1]}}
+                </td>
+              </tr>
+            {% endif %}
+
+            {% if checklist.ihtax == 'Yes' %}
+              <tr>
+                <td>
+                  Worked out Inheritance Tax bill
+                </td>
+                <td>
+                  By {{randomDates[2]}}
+                </td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+
+        <table class="check-your-answers">
+          <thead>
+            <tr>
+              <th colspan="3">
+                <h2 class="heading-medium">
+                  Other things to think about
+                </h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Contact bank
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Contact insurance provider
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                Tell employer
+              </td>
+              <td>
+              </td>
+              <td class="change-answer">
+                <input type="checkbox">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="checklist-actions" style="margin-top:50px">
+          <p class="print-hidden">
+            <a id="save-button" href="download" target="_new" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-file-download.png">
+              Save this page
+            </a>
+          </p>
+
+  				<p class="print-hidden">
+            <a id="print-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-print.png" width="30">
+              Print this page
+            </a>
+          </p>
+
+          <p class="print-hidden">
+            <a id="email-button" href="end" class="heading-medium">
+              <img class="print-save-icons" src="/public/images/icon-email.png" width="30">
+              Email this page
+            </a>
+
+            <div id="email-hidden" class="panel panel-border-narrow js-hidden">
+              <form>
+                <fieldset>
+                  <div class="form-group">
+                    <label class="form-label" for="email-address">Email address</label>
+                    <input class="form-control" id="email-address" type="text">
+                  </div>
+
+                  <input type="submit" class="button" value="Email this page">
+                </fieldset>
+              </form>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block page_scripts %}
+  <script>
+    $(document).on('click', '#save-button', function (e) {
+      e.preventDefault();
+    });
+
+    $(document).on('click', '#print-button', function (e) {
+      e.preventDefault();
+      window.print();
+    });
+
+    $(document).on('click', '#email-button', function (e) {
+      e.preventDefault();
+      $('#email-hidden').toggle();
+    });
+
+    $(document).on('submit', 'form', function (e) {
+      e.preventDefault();
+      setTimeout(function () {
+        $('body').scrollTop(0);
+        $('#alert-success').show();
+      }, 1000);
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">Your contact details</h1>
+
+        <div class="form-group">
+          <legend>
+            <span class="form-label-bold">
+              What is your address?
+            </span>
+
+            <p class="form-hint">Notification of any changes made will be sent here</p>
+
+        <form method="post" autocomplete="off">
+          <div class="form-group">
+            <legend class="form-label">Address</legend>
+
+            <fieldset>
+              <div class="form-group-compound">
+                <label class="form-label label-no-hint visuallyhidden" for="address">
+                  Address line 1
+                </label>
+                <input type="text" class="form-control" id="address-1">
+              </div>
+            </fieldset>
+
+            <div class="form-group-compound">
+              <label class="form-label label-no-hint visuallyhidden" for="address">
+                Address line 2
+              </label>
+              <input type="text" class="form-control" id="address-2">
+            </div>
+
+            <div>
+              <label class="form-label label-no-hint visuallyhidden" for="address">
+                Address line 3
+              </label>
+              <input type="text" class="form-control" id="address-3">
+            </div>
+          </div>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="form-label label-no-hint" for="postcode">
+                Postcode
+              </label>
+              <input type="text" class="form-control" id="postcode">
+            </div>
+          </fieldset>
+
+          <h2 class="heading-medium">If we have any questions, how should we contact you?</h2>
+
+          <p>Select as many as you like</p>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="block-label" for="contact-post">
+                <input id="contact-post" name="contact-select" type="checkbox" value="Post">
+                Post
+              </label>
+
+              <label class="block-label" for="contact-phonecall" data-target="contact-phonecall-hidden">
+                <input id="contact-phonecall" name="contact-select" type="checkbox" value="Phone">
+                Phonecall
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-phonecall-hidden">
+                <label class="form-label" for="phonecall-number">Phone number</label>
+                <input class="form-control" type="text" id="phonecall-number" name="phonecall-number">
+              </div>
+
+              <label class="block-label" for="contact-text" data-target="contact-text-hidden">
+                <input id="contact-text" name="contact-select" type="checkbox" value="Text">
+                Text message
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-text-hidden">
+                <label class="form-label" for="mobile-number">Mobile number</label>
+                <input class="form-control" type="text" id="mobile-number" name="mobile-number">
+              </div>
+
+              <label class="block-label" for="contact-email" data-target="contact-email-hidden">
+                <input id="contact-email" name="contact-select" type="checkbox" value="Email">
+                Email
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-email-hidden">
+                <label class="form-label" for="email-address">Email address</label>
+                <input class="form-control" type="text" id="email-address" name="email-address">
+              </div>
+            </div>
+
+          </fieldset>
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

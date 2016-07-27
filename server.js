@@ -105,6 +105,9 @@ app.use('/version-3', require(path.join(__dirname, '/app/routes/version-3.js')))
 app.use('/version-4', require(path.join(__dirname, '/app/routes/version-4.js')));
 app.use('/version-5', require(path.join(__dirname, '/app/routes/version-5.js')));
 app.use('/version-6', require(path.join(__dirname, '/app/routes/version-6.js')));
+app.use('/janice-morrison', require(path.join(__dirname, '/app/routes/version-6.js')));
+app.use('/patrick-collins', require(path.join(__dirname, '/app/routes/version-6.js')));
+app.use('/steven-chapman', require(path.join(__dirname, '/app/routes/version-6.js')));
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, (req, res) => {

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Bereavement service
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+    {% include '../includes/back-link.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">
+          Inheritance Tax
+        </h1>
+
+        <p class="lede">
+          This would have linked off to HMRC's inheritance tax service, so imagine
+          this is the start page for that service
+        </p>
+
+        <form method="post" autocomplete="off">
+          <div class="form-group">
+            <input type="submit" class="button button-start" value="Start now">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

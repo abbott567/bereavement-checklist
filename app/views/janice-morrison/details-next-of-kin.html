@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% import 'helpers/macros.html' as m %}
+
+{% block page_title %}
+  Apply for bereavement Support Payment
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    {% include '../includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">About the person dealing with the estate</h1>
+
+        <p class="lede">
+          The person dealing with the estate, for example the next of kin, will
+          be notified when you tell government about the death.
+        </p>
+
+        <form method="post" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label-bold" for="full-name">Their full name</label>
+            <input class="form-control" id="full-name" name="full-name" type="text">
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend>
+                <span class="form-label-bold">
+                  What is their date of birth?
+                </span>
+                <span class="form-hint" id="dob-hint">For example, 31 3 1980</span>
+              </legend>
+              <div class="form-date">
+                <div class="form-group form-group-day">
+                  <label class="form-label" for="dob-day">Day</label>
+                  <input class="form-control" id="dob-day" name="dob-day" type="number" pattern="[0-9]*" min="0" max="31" aria-describedby="dob-hint">
+                </div>
+                <div class="form-group form-group-month">
+                  <label class="form-label" for="dob-month">Month</label>
+                  <input class="form-control" id="dob-month" name="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+                </div>
+                <div class="form-group form-group-year">
+                  <label class="form-label" for="dob-year">Year</label>
+                  <input class="form-control" id="dob-year" name="dob-year" type="number" pattern="[0-9]*" min="0" max="2016">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <fieldset class="inline" id="relationship-hidden">
+            <h2 class="heading-small">
+              Were they married to or in a civil partnership with {{name}} when
+              they died?
+            </h2>
+
+            <p class="form-hint">They may be able to get Bereavement Support Payment if they were</p>
+
+            <div class="form-group">
+              <label class="block-label" for="married-yes">
+                <input id="married-yes" type="radio" name="married-select" value="Yes">
+                Yes
+              </label>
+
+              <label class="block-label" for="married-no">
+                <input id="married-no" type="radio" name="married-select" value="No">
+                No
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <legend>
+              <span class="form-label-bold">
+                What is their address?
+              </span>
+
+              <p class="form-hint">Notification of any changes made will be sent here</p>
+
+              <span>Address</span>
+            </legend>
+
+            <fieldset>
+              <div class="form-group-compound">
+                <label class="form-label label-no-hint visuallyhidden" for="address">
+                  Address line 1
+                </label>
+                <input type="text" class="form-control" id="address-1">
+              </div>
+            </fieldset>
+
+            <div class="form-group-compound">
+              <label class="form-label label-no-hint visuallyhidden" for="address">
+                Address line 2
+              </label>
+              <input type="text" class="form-control" id="address-2">
+            </div>
+
+            <div>
+              <label class="form-label label-no-hint visuallyhidden" for="address">
+                Address line 3
+              </label>
+              <input type="text" class="form-control" id="address-3">
+            </div>
+          </div>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="form-label label-no-hint" for="postcode">
+                Postcode
+              </label>
+              <input type="text" class="form-control" id="postcode">
+            </div>
+          </fieldset>
+
+          <h2 class="heading-medium">If there are any questions, how should they be contacted?</h2>
+
+          <p>Select as many as you like</p>
+
+          <fieldset>
+            <div class="form-group">
+              <label class="block-label" for="contact-post">
+                <input id="contact-post" name="contact-select" type="checkbox" value="Post">
+                Post
+              </label>
+
+              <label class="block-label" for="contact-phonecall" data-target="contact-phonecall-hidden">
+                <input id="contact-phonecall" name="contact-select" type="checkbox" value="Phone">
+                Phone call
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-phonecall-hidden">
+                <label class="form-label" for="phonecall-number">Phone number</label>
+                <input class="form-control" type="text" id="phonecall-number" name="phonecall-number">
+              </div>
+
+              <label class="block-label" for="contact-text" data-target="contact-text-hidden">
+                <input id="contact-text" name="contact-select" type="checkbox" value="Text">
+                Text message
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-text-hidden">
+                <label class="form-label" for="mobile-number">Mobile number</label>
+                <input class="form-control" type="text" id="mobile-number" name="mobile-number">
+              </div>
+
+              <label class="block-label" for="contact-email" data-target="contact-email-hidden">
+                <input id="contact-email" name="contact-select" type="checkbox" value="Email">
+                Email
+              </label>
+              <div class="panel panel-border-narrow js-hidden" id="contact-email-hidden">
+                <label class="form-label" for="email-address">Email address</label>
+                <input class="form-control" type="text" id="email-address" name="email-address">
+              </div>
+            </div>
+
+          </fieldset>
+          <input type="submit" class="button" value="Continue">
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}
