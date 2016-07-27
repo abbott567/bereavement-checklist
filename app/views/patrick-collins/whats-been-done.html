@@ -29,31 +29,29 @@
           </thead>
 
           <tbody>
-            {% if bspElig %}
-              {% if checklist.bsp == 'Yes'%}
-                <tr>
-                  <td>
-                    Bereavement Support Payment
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                    <span class="form-label-bold">Done ✓</span>
-                  </td>
-                </tr>
-              {% else %}
-                <tr>
-                  <td>
-                    Bereavement Support Payment
-                  </td>
-                  <td>
-                    Apply by {{date}}
-                  </td>
-                  <td>
-                    <a href="apply-for-bsp" class="form-label-bold" href="#">Apply online</a>
-                  </td>
-                </tr>
-              {% endif %}
+            {% if checklist.bsp == 'Yes'%}
+              <tr>
+                <td>
+                  Bereavement Support Payment
+                </td>
+                <td>
+                </td>
+                <td>
+                  <span class="form-label-bold">Done ✓</span>
+                </td>
+              </tr>
+            {% else %}
+              <tr>
+                <td>
+                  Bereavement Support Payment
+                </td>
+                <td>
+                  Apply by {{date}}
+                </td>
+                <td>
+                  <a href="apply-for-bsp" class="form-label-bold" href="#">Apply online</a>
+                </td>
+              </tr>
             {% endif %}
 
             {% if checklist.sffp == 'Yes'%}
@@ -80,34 +78,6 @@
                 </td>
               </tr>
             {% endif %}
-
-            {% if checklist.ihtax == 'Yes'%}
-              <tr>
-                <td>
-                  Work out Inheritance Tax bill
-                </td>
-                <td>
-                </td>
-                <td>
-                  <span class="form-label-bold">Done ✓</span>
-                </td>
-              </tr>
-            {% else %}
-              <tr>
-                <td>
-                  Work out Inheritance Tax bill
-                </td>
-                <td>
-                  This needs to be paid within 6 months of the death
-                </td>
-                <td>
-                  <a href="inheritance-tax" class="form-label-bold" href="#">Calculate online</a>
-                </td>
-              </tr>
-            {% endif %}
-
-
-
           </tbody>
         </table>
 
