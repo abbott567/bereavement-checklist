@@ -25,14 +25,14 @@
           You can use this list to help plan any other arrangements needed.
         </p>
 
-        <h2 class="heading-medium">Things that have been done</h2>
-
         <table class="check-your-answers">
           <thead>
             <tr>
               <th>
+                What's being done
               </th>
               <th>
+                You will hear from us by
               </th>
             </tr>
           </thead>
@@ -43,7 +43,7 @@
                 State Pension payments are being stopped
               </td>
               <td>
-                By {{randomDates[0]}}
+                {{randomDates[0]}}
               </td>
             </tr>
 
@@ -52,7 +52,7 @@
                 Pension Credit is being stopped
               </td>
               <td>
-                By {{randomDates[1]}}
+                {{randomDates[1]}}
               </td>
             </tr>
 
@@ -61,7 +61,7 @@
                 Carer's Allowance is being cancelled
               </td>
               <td>
-                By {{randomDates[2]}}
+                {{randomDates[2]}}
               </td>
             </tr>
 
@@ -70,7 +70,7 @@
                 Housing Benefit payments are being stopped
               </td>
               <td>
-                By {{randomDates[3]}}
+                {{randomDates[3]}}
               </td>
             </tr>
 
@@ -79,7 +79,7 @@
                 Council Tax is being suspended
               </td>
               <td>
-                By {{randomDates[4]}}
+                {{randomDates[4]}}
               </td>
             </tr>
 
@@ -88,7 +88,7 @@
                 Attendance Allowance is being stopped
               </td>
               <td>
-                By {{randomDates[5]}}
+                {{randomDates[5]}}
               </td>
             </tr>
 
@@ -97,7 +97,7 @@
                 Passport is being cancelled
               </td>
               <td>
-                By {{randomDates[6]}}
+                {{randomDates[6]}}
               </td>
             </tr>
 
@@ -106,7 +106,7 @@
                 Driving licence is being cancelled
               </td>
               <td>
-                By {{randomDates[7]}}
+                {{randomDates[7]}}
               </td>
             </tr>
 
@@ -115,7 +115,7 @@
                 Blue Badge is being cancelled
               </td>
               <td>
-                By {{randomDates[8]}}
+                {{randomDates[8]}}
               </td>
             </tr>
 
@@ -124,17 +124,17 @@
                 Council house tenancy is being updated
               </td>
               <td>
-                By {{randomDates[9]}}
+                {{randomDates[9]}}
               </td>
             </tr>
 
             {% if checklist.bsp == 'Yes' %}
               <tr>
                 <td>
-                  Applied for Bereavement Support Payment
+                  Bereavement Support Payment application being processed
                 </td>
                 <td>
-                  Done ✓
+                  {{randomDates[0]}}
                 </td>
               </tr>
             {% endif %}
@@ -142,10 +142,10 @@
             {% if checklist.sffp == 'Yes' %}
               <tr>
                 <td>
-                  Applied for Social Fund Funeral Payment
+                  Social Fund Funeral Payment application being processed
                 </td>
                 <td>
-                  Done ✓
+                  {{randomDates[1]}}
                 </td>
               </tr>
             {% endif %}
@@ -153,17 +153,15 @@
             {% if checklist.ihtax == 'Yes' %}
               <tr>
                 <td>
-                  Inheritance tax
+                  Inheritance tax being processed
                 </td>
                 <td>
-                  Done ✓
+                  {{randomDates[2]}}
                 </td>
               </tr>
             {% endif %}
           </tbody>
         </table>
-
-
 
         <table class="check-your-answers">
           <thead>
