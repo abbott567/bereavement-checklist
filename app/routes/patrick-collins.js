@@ -172,21 +172,7 @@ router.post('/inheritance-tax-holding-page', (req, res) => {
 
 router.get('/apply-for-bsp', (req, res) => {
   const backLink = 'whats-been-done';
-  const now = moment();
-  const dob = moment(req.cookies.yourAge, 'DDMMYYYY');
-  const age = now.diff(dob, 'years');
-  let eligible;
-
-  if (req.cookies.married === 'yes' && age < 62) {
-    eligible = true;
-    res.cookie('bspElig', true);
-  }
-
-  if (eligible) {
-    res.render('patrick-collins/apply-for-bsp.html', {backLink});
-  } else {
-    res.redirect('things-to-think-about');
-  }
+  res.render('patrick-collins/apply-for-bsp.html', {backLink});
 });
 
 router.post('/apply-for-bsp', (req, res) => {
